@@ -1,17 +1,20 @@
-qlDBM: MySQL ******************;
 -- ***************************************************;
 
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
 
-DROP SCHEMA `SampleDb`;
 
-CREATE SCHEMA `SampleDb`;
+DROP DATABASE IF EXISTS `db_camagru`;
+CREATE DATABASE `db_camagru`;
 
-
+USE `db_camagru`;
 -- ************************************** `comments`
 
 CREATE TABLE `comments`
 (
-	 `id`    NOT NULL ,
+	 `id`    INT(11) NOT NULL ,
 	 `text` LONGTEXT NOT NULL ,
 	 `date` DATETIME NOT NULL ,
 
@@ -26,7 +29,7 @@ CREATE TABLE `comments`
 
 CREATE TABLE `users`
 (
-	 `id`          NOT NULL ,
+	 `id`         INT(11) NOT NULL ,
 	 `email`      VARCHAR(45) NOT NULL ,
 	 `login`      VARCHAR(45) NOT NULL ,
 	 `password`   LONGTEXT NOT NULL ,
@@ -43,9 +46,9 @@ CREATE TABLE `users`
 
 CREATE TABLE `user_has_comments`
 (
-	 `id`           NOT NULL ,
-	 `id_users`     NOT NULL ,
-	 `id_comments`  NOT NULL ,
+	 `id`           INT(11) NOT NULL ,
+	 `id_users`     INT(11) NOT NULL ,
+	 `id_comments`  INT(11) NOT NULL ,
 
 	PRIMARY KEY (`id`),
 	KEY `fkIdx_158` (`id_users`),
@@ -62,10 +65,10 @@ CREATE TABLE `user_has_comments`
 
 CREATE TABLE `photos`
 (
-	 `id`        NOT NULL ,
+	 `id`       INT(11) NOT NULL ,
 	 `date`     DATETIME NOT NULL ,
 	 `img`      LONGTEXT NOT NULL ,
-	 `id_users`  NOT NULL ,
+	 `id_users` INT(11) NOT NULL ,
 
 	PRIMARY KEY (`id`),
 	KEY `fkIdx_168` (`id_users`),
@@ -80,9 +83,9 @@ CREATE TABLE `photos`
 
 CREATE TABLE `photo_has_comments`
 (
-	 `id`           NOT NULL ,
-	 `id_photos`    NOT NULL ,
-	 `id_comments`  NOT NULL ,
+	 `id`           INT(11) NOT NULL ,
+	 `id_photos`    INT(11) NOT NULL ,
+	 `id_comments`  INT(11) NOT NULL ,
 
 	PRIMARY KEY (`id`),
 	KEY `fkIdx_146` (`id_photos`),
@@ -99,9 +102,9 @@ CREATE TABLE `photo_has_comments`
 
 CREATE TABLE `likes`
 (
-	 `id`         NOT NULL ,
-	 `id_photos`  NOT NULL ,
-	 `id_users`   NOT NULL ,
+	 `id`         INT(11) NOT NULL ,
+	 `id_photos`  INT(11) NOT NULL ,
+	 `id_users`   INT(11) NOT NULL ,
 
 	PRIMARY KEY (`id`),
 	KEY `fkIdx_134` (`id_photos`),
@@ -109,4 +112,3 @@ CREATE TABLE `likes`
 	KEY `fkIdx_138` (`id_users`),
 	CONSTRAINT `FK_138` FOREIGN KEY `fkIdx_138` (`id_users`) REFERENCES `users` (`id`)
 );
-
