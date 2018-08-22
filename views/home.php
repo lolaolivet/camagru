@@ -12,7 +12,9 @@
     <button type="button" name="snap" id="snap" onclick="snapshot(this)">Smile!</button>
     <canvas id="canvas" width="500" height="375"></canvas>
     <input type="submit" name="snap" value="Save" id="save" onclick="saveSnap(this)">
-    <img src="">
+</div>
+<div id="mini-galery">
+  <!-- Saved pictures -->
 </div>
 </body>
 </html>

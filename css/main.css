@@ -1,5 +1,6 @@
 body {
   background-color: #ffffff;
+  display: flex;
 }
 
 #container {
@@ -12,4 +13,13 @@ body {
     width: 500px;
     height: 375px;
     background-color: #666;
+}
+
+#mini-galery {
+  height: auto;
+  width: 100px;
+}
+
+#mini-galery img {
+  width:100px
 }

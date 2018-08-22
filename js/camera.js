@@ -13,12 +13,20 @@ function snapshot(e) {
   var canvas = document.getElementById("canvas");
   var context = canvas.getContext("2d");
   var video = document.querySelector("#videoElement");
-
+  var img = document.querySelector("#videoElement");
   context.drawImage(video, 0, 0, 500, 375);
-  console.log(context);
+  img.src = canvas.toDataURL('image/webp');
 }
 
 function saveSnap(e) {
   var canvas = document.getElementById("canvas");
-  console.log(canvas);
+  var context = canvas.getContext("2d");
+  var img = document.querySelector("#videoElement");
+  var element = document.getElementById("mini-galery");
+  var fragment = document.createDocumentFragment();
+  var balise = document.createElement("img");
+  balise.src = img.src;
+  context.clearRect(0, 0, 500, 375);
+  fragment.appendChild(balise);
+  element.appendChild(fragment);
 }
