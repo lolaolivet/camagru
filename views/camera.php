@@ -1,9 +1,11 @@
-<html>
-<head>
-  <link rel="stylesheet" type="text/css" href="../css/main.css">
-  <script type="text/javascript" src="../js/camera.js">
-
-  </script>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+      <meta charset="utf-8">
+      <title>Camagruuu</title>
+      <link rel="stylesheet" type="text/css" href="../css/main.css">
+      <link rel="stylesheet" type="text/css" href="../css/connexion.css">
+      <script type="text/javascript" src="../js/camera.js"></script>
 </head>
 <body>
   <div id="container">

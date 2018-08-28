@@ -1,0 +1,54 @@
+p {
+    color: #ff3184;
+}
+
+.title {
+    margin: auto;
+}
+
+.container {
+    margin: auto;
+    padding: 15px;
+    width: 80%;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.connexion, .register {
+    border: #fff solid 0.5px;
+    padding: 20px;
+    width: 300px;
+    height: 200px;
+    border-radius: 10px;
+    box-shadow: 3px 6px 12px 3px #e5e5e5;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 10px;;
+}
+
+label {
+    float: left;
+    margin: 10px 0;
+}
+
+input {
+    margin: 10px;
+}
+
+form {
+    height: 100%;
+    width: 100%;
+}
+
+.validate {
+    margin: auto;
+}
+
+
+.formul {
+    margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
+}

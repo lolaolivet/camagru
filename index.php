@@ -3,11 +3,20 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="css/gallery.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
     <title>Camagruuu</title>
   </head>
   <body>
     <header>
-      <h1>Camagru</h1>
+        <div class="title">
+            <h1>Camagru</h1>
+        </div>
+        <div class="connect">
+            <a href="views/connexion.php"><p>Connexion</p></a>
+        </div>
+        <div class="register">
+            <a href="views/register.php"><p>Inscription</p></a>
+        </div>
     </header>
     <div id="top"></div>
     <div class="gallery">
