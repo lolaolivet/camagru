@@ -6,4 +6,5 @@ function db_connect() {
   } catch(PDOException $e) {
     echo "Connection failed : " . $e->getMessage();
   }
+    return ($connect);
 }

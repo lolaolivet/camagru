@@ -1,6 +1,7 @@
 <?php
-include("connect_sql.php");
-$sql = db_connect();
+
+include("database.php");
+$sql =  new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
 $tmp = '';
 $file = file("db_camagru.sql");
 foreach ($file as $line)
@@ -10,10 +11,9 @@ foreach ($file as $line)
   $tmp .= $line;
   if (substr(trim($line), -1, 1) == ';')
   {
-    mysqli_query($sql, $tmp) or print('Erreur en traitant la requete \'<strong>' . $tmp . '\': ' . mysqli_error($sql) . '<br /><br />');
+      if ( $sql->exec($tmp) === false)
+        die(print_r($sql->errorInfo(), true));
     $tmp = '';
   }
+    header("Location: ../index.php");
 }
-echo "Tables imported successfully";
-header('Location: ../views/home.php');
-?>

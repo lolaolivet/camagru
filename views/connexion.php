@@ -19,7 +19,6 @@
                   <div class="formul">
                       <label for="user">User:</label><input type="text" name="user" id="user">
                   </div>
-                  
                   <div class="formul">
                       <label for="password">Password:</label><input type="email" name="password" id="password">
                   </div>

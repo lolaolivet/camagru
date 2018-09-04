@@ -14,9 +14,6 @@
         <div class="connect">
             <a href="views/connexion.php"><p>Connexion</p></a>
         </div>
-        <div class="register">
-            <a href="views/register.php"><p>Inscription</p></a>
-        </div>
     </header>
     <div id="top"></div>
     <div class="gallery">

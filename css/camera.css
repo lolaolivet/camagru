@@ -18,3 +18,16 @@
 #mini-galery img {
   width:100px
 }
+
+.title {
+    margin: auto auto;
+}
+
+.gallery {
+    margin: auto 10px;
+    float: right;
+}
+
+.gallery a {
+    color: #ff3184;
+}
