@@ -13,11 +13,11 @@ USE db_camagru;
 
 CREATE TABLE `comments`
 (
-	 `id`    INT(11) NOT NULL ,
-	 `text` LONGTEXT NOT NULL ,
-	 `date` DATETIME NOT NULL ,
+    `id`    INT(11) NOT NULL ,
+    `text` LONGTEXT NOT NULL ,
+    `date` DATETIME NOT NULL ,
 
-	PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`)
 );
 
 
@@ -28,13 +28,13 @@ CREATE TABLE `comments`
 
 CREATE TABLE `users`
 (
-	 `id`         INT(11) NOT NULL ,
-	 `email`      VARCHAR(45) NOT NULL ,
-	 `login`      VARCHAR(45) NOT NULL ,
-	 `password`   LONGTEXT NOT NULL ,
-	 `validation` TINYINT NOT NULL ,
+    `id`         INT(11) NOT NULL ,
+    `email`      VARCHAR(45) NOT NULL ,
+    `login`      VARCHAR(45) NOT NULL ,
+    `password`   LONGTEXT NOT NULL ,
+    `validation` TINYINT NOT NULL ,
 
-	PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`)
 );
 
 
@@ -45,15 +45,15 @@ CREATE TABLE `users`
 
 CREATE TABLE `user_has_comments`
 (
-	 `id`           INT(11) NOT NULL ,
-	 `id_users`     INT(11) NOT NULL ,
-	 `id_comments`  INT(11) NOT NULL ,
+    `id`           INT(11) NOT NULL ,
+    `id_users`     INT(11) NOT NULL ,
+    `id_comments`  INT(11) NOT NULL ,
 
-	PRIMARY KEY (`id`),
-	KEY `fkIdx_158` (`id_users`),
-	CONSTRAINT `FK_158` FOREIGN KEY `fkIdx_158` (`id_users`) REFERENCES `users` (`id`),
-	KEY `fkIdx_162` (`id_comments`),
-	CONSTRAINT `FK_162` FOREIGN KEY `fkIdx_162` (`id_comments`) REFERENCES `comments` (`id`)
+    PRIMARY KEY (`id`),
+    KEY `fkIdx_158` (`id_users`),
+    CONSTRAINT `FK_158` FOREIGN KEY `fkIdx_158` (`id_users`) REFERENCES `users` (`id`),
+    KEY `fkIdx_162` (`id_comments`),
+    CONSTRAINT `FK_162` FOREIGN KEY `fkIdx_162` (`id_comments`) REFERENCES `comments` (`id`)
 );
 
 
@@ -64,14 +64,14 @@ CREATE TABLE `user_has_comments`
 
 CREATE TABLE `photos`
 (
-	 `id`       INT(11) NOT NULL ,
-	 `date`     DATETIME NOT NULL ,
-	 `img`      LONGTEXT NOT NULL ,
-	 `id_users` INT(11) NOT NULL ,
+    `id`       INT(11) NOT NULL ,
+    `date`     DATETIME NOT NULL ,
+    `img`      LONGTEXT NOT NULL ,
+    `id_users` INT(11) NOT NULL ,
 
-	PRIMARY KEY (`id`),
-	KEY `fkIdx_168` (`id_users`),
-	CONSTRAINT `FK_168` FOREIGN KEY `fkIdx_168` (`id_users`) REFERENCES `users` (`id`)
+    PRIMARY KEY (`id`),
+    KEY `fkIdx_168` (`id_users`),
+    CONSTRAINT `FK_168` FOREIGN KEY `fkIdx_168` (`id_users`) REFERENCES `users` (`id`)
 );
 
 
@@ -82,15 +82,15 @@ CREATE TABLE `photos`
 
 CREATE TABLE `photo_has_comments`
 (
-	 `id`           INT(11) NOT NULL ,
-	 `id_photos`    INT(11) NOT NULL ,
-	 `id_comments`  INT(11) NOT NULL ,
+    `id`           INT(11) NOT NULL ,
+    `id_photos`    INT(11) NOT NULL ,
+    `id_comments`  INT(11) NOT NULL ,
 
-	PRIMARY KEY (`id`),
-	KEY `fkIdx_146` (`id_photos`),
-	CONSTRAINT `FK_146` FOREIGN KEY `fkIdx_146` (`id_photos`) REFERENCES `photos` (`id`),
-	KEY `fkIdx_150` (`id_comments`),
-	CONSTRAINT `FK_150` FOREIGN KEY `fkIdx_150` (`id_comments`) REFERENCES `comments` (`id`)
+    PRIMARY KEY (`id`),
+    KEY `fkIdx_146` (`id_photos`),
+    CONSTRAINT `FK_146` FOREIGN KEY `fkIdx_146` (`id_photos`) REFERENCES `photos` (`id`),
+    KEY `fkIdx_150` (`id_comments`),
+    CONSTRAINT `FK_150` FOREIGN KEY `fkIdx_150` (`id_comments`) REFERENCES `comments` (`id`)
 );
 
 
@@ -101,13 +101,13 @@ CREATE TABLE `photo_has_comments`
 
 CREATE TABLE `likes`
 (
-	 `id`         INT(11) NOT NULL ,
-	 `id_photos`  INT(11) NOT NULL ,
-	 `id_users`   INT(11) NOT NULL ,
+    `id`         INT(11) NOT NULL ,
+    `id_photos`  INT(11) NOT NULL ,
+    `id_users`   INT(11) NOT NULL ,
 
-	PRIMARY KEY (`id`),
-	KEY `fkIdx_134` (`id_photos`),
-	CONSTRAINT `FK_134` FOREIGN KEY `fkIdx_134` (`id_photos`) REFERENCES `photos` (`id`),
-	KEY `fkIdx_138` (`id_users`),
-	CONSTRAINT `FK_138` FOREIGN KEY `fkIdx_138` (`id_users`) REFERENCES `users` (`id`)
+    PRIMARY KEY (`id`),
+    KEY `fkIdx_134` (`id_photos`),
+    CONSTRAINT `FK_134` FOREIGN KEY `fkIdx_134` (`id_photos`) REFERENCES `photos` (`id`),
+    KEY `fkIdx_138` (`id_users`),
+    CONSTRAINT `FK_138` FOREIGN KEY `fkIdx_138` (`id_users`) REFERENCES `users` (`id`)
 );
