@@ -1,9 +1,9 @@
 -- ***************************************************;
 
--- SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
--- SET AUTOCOMMIT = 0;
--- START TRANSACTION;
--- SET time_zone = "+00:00";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
 
 DROP DATABASE IF EXISTS db_camagru;
 CREATE DATABASE db_camagru;
@@ -13,12 +13,12 @@ USE db_camagru;
 
 CREATE TABLE `comments`
 (
-    `id`    INT(11) NOT NULL ,
+    `id`    INT(11) NOT NULL AUTO_INCREMENT,
     `text` LONGTEXT NOT NULL ,
     `date` DATETIME NOT NULL ,
 
     PRIMARY KEY (`id`)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 
@@ -28,14 +28,14 @@ CREATE TABLE `comments`
 
 CREATE TABLE `users`
 (
-    `id`         INT(11) NOT NULL ,
+    `id`         INT(11) NOT NULL AUTO_INCREMENT,
     `email`      VARCHAR(45) NOT NULL ,
     `login`      VARCHAR(45) NOT NULL ,
     `password`   LONGTEXT NOT NULL ,
     `validation` TINYINT NOT NULL ,
 
     PRIMARY KEY (`id`)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 
@@ -45,7 +45,7 @@ CREATE TABLE `users`
 
 CREATE TABLE `user_has_comments`
 (
-    `id`           INT(11) NOT NULL ,
+    `id`           INT(11) NOT NULL AUTO_INCREMENT,
     `id_users`     INT(11) NOT NULL ,
     `id_comments`  INT(11) NOT NULL ,
 
@@ -54,7 +54,7 @@ CREATE TABLE `user_has_comments`
     CONSTRAINT `FK_158` FOREIGN KEY `fkIdx_158` (`id_users`) REFERENCES `users` (`id`),
     KEY `fkIdx_162` (`id_comments`),
     CONSTRAINT `FK_162` FOREIGN KEY `fkIdx_162` (`id_comments`) REFERENCES `comments` (`id`)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 
@@ -64,7 +64,7 @@ CREATE TABLE `user_has_comments`
 
 CREATE TABLE `photos`
 (
-    `id`       INT(11) NOT NULL ,
+    `id`       INT(11) NOT NULL AUTO_INCREMENT,
     `date`     DATETIME NOT NULL ,
     `img`      LONGTEXT NOT NULL ,
     `id_users` INT(11) NOT NULL ,
@@ -72,7 +72,7 @@ CREATE TABLE `photos`
     PRIMARY KEY (`id`),
     KEY `fkIdx_168` (`id_users`),
     CONSTRAINT `FK_168` FOREIGN KEY `fkIdx_168` (`id_users`) REFERENCES `users` (`id`)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 
@@ -82,7 +82,7 @@ CREATE TABLE `photos`
 
 CREATE TABLE `photo_has_comments`
 (
-    `id`           INT(11) NOT NULL ,
+    `id`           INT(11) NOT NULL AUTO_INCREMENT,
     `id_photos`    INT(11) NOT NULL ,
     `id_comments`  INT(11) NOT NULL ,
 
@@ -91,7 +91,7 @@ CREATE TABLE `photo_has_comments`
     CONSTRAINT `FK_146` FOREIGN KEY `fkIdx_146` (`id_photos`) REFERENCES `photos` (`id`),
     KEY `fkIdx_150` (`id_comments`),
     CONSTRAINT `FK_150` FOREIGN KEY `fkIdx_150` (`id_comments`) REFERENCES `comments` (`id`)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 
@@ -101,7 +101,7 @@ CREATE TABLE `photo_has_comments`
 
 CREATE TABLE `likes`
 (
-    `id`         INT(11) NOT NULL ,
+    `id`         INT(11) NOT NULL AUTO_INCREMENT,
     `id_photos`  INT(11) NOT NULL ,
     `id_users`   INT(11) NOT NULL ,
 
@@ -110,4 +110,4 @@ CREATE TABLE `likes`
     CONSTRAINT `FK_134` FOREIGN KEY `fkIdx_134` (`id_photos`) REFERENCES `photos` (`id`),
     KEY `fkIdx_138` (`id_users`),
     CONSTRAINT `FK_138` FOREIGN KEY `fkIdx_138` (`id_users`) REFERENCES `users` (`id`)
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
