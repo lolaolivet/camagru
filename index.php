@@ -1,5 +1,5 @@
 <?php
-    include("models/model.php");
+    include("models/modelIndex.php");
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -23,9 +23,7 @@
         <div class="gallery">
             <div class="row">
                 <ul>
-                    <a class="close" onclick="close_img(this)">
-                        <img src="http://www.acb-portesetfenetres.fr/wp-content/themes/html5blank/src/img/fermer.png">
-                    </a>
+
                 <?php
                     $photos = getPictures();
                     // var_dump($photos);
@@ -33,18 +31,29 @@
                         // var_dump($e);
                         echo '<li>
                         <a onclick="open_img(this)">
-                            <img src="data:image/jpeg;base64,'. $e["img"] .'>
+                            <img src="'. $e["img"] .'">
                         </a>
-                            
+                        <a class="close" onclick="close_img(this)">
+                            <img src="http://pluspng.com/img-png/red-cross-png-red-cross-png-file-2000.png">
+                        </a>
                         <div id="expand" class="port">
-                            <div class="row">
-                                <div class="description">
-                                    <h1>'. $e["date"] .'</h1>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus quis libero erat. Integer ac purus est. Proin erat mi, pulvinar ut magna eget, consectetur auctor turpis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus quis libero erat. Integer ac purus est. Proin erat mi, pulvinar ut magna eget, consectetur auctor turpis.</p>
-                                </div>
-                            </div>
+                            <div class="row">';
+                            $likes = getLikes($e["id_photos"]);
+                            foreach ($likes as $l) {
+                              echo '<div class="likes"><p>'. $l["total"] .' likes</p></div>';
+                            }
+                        echo '<div class="description">';
+                        $comments = getComments($e["id_photos"]);
+                        foreach ($comments as $c) {
+                          echo '<div class="comment">
+                                  <div class="login"><p>'. $c["login"] .'</b></div>
+                                  <div class="txt"><p>'. $c["text"] .'</p></div>
+                                  <div class="date"><p>'. $c["date"] .'</p></div>
+                              </div>';
+                        }
+                    echo '</div>
                         </div>
-                    </li>';
+                      </li>';
                     }
                 ?>
                 </ul>

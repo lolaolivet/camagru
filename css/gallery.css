@@ -19,7 +19,7 @@
 }
 
 .row {
-    margin-top: -25px;
+    margin-top: -30px;
     align-content: stretch;
     padding: 20px;
     height: auto;
@@ -50,13 +50,35 @@
     height: auto;
 }
 
-/*
-.close a {
-    position: relative;
-    height: 20px;
-    width: auto;
+.likes {
+  text-align: left;
+  color: #ff3184;
+  margin-top: -30px;
 }
-*/
+
+.comment {
+  widht: 100%;
+  text-align: left;
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.login {
+  width: 20%;
+  margin-right: 10px;
+}
+
+.txt {
+  width: 70%;
+  text-align: justify;
+  margin-right: 10px;
+}
+
+.date {
+  width: 10%;
+  font-size: 13px;
+  color: #CFCDDB;
+}
 
 .close img {
     position: absolute;

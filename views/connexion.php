@@ -1,3 +1,7 @@
+<?php
+include("../models/modelConnexion.php");
+session_start();
+ ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -15,36 +19,36 @@
       <div class="container">
           <div class="connexion">
               <p>Connection</p>
-              <form>
+              <form method="post" action="../controllers/controllerConnexion.php">
                   <div class="formul">
-                      <label for="user">User:</label><input type="text" name="user" id="user">
+                      <label for="login">Login:</label><input type="text" name="login">
                   </div>
                   <div class="formul">
-                      <label for="password">Password:</label><input type="email" name="password" id="password">
+                      <label for="password">Password:</label><input type="password" name="password">
                   </div>
                   <div class="validate">
-                      <input class="validate" type="submit" value="Connect">
+                      <input class="validate" type="submit" value="Connect" name="connexion">
                   </div>
               </form>
           </div>
-          
+
            <div class="register">
-              <form>
+              <form method="post" action="../controllers/controllerCreate">
                   <p>Inscription</p>
                   <div class="formul">
-                      <label for="email">Email:</label><input type="email" name="email" id="email">
+                      <label for="email">Email:</label><input type="email" name="email">
                   </div>
-                  
+
                   <div class="formul">
-                      <label for="user">User:</label><input type="text" name="user" id="user">
+                      <label for="login">Login:</label><input type="text" name="login">
                   </div>
-                  
+
                   <div class="formul">
-                      <label for="password">Password:</label><input type="email" name="password" id="password">
+                      <label for="password">Password:</label><input type="password" name="password">
                   </div>
-                  
+
                   <div class="validate" >
-                      <input type="submit" value="Register">
+                      <input type="submit" value="Register" name="register">
                   </div>
               </form>
           </div>

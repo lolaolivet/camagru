@@ -2,7 +2,7 @@ function open_img(e) {
     var item = e.href;
     var split_e = item.split("#")
     var last = split_e[split_e.length - 1];
-    var parent = e.parentElement; 
+    var parent = e.parentElement;
     var port = parent.getElementsByClassName("port")[0];
     var cross = parent.getElementsByClassName("close")[0];
 
@@ -18,7 +18,7 @@ function close_img(e) {
     var item = e.href;
     var split_e = item.split("#")
     var last = split_e[split_e.length - 1];
-    var parent = e.parentElement; 
+    var parent = e.parentElement;
     var port = parent.getElementsByClassName("port")[0];
     var cross = parent.getElementsByClassName("close")[0];
 

@@ -15,6 +15,9 @@
         <div class="gallery">
             <a href="../index.php"><p>Gallery</p></a>
         </div>
+        <div class="profile">
+          <a href="/profile.php"><p>Profile</p></a>
+        </div>
     </header>
       <div id="container">
         <video autoplay="true" id="videoElement">
