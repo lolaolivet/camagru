@@ -13,6 +13,24 @@ function auth($login, $password) {
   }
 }
 
+function verifUser($email, $login) {
+  $res = 0;
+  $ret_email = verifEmail($email);
+  foreach ($ret_email as $e) {
+    if ($e['total'] !== "0")
+      $res += 1;
+  }
+  $ret_login = verifLogin($login);
+  foreach ($ret_login as $e) {
+    if ($e['total'] !== "0")
+      $res += 1;
+  }
+  if ($res != 0)
+    return (0);
+  else
+    return (1);
+}
+
 if ($_POST['connexion'] === "Connect") {
   $login = $_POST['login'];
   $password = $_POST['password'];
@@ -22,11 +40,27 @@ if ($_POST['connexion'] === "Connect") {
         var_dump($_SESSION['loggued_on_user']);
         header('Location: ../views/camera.php');
       } else {
+        $_SESSION['loggued_on_user'] = "";
         header('Location: ../views/connexion.php');
       }
   } else {
     $_SESSION['loggued_on_user'] = "";
     header('Location: ../views/connexion.php');
+  }
+}
+
+if ($_POST['register'] === "Register") {
+  $email = $_POST['email'];
+  $login = $_POST['login'];
+  $password = $_POST['password'];
+  if(isset($email) && isset($login) && isset($password)) {
+    $password_hash = hash('sha512', $password);
+    if ($data = verifUser($email, $login)) {
+      createUser($email, $login, $password_hash);
+      header('Location: ../index.php');
+    } else {
+      header('Location: ../views/connexion.php');
+    }
   }
 }
 

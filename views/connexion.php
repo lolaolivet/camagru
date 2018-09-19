@@ -47,7 +47,7 @@ var_dump($_SESSION['loggued_on_user']);
           </div>
 
            <div class="register">
-              <form method="post" action="../controllers/controllerCreate.php">
+              <form method="post" action="../controllers/controllerConnexion.php">
                   <p>Inscription</p>
                   <div class="formul">
                       <label for="email">Email:</label><input type="email" name="email">
