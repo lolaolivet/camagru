@@ -1,3 +1,13 @@
+<?php
+include("../controllers/controllerCamera.php");
+session_start();
+var_dump($_SESSION['loggued_on_user']);
+if (!(isset($_SESSION['loggued_on_user']))) {
+  header('Location: connexion.php');
+}
+
+ ?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -10,13 +20,13 @@
 <body>
      <header>
         <div class="title">
-            <h1>Camagru</h1>
+            <a href="../index.php"><h1>Camagru</h1></a>
         </div>
         <div class="gallery">
             <a href="../index.php"><p>Gallery</p></a>
         </div>
         <div class="profile">
-          <a href="/profile.php"><p>Profile</p></a>
+          <a href="profile.php"><?php echo '<p>'.$_SESSION['loggued_on_user'].'</p>' ?></a>
         </div>
     </header>
       <div id="container">

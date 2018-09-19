@@ -1,5 +1,8 @@
 <?php
     include("models/modelIndex.php");
+    include("controllers/controllerIndex.php");
+    session_start();
+    var_dump($_SESSION['loggued_on_user']);
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -15,9 +18,24 @@
             <div class="title">
                 <h1>Camagru</h1>
             </div>
-            <div class="connect">
-                <a href="views/connexion.php"><p>Connexion</p></a>
-            </div>
+            <?php
+            if (isset($_SESSION) && isset($_SESSION['loggued_on_user']))
+                echo '<div class="smile">
+                        <a href="views/camera.php"><p>Smile!</p></a>
+                      </div>
+                      <div class="profile">
+                        <a href="views/profile.php"><p>'. $_SESSION['loggued_on_user'] .'</p></a>
+                      </div>
+                      <div class="connect">
+                        <a href="views/logout.php"><p>Déconnexion</p></a>
+                      </div>';
+            else
+            {
+                echo '<div class="connect">
+                        <a href="views/connexion.php"><p>Connexion</p></a>
+                      </div>';
+            }
+            ?>
         </header>
         <div id="top"></div>
         <div class="gallery">
@@ -26,9 +44,7 @@
 
                 <?php
                     $photos = getPictures();
-                    // var_dump($photos);
                     foreach ($photos as $e) {
-                        // var_dump($e);
                         echo '<li>
                         <a onclick="open_img(this)">
                             <img src="'. $e["img"] .'">

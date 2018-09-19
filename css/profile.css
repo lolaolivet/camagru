@@ -1,18 +1,14 @@
-p {
-    color: #ff3184;
-}
-
 .title {
     flex: 1;
     text-align: left;
 }
 
-.gallery, .connect, .profile {
+.gallery, .smile, .connect {
     margin: auto 10px;
     float: right;
 }
 
-.gallery a, .connect a, .profile a {
+.gallery a, .smile a, .connect a {
     color: #ff3184;
 }
 
@@ -25,7 +21,7 @@ p {
     justify-content: space-around;
 }
 
-.connexion, .register {
+.modification {
     border: #fff solid 0.5px;
     padding: 20px;
     width: 300px;
@@ -56,9 +52,24 @@ form {
     margin: auto;
 }
 
-
 .formul {
     margin: 5px 0;
     display: flex;
     justify-content: space-between;
+}
+
+.radio {
+  margin: 5px 0;
+  display: flex;
+  wdth: 100%;
+}
+
+.radio p {
+  text-align: left;
+  width: 50%;
+}
+
+.radio label, .radio input{
+  font-size: 13px;
+  margin: auto;
 }

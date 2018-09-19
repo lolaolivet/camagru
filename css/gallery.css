@@ -1,13 +1,14 @@
 .title {
-    margin: 20px auto;
+    flex: 1;
+    text-align: left;
 }
 
-.connect, .register {
+.connect, .smile, .profile {
     margin: auto 10px;
     float: right;
 }
 
-.connect a, .register a {
+.connect a, .smile a, .profile a {
     color: #ff3184;
 }
 
