@@ -24,11 +24,11 @@
   text-align: left;
 }
 
-.gallery, .profile {
+.gallery, .profile, .connect {
   margin: auto 10px;
   float: right;
 }
 
-.gallery a, .profile a {
+.gallery a, .profile a, .connect a{
     color: #ff3184;
 }

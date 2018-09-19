@@ -5,6 +5,7 @@ var_dump($_SESSION['loggued_on_user']);
 if (!(isset($_SESSION['loggued_on_user']))) {
   header('Location: connexion.php');
 }
+$_SESSION['message'] = "";
 
 ?>
 <!DOCTYPE html>

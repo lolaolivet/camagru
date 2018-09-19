@@ -3,6 +3,8 @@
     include("controllers/controllerIndex.php");
     session_start();
     var_dump($_SESSION['loggued_on_user']);
+    $_SESSION['message'] = "";
+
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -47,7 +49,7 @@
                     foreach ($photos as $e) {
                         echo '<li>
                         <a onclick="open_img(this)">
-                            <img src="'. $e["img"] .'">
+                            <img src="'. $e["img"] .'" class="big">
                         </a>
                         <a class="close" onclick="close_img(this)">
                             <img src="http://pluspng.com/img-png/red-cross-png-red-cross-png-file-2000.png">

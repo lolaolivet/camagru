@@ -32,3 +32,36 @@ a {
     text-decoration: none;
     color: #34333a;
 }
+
+.rose {
+  color: #ff3184;
+}
+
+.message {
+  position: relative;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  background-color: #F9FFF8;
+  width: 95%;
+  height: 40px;
+  border-radius: 5px;
+  margin: 10px auto;
+  padding: 5px;
+  border: #EFF9EE solid 1px;
+  box-shadow: 3px 3px 20px 0 #e5e5e5;
+}
+
+.text {
+  margin: auto 0;
+}
+
+.close {
+  position: absolute;
+  right: 5;
+  top: 5;
+}
+
+.close img{
+  height: 20px;
+}

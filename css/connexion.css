@@ -7,12 +7,12 @@ p {
     text-align: left;
 }
 
-.gallery, .connect, .profile {
+.connect, .profile {
     margin: auto 10px;
     float: right;
 }
 
-.gallery a, .connect a, .profile a {
+.connect a, .profile a {
     color: #ff3184;
 }
 

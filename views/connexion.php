@@ -2,6 +2,7 @@
 // include("../models/modelConnexion.php");
 session_start();
 var_dump($_SESSION['loggued_on_user']);
+$_SESSION['message'] = "";
 
 ?>
 <!DOCTYPE html>
