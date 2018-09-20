@@ -93,3 +93,25 @@
     width: auto;
     visibility: hidden;
 }
+
+.message {
+  text-align: left;
+  width: 100%;
+}
+
+.textComment {
+  width: 80%;
+}
+
+.send{
+  color: #ff3184;
+  float: right;
+}
+
+.id {
+  visibility: hidden;
+  height: 0;
+  widht: 0;
+  margin: 0;
+  padding: 0;
+}

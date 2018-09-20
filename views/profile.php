@@ -7,6 +7,7 @@ if (!(isset($_SESSION['loggued_on_user']))) {
 }
 $_SESSION['connected'] = "";
 $_SESSION['error'] = "";
+$_SESSION['message'] = "";
 
 ?>
 <!DOCTYPE html>

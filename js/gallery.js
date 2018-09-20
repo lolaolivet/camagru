@@ -1,6 +1,6 @@
 function open_img(e) {
     var item = e.href;
-    var split_e = item.split("#")
+    var split_e = item.split("#");
     var last = split_e[split_e.length - 1];
     var parent = e.parentElement;
     var port = parent.getElementsByClassName("port")[0];

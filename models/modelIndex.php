@@ -33,4 +33,40 @@ function getLikes($id) {
   return $stmt;
 }
 
+function linkUser($id_user, $id_comment) {
+  $db = dbConnect();
+  $stmt = $db->prepare('INSERT INTO user_has_comments (users_id, comments_id)
+    VALUES (:user, :comment)');
+  $stmt->bindParam(':user', $user);
+  $user = $id_user;
+  $stmt->bindParam(':comment', $comment);
+  $comment = $id_comment;
+  $stmt->execute();
+}
+
+
+function linkPhoto($id_photo, $id_comment) {
+  $db = dbConnect();
+  $stmt = $db->prepare('INSERT INTO photo_has_comments (photos_id, comments_id)
+    VALUES (:photo, :comment)');
+  $stmt->bindParam(':photo', $id_photo);
+  $stmt->bindParam(':comment', $id_comment);
+  $stmt->execute();
+}
+
+function sendMessage($id_user, $id_photo, $txt) {
+  $db = dbConnect();
+  $date = date("Y-m-d h:m:s");
+  $stmt = $db->prepare('INSERT INTO comments (text, date)
+    VALUES (:txt, :d)');
+  $stmt->bindParam(':txt', $text);
+  $text = $txt;
+  $stmt->bindParam(':d', $d);
+  $d = $date;
+  $stmt->execute();
+  $id_comment = $db->lastInsertId();
+  linkUser($id_user, $id_comment);
+  linkPhoto($id_photo, $id_comment);
+}
+
 ?>

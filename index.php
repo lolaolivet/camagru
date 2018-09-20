@@ -5,9 +5,11 @@
     var_dump($_SESSION['loggued_on_user']);
     $_SESSION['connected'] = "";
     $_SESSION['error'] = "";
+    $_SESSION['id_photo'] = "";
     if ($_SESSION['created'] != "created")
       $_SESSION['created'] = "";
 
+    // $_SESSION['message'] = "";
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -54,18 +56,37 @@
                     </div>
                   </div>';
           }
+          if ($_SESSION['message'] === "error") {
+            echo '<div class="error">
+                    <div class="text">
+                      <div class="close">
+                        <a onclick="closeMessage(this)"><img src="http://www.acb-portesetfenetres.fr/wp-content/themes/html5blank/src/img/fermer.png"></a>
+                      </div>
+                      Your comment was not send, an error occured..
+                    </div>
+                  </div>';
+          }
+          if ($_SESSION['message'] === "send") {
+            echo '<div class="success">
+                    <div class="text">
+                      <div class="close">
+                        <a onclick="closeMessage(this)"><img src="http://www.acb-portesetfenetres.fr/wp-content/themes/html5blank/src/img/fermer.png"></a>
+                      </div>
+                      Your comment has been sent successfully !
+                    </div>
+                  </div>';
+          }
         ?>
         <div id="top"></div>
         <div class="gallery">
             <div class="row">
                 <ul>
-
                 <?php
                     $photos = getPictures();
                     foreach ($photos as $e) {
                         echo '<li>
                         <a onclick="open_img(this)">
-                            <img src="'. $e["img"] .'" class="big">
+                            <img src="'. $e["img"] .'" class="big" id="'. $e["id_photos"] .'">
                         </a>
                         <a class="close" onclick="close_img(this)">
                             <img src="http://pluspng.com/img-png/red-cross-png-red-cross-png-file-2000.png">
@@ -84,6 +105,15 @@
                                   <div class="txt"><p>'. $c["text"] .'</p></div>
                                   <div class="date"><p>'. $c["date"] .'</p></div>
                               </div>';
+                        }
+                        if ($_SESSION['loggued_on_user'] != "") {
+                          echo '<div class="message">
+                                  <form method="post" action="controllers/controllerIndex.php">
+                                    <input class="id" name="id" value="'. $e["id_photos"] .'">
+                                    <input class="textComment" type="text" name="message">
+                                    <input class="send" type="submit" value="Send" name="send">
+                                  </form>
+                                </div>';
                         }
                     echo '</div>
                         </div>
