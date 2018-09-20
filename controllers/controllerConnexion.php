@@ -37,6 +37,7 @@ if ($_POST['connexion'] === "Connect") {
   if (isset($login) && isset($password)) {
       if ($data = auth($login, $password)) {
         $_SESSION['loggued_on_user'] = $login;
+        $_SESSION['id_user'] = $data['id_users'];
         var_dump($_SESSION['loggued_on_user']);
         $_SESSION['connected'] = "connected";
         header('Location: ../views/camera.php');

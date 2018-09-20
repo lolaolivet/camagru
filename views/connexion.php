@@ -25,7 +25,7 @@ if ($_SESSION['created'] !== "notCreated")
             <a href="../index.php"><p>Gallery</p></a>
         </div>
         <?php
-        if ($_SESSION['loggued_on_user'] !== "")
+        if ($_SESSION['loggued_on_user'] != "")
             echo '<div class="profile">
                     <a href="profile.php"><p>'. $_SESSION['loggued_on_user'] .'</p></a>
                   </div>
@@ -36,7 +36,7 @@ if ($_SESSION['created'] !== "notCreated")
     </header>
     <?php
       if ($_SESSION['error'] === "error") {
-        echo '<div class="message">
+        echo '<div class="error">
                 <div class="text">
                   <div class="close">
                     <a onclick="closeMessage(this)"><img src="http://www.acb-portesetfenetres.fr/wp-content/themes/html5blank/src/img/fermer.png"></a>
@@ -46,7 +46,7 @@ if ($_SESSION['created'] !== "notCreated")
               </div>';
       }
       if ($_SESSION['created'] === "notCreated") {
-        echo '<div class="message">
+        echo '<div class="error">
                 <div class="text">
                   <div class="close">
                     <a onclick="closeMessage(this)"><img src="http://www.acb-portesetfenetres.fr/wp-content/themes/html5blank/src/img/fermer.png"></a>

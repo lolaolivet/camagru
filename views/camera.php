@@ -30,7 +30,7 @@ $_SESSION['error'] = "";
           <a href="profile.php"><?php echo '<p>'.$_SESSION['loggued_on_user'].'</p>' ?></a>
         </div>
         <?php
-        if ($_SESSION['loggued_on_user'] !== "")
+        if ($_SESSION['loggued_on_user'] != "")
             echo '<div class="connect">
                       <a href="logout.php"><p>Déconnexion</p></a>
                   </div>';
@@ -38,7 +38,7 @@ $_SESSION['error'] = "";
     </header>
     <?php
       if ($_SESSION['connected'] === "connected") {
-        echo '<div class="message">
+        echo '<div class="success">
                 <div class="text">
                   <div class="close">
                     <a onclick="closeMessage(this)"><img src="http://www.acb-portesetfenetres.fr/wp-content/themes/html5blank/src/img/fermer.png"></a>

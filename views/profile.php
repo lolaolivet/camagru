@@ -15,6 +15,7 @@ $_SESSION['error'] = "";
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="../css/profile.css">
     <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <script type="text/javascript" src="../js/message.js"></script>
     <title>Camagruuu</title>
   </head>
   <body>
@@ -26,7 +27,7 @@ $_SESSION['error'] = "";
             <a href="../index.php"><p>Gallery</p></a>
         </div>
         <?php
-        if ($_SESSION['loggued_on_user'] !== "")
+        if ($_SESSION['loggued_on_user'] != "")
             echo '<div class="smile">
                     <a href="camera.php"><p>Smile!</p></a>
                   </div>
@@ -35,6 +36,28 @@ $_SESSION['error'] = "";
                   </div>';
         ?>
     </header>
+    <?php
+      if ($_SESSION['updated'] === "updated") {
+        echo '<div class="success">
+                <div class="text">
+                  <div class="close">
+                    <a onclick="closeMessage(this)"><img src="http://www.acb-portesetfenetres.fr/wp-content/themes/html5blank/src/img/fermer.png"></a>
+                  </div>
+                  Your profile has been updated successfully !
+                </div>
+              </div>';
+      }
+      if ($_SESSION['updated'] === "error") {
+        echo '<div class="error">
+                <div class="text">
+                  <div class="close">
+                    <a onclick="closeMessage(this)"><img src="http://www.acb-portesetfenetres.fr/wp-content/themes/html5blank/src/img/fermer.png"></a>
+                  </div>
+                  The email or login must be already used..
+                </div>
+              </div>';
+      }
+    ?>
     <div class="container">
       <div class="modification">
         <form method="post" action="../controllers/controllerProfile.php">
@@ -50,7 +73,7 @@ $_SESSION['error'] = "";
                   <div class="formul">
                     <label for="password">New password:</label><input type="password" name="password">
                   </div>';
-                  if ($e['notif'] === 0) {
+                  if ($e['notif'] === "0") {
                     echo '<div class="radio">
                             <p>Notifications:</p>
                             <label for="yes">Yes</label><input type="radio" name="notif" value="1" id="yes">

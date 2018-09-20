@@ -16,6 +16,7 @@
         <link rel="stylesheet" type="text/css" href="css/gallery.css">
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <script type="text/javascript" src="js/gallery.js"></script>
+        <script type="text/javascript" src="js/message.js"></script>
         <title>Camagruuu</title>
     </head>
     <body>
@@ -24,7 +25,7 @@
                 <h1>Camagru</h1>
             </div>
             <?php
-            if ($_SESSION['loggued_on_user'] !== "")
+            if ($_SESSION['loggued_on_user'] != "")
                 echo '<div class="smile">
                         <a href="views/camera.php"><p>Smile!</p></a>
                       </div>
@@ -44,7 +45,7 @@
         </header>
         <?php
           if ($_SESSION['created'] === "created") {
-            echo '<div class="message">
+            echo '<div class="success">
                     <div class="text">
                       <div class="close">
                         <a onclick="closeMessage(this)"><img src="http://www.acb-portesetfenetres.fr/wp-content/themes/html5blank/src/img/fermer.png"></a>

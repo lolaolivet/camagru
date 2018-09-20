@@ -37,7 +37,7 @@ a {
   color: #ff3184;
 }
 
-.message {
+.success {
   position: relative;
   text-align: left;
   display: flex;
@@ -49,6 +49,21 @@ a {
   margin: 10px auto;
   padding: 5px;
   border: #EFF9EE solid 1px;
+  box-shadow: 3px 3px 20px 0 #e5e5e5;
+}
+
+.error {
+  position: relative;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  background-color: #ffe4e4;
+  width: 95%;
+  height: 40px;
+  border-radius: 5px;
+  margin: 10px auto;
+  padding: 5px;
+  border: #ffe4e4 solid 1px;
   box-shadow: 3px 3px 20px 0 #e5e5e5;
 }
 
