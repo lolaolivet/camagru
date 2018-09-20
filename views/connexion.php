@@ -2,7 +2,9 @@
 // include("../models/modelConnexion.php");
 session_start();
 var_dump($_SESSION['loggued_on_user']);
-$_SESSION['message'] = "";
+$_SESSION['connected'] = "";
+if ($_SESSION['created'] !== "notCreated")
+  $_SESSION['created'] = "";
 
 ?>
 <!DOCTYPE html>
@@ -11,6 +13,7 @@ $_SESSION['message'] = "";
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="../css/connexion.css">
     <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <script type="text/javascript" src="../js/message.js"></script>
     <title>Camagruuu</title>
   </head>
   <body>
@@ -22,7 +25,7 @@ $_SESSION['message'] = "";
             <a href="../index.php"><p>Gallery</p></a>
         </div>
         <?php
-        if (isset($_SESSION) && isset($_SESSION['loggued_on_user']))
+        if ($_SESSION['loggued_on_user'] !== "")
             echo '<div class="profile">
                     <a href="profile.php"><p>'. $_SESSION['loggued_on_user'] .'</p></a>
                   </div>
@@ -31,6 +34,28 @@ $_SESSION['message'] = "";
                   </div>';
         ?>
     </header>
+    <?php
+      if ($_SESSION['error'] === "error") {
+        echo '<div class="message">
+                <div class="text">
+                  <div class="close">
+                    <a onclick="closeMessage(this)"><img src="http://www.acb-portesetfenetres.fr/wp-content/themes/html5blank/src/img/fermer.png"></a>
+                  </div>
+                    Password or login is wrong..
+                </div>
+              </div>';
+      }
+      if ($_SESSION['created'] === "notCreated") {
+        echo '<div class="message">
+                <div class="text">
+                  <div class="close">
+                    <a onclick="closeMessage(this)"><img src="http://www.acb-portesetfenetres.fr/wp-content/themes/html5blank/src/img/fermer.png"></a>
+                  </div>
+                    Email or login is already used..
+                </div>
+              </div>';
+      }
+    ?>
       <div class="container">
           <div class="connexion">
               <p>Connection</p>

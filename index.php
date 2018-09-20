@@ -3,7 +3,10 @@
     include("controllers/controllerIndex.php");
     session_start();
     var_dump($_SESSION['loggued_on_user']);
-    $_SESSION['message'] = "";
+    $_SESSION['connected'] = "";
+    $_SESSION['error'] = "";
+    if ($_SESSION['created'] != "created")
+      $_SESSION['created'] = "";
 
 ?>
 <!DOCTYPE html>
@@ -21,7 +24,7 @@
                 <h1>Camagru</h1>
             </div>
             <?php
-            if (isset($_SESSION) && isset($_SESSION['loggued_on_user']))
+            if ($_SESSION['loggued_on_user'] !== "")
                 echo '<div class="smile">
                         <a href="views/camera.php"><p>Smile!</p></a>
                       </div>
@@ -39,6 +42,18 @@
             }
             ?>
         </header>
+        <?php
+          if ($_SESSION['created'] === "created") {
+            echo '<div class="message">
+                    <div class="text">
+                      <div class="close">
+                        <a onclick="closeMessage(this)"><img src="http://www.acb-portesetfenetres.fr/wp-content/themes/html5blank/src/img/fermer.png"></a>
+                      </div>
+                      Your profile has been created successfully ! Confirmed with your email.
+                    </div>
+                  </div>';
+          }
+        ?>
         <div id="top"></div>
         <div class="gallery">
             <div class="row">

@@ -38,14 +38,16 @@ if ($_POST['connexion'] === "Connect") {
       if ($data = auth($login, $password)) {
         $_SESSION['loggued_on_user'] = $login;
         var_dump($_SESSION['loggued_on_user']);
-        $_SESSION['message'] = "connected";
+        $_SESSION['connected'] = "connected";
         header('Location: ../views/camera.php');
       } else {
         $_SESSION['loggued_on_user'] = "";
+        $_SESSION['error'] = "error";
         header('Location: ../views/connexion.php');
       }
   } else {
     $_SESSION['loggued_on_user'] = "";
+    $_SESSION['error'] = "error";
     header('Location: ../views/connexion.php');
   }
 }
@@ -58,8 +60,10 @@ if ($_POST['register'] === "Register") {
     $password_hash = hash('sha512', $password);
     if ($data = verifUser($email, $login)) {
       createUser($email, $login, $password_hash);
+      $_SESSION['created'] = "created";
       header('Location: ../index.php');
     } else {
+      $_SESSION['created'] = "notCreated";
       header('Location: ../views/connexion.php');
     }
   }

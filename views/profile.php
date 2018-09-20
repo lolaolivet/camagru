@@ -5,7 +5,8 @@ var_dump($_SESSION['loggued_on_user']);
 if (!(isset($_SESSION['loggued_on_user']))) {
   header('Location: connexion.php');
 }
-$_SESSION['message'] = "";
+$_SESSION['connected'] = "";
+$_SESSION['error'] = "";
 
 ?>
 <!DOCTYPE html>
@@ -25,7 +26,7 @@ $_SESSION['message'] = "";
             <a href="../index.php"><p>Gallery</p></a>
         </div>
         <?php
-        if (isset($_SESSION) && isset($_SESSION['loggued_on_user']))
+        if ($_SESSION['loggued_on_user'] !== "")
             echo '<div class="smile">
                     <a href="camera.php"><p>Smile!</p></a>
                   </div>
@@ -41,7 +42,7 @@ $_SESSION['message'] = "";
           $info = getUser($_SESSION['loggued_on_user']);
           foreach ($info as $e) {
             echo '<div class="formul">
-                    <label for="login">Login:</label><input type="text" name="text" value="'. $e['login'] .'">
+                    <label for="login">Login:</label><input type="text" name="login" value="'. $e['login'] .'">
                   </div>
                   <div class="formul">
                     <label for="email">Email:</label><input type="email" name="email" value="'. $e['email'] .'">

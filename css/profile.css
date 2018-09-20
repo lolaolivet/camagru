@@ -1,3 +1,17 @@
+.title {
+  flex: 1;
+  text-align: left;
+}
+
+.gallery, .smile, .connect {
+  margin: auto 10px;
+  float: right;
+}
+
+.gallery a, .smile a, .connect a{
+    color: #ff3184;
+}
+
 .container {
     margin: auto;
     padding: 15px;

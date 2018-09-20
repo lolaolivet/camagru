@@ -2,7 +2,8 @@
 
 session_start();
 session_destroy();
-$_SESSION['message'] = "";
+$_SESSION['connected'] = "";
+$_SESSION['error'] = "";
 header('Location: ../index.php');
 
  ?>
