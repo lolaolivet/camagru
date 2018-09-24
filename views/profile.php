@@ -41,8 +41,8 @@ $_SESSION['message'] = "";
       if ($_SESSION['updated'] === "updated") {
         echo '<div class="success">
                 <div class="text">
-                  <div class="close">
-                    <a onclick="closeMessage(this)"><img src="http://www.acb-portesetfenetres.fr/wp-content/themes/html5blank/src/img/fermer.png"></a>
+                  <div class="closeMessage">
+                    <a onclick="closeMessage(this)"><img src="../img/close.png"></a>
                   </div>
                   Your profile has been updated successfully !
                 </div>
@@ -51,8 +51,8 @@ $_SESSION['message'] = "";
       if ($_SESSION['updated'] === "error") {
         echo '<div class="error">
                 <div class="text">
-                  <div class="close">
-                    <a onclick="closeMessage(this)"><img src="http://www.acb-portesetfenetres.fr/wp-content/themes/html5blank/src/img/fermer.png"></a>
+                  <div class="closeMessage">
+                    <a onclick="closeMessage(this)"><img src="../img/close.png"></a>
                   </div>
                   The email or login must be already used..
                 </div>

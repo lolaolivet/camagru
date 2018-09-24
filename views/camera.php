@@ -6,6 +6,7 @@ if (!(isset($_SESSION['loggued_on_user']))) {
   header('Location: connexion.php');
 }
 $_SESSION['error'] = "";
+$_SESSION['message'] = "";
  ?>
 
 <!DOCTYPE html>
@@ -16,6 +17,7 @@ $_SESSION['error'] = "";
       <link rel="stylesheet" type="text/css" href="../css/camera.css">
       <link rel="stylesheet" type="text/css" href="../css/main.css">
       <script type="text/javascript" src="../js/camera.js"></script>
+<!--      <script type="text/javascript" src="../js/filters.js"></script>-->
       <script type="text/javascript" src="../js/message.js"></script>
 </head>
 <body>
@@ -40,8 +42,8 @@ $_SESSION['error'] = "";
       if ($_SESSION['connected'] === "connected") {
         echo '<div class="success">
                 <div class="text">
-                  <div class="close">
-                    <a onclick="closeMessage(this)"><img src="http://www.acb-portesetfenetres.fr/wp-content/themes/html5blank/src/img/fermer.png"></a>
+                  <div class="closeMessage">
+                    <a onclick="closeMessage(this)"><img src="../img/close.png"></a>
                   </div>
                   Welcome <span class="rose">'. $_SESSION['loggued_on_user'] .'</span>
                 </div>
@@ -49,14 +51,23 @@ $_SESSION['error'] = "";
       }
     ?>
       <div id="container">
-        <video autoplay="true" id="videoElement">
-        </video>
-        <button type="button" name="snap" id="snap" onclick="snapshot(this)">Smile!</button>
-        <canvas id="canvas" width="500" height="375"></canvas>
-        <input type="submit" name="snap" value="Save" id="save" onclick="saveSnap(this)">
+          <div class="video">
+
+<!--                <canvas id="canvasVideo"></canvas>-->
+            <video autoplay="true" id="videoElement"></video>
+            <canvas id="canvas" width="500" height="375"></canvas>
+            <input type="submit" name="Smile!" id="snap" onclick="snapshot(this)">
+            <input type="submit" name="snap" value="Save" id="save" onclick="saveSnap(this)">
+          </div>
+          <div id="filters">
+              <img src="../img/close.png" id="rainbow" onclick="addFilter(this)">
+              <img src="../img/sun.png" id="sun" onclick="addFilter(this)">
+              <img src="../img/stars.png" id="stars" onclick="addFilter(this)">
+          </div>
+        <div id="mini-galery">
+            <!-- Saved pictures -->
+        </div>
     </div>
-    <div id="mini-galery">
-      <!-- Saved pictures -->
-    </div>
+
 </body>
 </html>

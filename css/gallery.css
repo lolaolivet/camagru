@@ -62,7 +62,7 @@
 }
 
 .comment {
-  widht: 100%;
+  width: 100%;
   text-align: left;
   display: flex;
   margin-bottom: 5px;
@@ -111,7 +111,7 @@
 .id {
   visibility: hidden;
   height: 0;
-  widht: 0;
+  width: 0;
   margin: 0;
   padding: 0;
 }

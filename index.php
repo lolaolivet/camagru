@@ -49,18 +49,18 @@
           if ($_SESSION['created'] === "created") {
             echo '<div class="success">
                     <div class="text">
-                      <div class="close">
-                        <a onclick="closeMessage(this)"><img src="http://www.acb-portesetfenetres.fr/wp-content/themes/html5blank/src/img/fermer.png"></a>
+                      <div class="closeMessage">
+                        <a onclick="closeMessage(this)"><img src="img/close.png"></a>
                       </div>
-                      Your profile has been created successfully ! Confirmed with your email.
+                      Your profile has been create successfully ! Confirmed with your email.
                     </div>
                   </div>';
           }
           if ($_SESSION['message'] === "error") {
             echo '<div class="error">
                     <div class="text">
-                      <div class="close">
-                        <a onclick="closeMessage(this)"><img src="http://www.acb-portesetfenetres.fr/wp-content/themes/html5blank/src/img/fermer.png"></a>
+                      <div class="closeMessage">
+                        <a onclick="closeMessage(this)"><img src="img/close.png"></a>
                       </div>
                       Your comment was not send, an error occured..
                     </div>
@@ -69,8 +69,8 @@
           if ($_SESSION['message'] === "send") {
             echo '<div class="success">
                     <div class="text">
-                      <div class="close">
-                        <a onclick="closeMessage(this)"><img src="http://www.acb-portesetfenetres.fr/wp-content/themes/html5blank/src/img/fermer.png"></a>
+                      <div class="closeMessage">
+                        <a onclick="closeMessage(this)"><img src="img/close.png"></a>
                       </div>
                       Your comment has been sent successfully !
                     </div>

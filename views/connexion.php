@@ -38,8 +38,8 @@ if ($_SESSION['created'] !== "notCreated")
       if ($_SESSION['error'] === "error") {
         echo '<div class="error">
                 <div class="text">
-                  <div class="close">
-                    <a onclick="closeMessage(this)"><img src="http://www.acb-portesetfenetres.fr/wp-content/themes/html5blank/src/img/fermer.png"></a>
+                  <div class="closeMessage">
+                    <a onclick="../img/close.png"></a>
                   </div>
                     Password or login is wrong..
                 </div>
@@ -48,8 +48,8 @@ if ($_SESSION['created'] !== "notCreated")
       if ($_SESSION['created'] === "notCreated") {
         echo '<div class="error">
                 <div class="text">
-                  <div class="close">
-                    <a onclick="closeMessage(this)"><img src="http://www.acb-portesetfenetres.fr/wp-content/themes/html5blank/src/img/fermer.png"></a>
+                  <div class="closeMessage">
+                    <a onclick="closeMessage(this)"><img src="../img/close.png"></a>
                   </div>
                     Email or login is already used..
                 </div>
