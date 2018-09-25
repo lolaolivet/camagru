@@ -60,7 +60,7 @@ $_SESSION['message'] = "";
               <canvas id="result"></canvas>
           </div>
           <div id="filters">
-              <img src="../img/close.png" id="rainbow" onclick="addFilter(this)">
+              <img src="../img/rainbow.png" id="rainbow" onclick="addFilter(this)">
               <img src="../img/sun.png" id="sun" onclick="addFilter(this)">
               <img src="../img/stars.png" id="stars" onclick="addFilter(this)">
           </div>
