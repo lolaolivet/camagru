@@ -53,11 +53,11 @@ $_SESSION['message'] = "";
       <div id="container">
           
           <div class="video">
-            <canvas id="canvasVideo"></canvas>
-<!--            <video autoplay="true" id="videoElement"></video>-->
+            <video autoplay="true" id="videoElement"></video>
             <canvas id="canvas"></canvas>
             <input type="submit" name="Smile!" id="snap" onclick="snapshot(this)">
             <input type="submit" name="snap" value="Save" id="save" onclick="saveSnap(this)">
+              <canvas id="result"></canvas>
           </div>
           <div id="filters">
               <img src="../img/close.png" id="rainbow" onclick="addFilter(this)">

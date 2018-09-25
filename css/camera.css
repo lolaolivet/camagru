@@ -7,6 +7,9 @@
 /*    justify-content: space-between;*/
 }
 #videoElement {
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
     width: 100%;
     height: 375px;
     background-color: #666;
@@ -40,7 +43,23 @@
 }
 
 #canvasVideo {
+/*    position: absolute;*/
+/*    top: 100%;*/
+/*    left: 0;*/
     background: transparent;
+}
+
+#canvas {
+    position: absolute;
+    background: transparent;
+    top: 0;
+    left: 0;
+}
+
+.video {
+/*    height: 100%;*/
+/*    width: 100%;*/
+    position: relative;
 }
 
 .radio {
