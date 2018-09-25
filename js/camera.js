@@ -1,8 +1,16 @@
 if (navigator.mediaDevices.getUserMedia) {
     navigator.mediaDevices.getUserMedia({video: true})
   .then(function(stream) {
-        var video = document.querySelector("#videoElement");
+        var canvas = document.getElementById("canvasVideo");
+        var context = canvas.getContext("2d");
+        var video = document.createElement("video");
+        canvas.width = "500";
+        canvas.height = "375";
         video.srcObject = stream;
+//        video.srcObject = stream;
+        video.setAttribute("autoplay", "true");
+        context.drawImage(video, 0, 0, 500, 375);
+        console.log(video.srcObject);
   })
   .catch(function(error) {
     console.log(error.name + ":" + error.message);
@@ -14,12 +22,27 @@ function snapshot(e) {
     var context = canvas.getContext("2d");
     var video = document.querySelector("#videoElement");
     var img = document.querySelector("#videoElement");
-    context.drawImage(video, 0, 0, 500, 375);
-    img.src = canvas.toDataURL('image/webp');
-//    canvas.style.width = "500px";
-//    canvas.style.height = "375px";
+    var f = document.getElementById("filters");
+    var images = f.getElementsByTagName("img");
+    var i = 0;
+    while (i < images.length) {
+        if (images[i].getAttribute("selected")) {
+            canvas.width = "500";
+            canvas.height = "375";
+            context.drawImage(video, 0, 0, 500, 375);
+            img.src = canvas.toDataURL('image/webp');
+            context.drawImage(images[i], 0, 0, 500, 375);
+            break;
+        }
+        else {
+            i++;
+        }
+    }
+    if (i == images.length) {
+        console.log("SELECT A FILTER");
+    }
 }
-
+    
 function saveSnap(e) {
   var canvas = document.getElementById("canvas");
   var context = canvas.getContext("2d");
@@ -31,20 +54,18 @@ function saveSnap(e) {
   context.clearRect(0, 0, 500, 375);
   fragment.appendChild(balise);
   element.appendChild(fragment);
-//    canvas.style.width = "0";
-//    canvas.style.height = "0";
 }
 
 function addFilter(e) {
     var parent = e.parentElement;
-    var images = parent.getElementsByClassName("check");
-    console.log(images);
-    
-    if (images.empty) {
-            e.classList.add("check");
-        }
-    else {
-            images.forEach.classList.remove("check");
+    var images = parent.getElementsByTagName("img");
+    var test = ['a','b','c'];
+
+    for (var i = 0; i < images.length; i++) {
+        images[i].setAttribute("selected", "false");
+        images[i].style.border = "1px solid #fff";
     }
+    e.setAttribute("selected", "true");
+    e.style.border = "1px solid #000";
 }
 
