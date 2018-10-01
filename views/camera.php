@@ -55,14 +55,19 @@ $_SESSION['message'] = "";
           <div class="video">
             <video autoplay="true" id="videoElement"></video>
             <canvas id="canvas"></canvas>
-            <input type="submit" name="Smile!" id="snap" onclick="snapshot(this)">
-            <input type="submit" name="snap" value="Save" id="save" onclick="saveSnap(this)">
+            <input type="submit" name="snap" value="Smile!" id="snap">
+            <input type="submit" name="save" value="Save" id="save">
               <canvas id="result"></canvas>
           </div>
           <div id="filters">
-              <img src="../img/rainbow.png" id="rainbow" onclick="addFilter(this)">
-              <img src="../img/sun.png" id="sun" onclick="addFilter(this)">
-              <img src="../img/stars.png" id="stars" onclick="addFilter(this)">
+<!--
+              <img src="../img/rainbow.png" id="filter" onclick="addFilter(this)">
+              <img src="../img/sun.png" id="filter" onclick="addFilter(this)">
+              <img src="../img/stars.png" id="filter" onclick="addFilter(this)">
+-->
+            <img src="../img/rainbow.png" id="filter">
+            <img src="../img/sun.png" id="filter">
+            <img src="../img/stars.png" id="filter">
           </div>
         <div id="mini-galery">
             <!-- Saved pictures -->
