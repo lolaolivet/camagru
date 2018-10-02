@@ -10,7 +10,7 @@ $_SESSION['message'] = "";
  ?>
 
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
   <head>
       <meta charset="utf-8">
       <title>Camagruuu</title>
@@ -54,17 +54,14 @@ $_SESSION['message'] = "";
           
           <div class="video">
             <video autoplay="true" id="videoElement"></video>
+<!--            <img id="imgElement">-->
             <canvas id="canvas"></canvas>
+<!--            <canvas id="canvasFile"></canvas>-->
             <input type="submit" name="snap" value="Smile!" id="snap">
             <input type="submit" name="save" value="Save" id="save">
-              <canvas id="result"></canvas>
+            <input type="file" name="uploadFile" id="uploadFile">
           </div>
           <div id="filters">
-<!--
-              <img src="../img/rainbow.png" id="filter" onclick="addFilter(this)">
-              <img src="../img/sun.png" id="filter" onclick="addFilter(this)">
-              <img src="../img/stars.png" id="filter" onclick="addFilter(this)">
--->
             <img src="../img/rainbow.png" id="filter">
             <img src="../img/sun.png" id="filter">
             <img src="../img/stars.png" id="filter">

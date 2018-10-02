@@ -47,6 +47,7 @@
 /*    top: 100%;*/
 /*    left: 0;*/
     background: transparent;
+    z-index: 0;
 }
 
 #canvas {
@@ -54,6 +55,15 @@
     background: transparent;
     top: 0;
     left: 0;
+    z-index: 3;
+}
+
+#imgElement {
+    position: absolute;
+    background: #fff;
+    top: 0;
+    left: 0;
+    z-index: 2;
 }
 
 .video {

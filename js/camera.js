@@ -12,6 +12,7 @@ window.addEventListener('load', function(e) {
 
     var x = 0;
     var y = 0;
+    var smile = false;
     var divFilter = document.getElementById('filters');
     var filter = "";
     var imgs = divFilter.getElementsByTagName('img');
@@ -23,6 +24,33 @@ window.addEventListener('load', function(e) {
     var snap = document.getElementById('snap');
     var save = document.getElementById('save');
     var img = new Image();
+    
+    
+//    var fileInput = document.querySelector('#uploadFile');
+//    var allowedTypes = ['png', 'jpg', 'jpeg', 'gif'];
+//    
+//    fileInput.addEventListener('change', function() {
+//        var files = this.files;
+//        var filesLen = files.length;
+//        var imgType;
+//        
+//        for (var i = 0; i < filesLen; i++) {
+//            imgType = files[i].name.split('.');
+//            imgType = imgType[imgType.length -1];
+//            
+//            if (allowedTypes.indexOf(imgType) != -1) {
+//                var reader = new FileReader();
+//                reader.addEventListener('load', function() {
+//                    imgElement.src = this.result;
+//                    console.log(imgElement);
+//
+//                    context.drawImage(imgElement, 0, 0, 500, 375);
+//                });
+//                reader.readAsDataURL(files[i]);
+//                file = true;
+//            }
+//        }
+//    });
 
     divFilter.onclick = function (e) {
         filter = e.path[0];
@@ -43,6 +71,7 @@ window.addEventListener('load', function(e) {
     }
 
     document.addEventListener('keydown', (event) => {
+        console.log(filter);
         const keyName = event.key;
         if (keyName === "ArrowUp")
             y -= 5;
@@ -61,7 +90,7 @@ window.addEventListener('load', function(e) {
     }
 
     save.onclick = function (e) {
-        saveSnap(filter, x, y);
+        saveSnap(filter, x, y, smile);
     }
 
     function snapshot(filter, x, y) {
@@ -72,14 +101,15 @@ window.addEventListener('load', function(e) {
             context.drawImage(video, 0, 0, 500, 375);
             context.drawImage(filter, x, y, 500, 375);
             videoElement.src = canvas.toDataURL('image/webp');
+            smile = true;
         }
     }
 
-    function saveSnap(filter, x, y) {
+    function saveSnap(filter, x, y, smile) {
         var fragment = document.createDocumentFragment();
         var balise = document.createElement("img");
 
-        if (filter && filter.getAttribute('selected') === "true") {
+        if (filter && filter.getAttribute('selected') === "true" && smile === true) {
             balise.src = videoElement.src;
             context.clearRect(0, 0, 500, 375);
             fragment.appendChild(balise);
@@ -88,15 +118,18 @@ window.addEventListener('load', function(e) {
             filter.style.border = "1px solid #fff";
         }
         console.log(filter);
+        smile = false;
+        filter = "";
     }
 
     function addFilter(filter, x, y) {
-
-        canvas.width = "500";
-        canvas.height = "375";
-        img.src = filter.src;
-        context.drawImage(img, x, y, 500, 375);
+        if (filter && filter.getAttribute('selected') === "true") {
+            canvas.width = "500";
+            canvas.height = "375";
+            img.src = filter.src;
+            context.drawImage(img, x, y, 500, 375);
+        }
+        smile = false;
     }
 
 });
-   
