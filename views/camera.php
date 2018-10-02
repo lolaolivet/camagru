@@ -54,7 +54,7 @@ $_SESSION['message'] = "";
           
           <div class="video">
             <video autoplay="true" id="videoElement"></video>
-<!--            <img id="imgElement">-->
+            <img id="imgElement">
             <canvas id="canvas"></canvas>
 <!--            <canvas id="canvasFile"></canvas>-->
             <input type="submit" name="snap" value="Smile!" id="snap">
