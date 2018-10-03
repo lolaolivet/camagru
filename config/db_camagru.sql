@@ -51,6 +51,23 @@ VALUES (1, 'lolivet@student.42.fr', 'lolivet', '4f361568c10f02331af96f4df8356396
 
 
 
+-- ************************************** `confirm`
+
+CREATE TABLE `confirm`
+(
+    `id_confirm`  INT(11) NOT NULL AUTO_INCREMENT ,
+    `users_id`    VARCHAR(128) NOT NULL ,
+    `key`         VARCHAR(128) NOT NULL ,
+    `email`       VARCHAR(250) NOT NULL ,
+
+    PRIMARY KEY  (`id_confirm`)
+--    CONSTRAINT `FK_128` FOREIGN KEY (`users_id`)
+--    REFERENCES `users` (`id_users`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
 -- ************************************** `user_has_comments`
 
 CREATE TABLE `user_has_comments`

@@ -17,7 +17,6 @@ $_SESSION['message'] = "";
       <link rel="stylesheet" type="text/css" href="../css/camera.css">
       <link rel="stylesheet" type="text/css" href="../css/main.css">
       <script type="text/javascript" src="../js/camera.js"></script>
-<!--      <script type="text/javascript" src="../js/filters.js"></script>-->
       <script type="text/javascript" src="../js/message.js"></script>
 </head>
 <body>
@@ -51,12 +50,10 @@ $_SESSION['message'] = "";
       }
     ?>
       <div id="container">
-          
           <div class="video">
             <video autoplay="true" id="videoElement"></video>
             <img id="imgElement">
             <canvas id="canvas"></canvas>
-<!--            <canvas id="canvasFile"></canvas>-->
             <input type="submit" name="snap" value="Smile!" id="snap">
             <input type="submit" name="save" value="Save" id="save">
             <input type="file" name="uploadFile" id="uploadFile">
@@ -67,7 +64,16 @@ $_SESSION['message'] = "";
             <img src="../img/stars.png" id="filter">
           </div>
         <div id="mini-galery">
-            <!-- Saved pictures -->
+            <div class="row">
+                <ul>
+                    <?php
+//                        $snapshots = getSnaps();
+            
+                    ?>
+                    <!-- Snapshots -->
+                </ul>
+            </div>
+
         </div>
     </div>
 

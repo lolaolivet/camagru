@@ -27,8 +27,26 @@ function createUser($email, $login, $password) {
   $stmt->bindParam(':validation', $validation_user);
   $validation_user = 0;
   $stmt->execute();
-  var_dump($stmt);
+  $users_id = $db->lastInsertId();
+  $key = $login . $email . date('mY');
+  $key = md5($key);
+//  $data = createConfirm($users_id, $key, $email);
+//    var_dump($data);
   return $stmt;
+}
+
+function createConfirm($users_id, $key, $email) {
+    $db = dbConnect();
+    $stmt = $db->prepare('INSERT INTO confirm (users_id, key, email)
+        VALUES (:users_id, :key, :email)');
+    $stmt->bindParam(':users_id', $id_user);
+    $id_user = $users_id;
+    $stmt->bindParam(':key', $key_user);
+    $key_user = $key;
+    $stmt->bindParam(':email', $email_user);
+    $email_user = $email;
+    $stmt->execute();
+    return $stmt;
 }
 
 function verifEmail($email) {

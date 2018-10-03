@@ -100,10 +100,11 @@
                         echo '<div class="description">';
                         $comments = getComments($e["id_photos"]);
                         foreach ($comments as $c) {
+                            $date = strtotime($c["date"]);
                           echo '<div class="comment">
                                   <div class="login"><p>'. $c["login"] .'</b></div>
                                   <div class="txt"><p>'. $c["text"] .'</p></div>
-                                  <div class="date"><p>'. $c["date"] .'</p></div>
+                                  <div class="date"><p>'. date("j M y H:i", $date) .'</p></div>
                               </div>';
                         }
                         if ($_SESSION['loggued_on_user'] != "") {

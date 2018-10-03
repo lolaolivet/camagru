@@ -20,11 +20,11 @@ window.addEventListener('load', function(e) {
     var video = document.querySelector('video');
     var canvas = document.querySelector('canvas');
     var context = canvas.getContext('2d');
-    var div = document.getElementById("mini-galery");
+    var miniGalery = document.getElementById("mini-galery");
     var videoElement = document.querySelector("#videoElement");
     var snap = document.getElementById('snap');
     var save = document.getElementById('save');
-    var imgElement = document.querySelector('img');
+    var imgElement = document.querySelector('#imgElement');
     var img = new Image();
     
     canvas.width = "500";
@@ -66,10 +66,10 @@ window.addEventListener('load', function(e) {
             y = 0;
             for (var i = 0; i < imgs.length; i++) {
                 imgs[i].setAttribute("selected", "false");
-                imgs[i].style.border = "1px solid #fff";
+                imgs[i].style.border = "1px solid transparent";
             }
             filter.setAttribute("selected", "true");
-            filter.style.border = "1px solid #000";
+            filter.style.border = "1px solid #d2d2d2";
             if (filter && filter != "") {
                 addFilter(filter, x, y);
             }
@@ -101,6 +101,7 @@ window.addEventListener('load', function(e) {
 
     function snapshot(filter, x, y) {
         var fragment = document.createDocumentFragment();
+        var li = document.createElement('li');
         var balise = document.createElement("img");
         if (filter && filter.getAttribute('selected') === "true") {
 //            canvas.width = "500";
@@ -110,21 +111,27 @@ window.addEventListener('load', function(e) {
                 context.drawImage(filter, x, y, 500, 375);
                 imgElement.src = canvas.toDataURL('image/webp');
                 balise.src = imgElement.src;
-                fragment.appendChild(balise);
-                div.appendChild(fragment);
+//                fragment.appendChild(li);
+//                li.appendChild(balise);
+//                miniGalery.appendChild(fragment);
+//                fragment.appendChild(balise);
+//                mini-galery.appendChild(fragment);
             } else {
                 context.drawImage(video, 0, 0, 500, 375);
                 context.drawImage(filter, x, y, 500, 375);
                 videoElement.src = canvas.toDataURL('image/webp');
                 balise.src = videoElement.src;
-                fragment.appendChild(balise);
-                div.appendChild(fragment);
+//                fragment.appendChild(balise);
+//                div.appendChild(fragment);
             }
+            fragment.appendChild(li);
+            li.appendChild(balise);
+            miniGalery.appendChild(fragment);
             context.clearRect(0, 0, 500, 375);
             imgElement.removeAttribute('src');
             video.style.visibility = "visible";
             filter.setAttribute("selected", "false");
-            filter.style.border = "1px solid #fff";
+            filter.style.border = "1px solid transparent";
             smile = true;
         }
         file = false;

@@ -16,7 +16,8 @@ function getComments($id) {
     INNER JOIN photo_has_comments ON comments.id_comments = photo_has_comments.comments_id
     INNER JOIN user_has_comments ON comments.id_comments = user_has_comments.comments_id
     INNER JOIN users ON user_has_comments.users_id = users.id_users
-    WHERE photo_has_comments.photos_id = :id_photo');
+    WHERE photo_has_comments.photos_id = :id_photo
+    ORDER BY comments.date');
   $stmt->bindParam(':id_photo', $id_photo);
   $id_photo = $id;
   $stmt->execute();
@@ -56,7 +57,9 @@ function linkPhoto($id_photo, $id_comment) {
 
 function sendMessage($id_user, $id_photo, $txt) {
   $db = dbConnect();
-  $date = date("Y-m-d h:m:s");
+  date_default_timezone_set("Europe/Paris");
+  $date = date("Y-m-d H:i:s");
+    var_dump($date);
   $stmt = $db->prepare('INSERT INTO comments (text, date)
     VALUES (:txt, :d)');
   $stmt->bindParam(':txt', $text);

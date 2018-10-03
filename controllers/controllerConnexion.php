@@ -2,6 +2,7 @@
 
 include("../models/modelConnexion.php");
 session_start();
+
 function auth($login, $password) {
   $password_hash = hash('sha512', $password);
   $data = getLogin($login);
@@ -62,7 +63,7 @@ if ($_POST['register'] === "Register") {
     if ($data = verifUser($email, $login)) {
       createUser($email, $login, $password_hash);
       $_SESSION['created'] = "created";
-      header('Location: ../index.php');
+//      header('Location: ../index.php');
     } else {
       $_SESSION['created'] = "notCreated";
       header('Location: ../views/connexion.php');
