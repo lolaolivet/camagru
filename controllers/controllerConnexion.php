@@ -32,6 +32,28 @@ function verifUser($email, $login) {
     return (1);
 }
 
+function sendEmailConf($email, $login, $key) {
+    $dest = $email;
+    $obj = "Activation account";
+    
+    $headers = 'From: Camagru <camagru@42project.com>' . "\r\n";
+    $headers .= 'To: '. $email.'\r\n';
+    $headers .= "X-Mailer: PHP ".phpversion()."\n";
+    $headers .= "X-Priority: 1 \n";
+    $headers .= "Mime-Version: 1.0\n";
+    $headers .= "Content-Transfer-Encoding: 8bit\n";
+    $headers .= "Content-type: text/html; charset= utf-8\n";
+    $headers .= "Date:" . date("D, d M Y h:s:i") . " +0200\n"; 
+    $message = "
+    <html>
+        <body>
+            <div align='center'>
+                <a href='http://localhost:8080/camagru/activation.php?login=".urlencode($login)."&key=".urlencode($key)."'>Account confirmed.</a>
+    </html>";
+    $send = mail($dest, "Confirmation account", $message, $headers, '-fcamagru@42project.fr');
+    var_dump($send);
+}
+
 if ($_POST['connexion'] === "Connect") {
   $login = $_POST['login'];
   $password = $_POST['password'];
@@ -55,20 +77,27 @@ if ($_POST['connexion'] === "Connect") {
 }
 
 if ($_POST['register'] === "Register") {
-  $email = $_POST['email'];
-  $login = $_POST['login'];
-  $password = $_POST['password'];
-  if(isset($email) && isset($login) && isset($password)) {
-    $password_hash = hash('sha512', $password);
-    if ($data = verifUser($email, $login)) {
-      createUser($email, $login, $password_hash);
-      $_SESSION['created'] = "created";
-//      header('Location: ../index.php');
-    } else {
-      $_SESSION['created'] = "notCreated";
-      header('Location: ../views/connexion.php');
+    $email = $_POST['email'];
+    $login = $_POST['login'];
+    $password = $_POST['password'];
+    $key = "";
+    if (isset($email) && isset($login) && isset($password)) {
+        $password_hash = hash('sha512', $password);
+        if ($data = verifUser($email, $login)) {
+            if ($data_user = createUser($email, $login, $password_hash)) {
+                $user = getLogin($login);
+                foreach ($user as $e) {
+                    $key = $e['key'];
+                }
+                sendEmailConf($email, $login, $key);
+            }
+            $_SESSION['created'] = "created";
+        //      header('Location: ../index.php');
+        } else {
+          $_SESSION['created'] = "notCreated";
+          header('Location: ../views/connexion.php');
+        }
     }
-  }
 }
 
  ?>

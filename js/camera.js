@@ -1,12 +1,16 @@
 window.addEventListener('load', function(e) {
     
+    var media = false;
+    
     if (navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia({video: true})
             .then(function(stream) {
             var video = document.querySelector("#videoElement");
             video.srcObject = stream;
+            media = true;
         }).catch(function(error) {
             console.log(error.name + ":" + error.message);
+            media = false;
         });
     }
 
@@ -20,7 +24,7 @@ window.addEventListener('load', function(e) {
     var video = document.querySelector('video');
     var canvas = document.querySelector('canvas');
     var context = canvas.getContext('2d');
-    var miniGalery = document.getElementById("mini-galery");
+    var miniGalery = document.getElementsByClassName("row");
     var videoElement = document.querySelector("#videoElement");
     var snap = document.getElementById('snap');
     var save = document.getElementById('save');
@@ -45,6 +49,7 @@ window.addEventListener('load', function(e) {
             if (allowedTypes.indexOf(imgType) != -1) {
                 var reader = new FileReader();
                 reader.addEventListener('load', function() {
+                imgElement.style.visibility = "visible";
                     imgElement.src = this.result;
                     imgElement.onload = function () {
                         context.clearRect(0, 0, 500, 375);
@@ -61,7 +66,7 @@ window.addEventListener('load', function(e) {
 
     divFilter.onclick = function (e) {
         filter = e.path[0];
-        if (filter.id === "filter") {
+        if (filter.id === "filter" && (file === true || media === true)) {
             x = 0;
             y = 0;
             for (var i = 0; i < imgs.length; i++) {
@@ -103,37 +108,31 @@ window.addEventListener('load', function(e) {
         var fragment = document.createDocumentFragment();
         var li = document.createElement('li');
         var balise = document.createElement("img");
-        if (filter && filter.getAttribute('selected') === "true") {
-//            canvas.width = "500";
-//            canvas.height = "375";
+        if (filter && filter.getAttribute('selected') === "true" && (file === true || media === true)){
             if (file === true) {
                 context.drawImage(imgElement, 0, 0, 500, 375);
                 context.drawImage(filter, x, y, 500, 375);
                 imgElement.src = canvas.toDataURL('image/webp');
                 balise.src = imgElement.src;
-//                fragment.appendChild(li);
-//                li.appendChild(balise);
-//                miniGalery.appendChild(fragment);
-//                fragment.appendChild(balise);
-//                mini-galery.appendChild(fragment);
-            } else {
+            } else if (media === true) {
                 context.drawImage(video, 0, 0, 500, 375);
                 context.drawImage(filter, x, y, 500, 375);
                 videoElement.src = canvas.toDataURL('image/webp');
                 balise.src = videoElement.src;
-//                fragment.appendChild(balise);
-//                div.appendChild(fragment);
             }
             fragment.appendChild(li);
+            var ul = miniGalery[0].getElementsByTagName('ul');
             li.appendChild(balise);
-            miniGalery.appendChild(fragment);
+            ul[0].appendChild(fragment);
             context.clearRect(0, 0, 500, 375);
             imgElement.removeAttribute('src');
+            imgElement.style.visibility = "hidden";
             video.style.visibility = "visible";
             filter.setAttribute("selected", "false");
             filter.style.border = "1px solid transparent";
             smile = true;
         }
+        console.log(canvas);
         file = false;
     }
 
@@ -155,7 +154,7 @@ window.addEventListener('load', function(e) {
     }
 
     function addFilter(filter, x, y) {
-        if (filter && filter.getAttribute('selected') === "true") {
+        if (filter && filter.getAttribute('selected') === "true" && (file === true || media === true)) {
 //            canvas.width = "500";
 //            canvas.height = "375";
             context.clearRect(0, 0, 500, 375);

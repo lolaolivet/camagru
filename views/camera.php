@@ -49,33 +49,39 @@ $_SESSION['message'] = "";
               </div>';
       }
     ?>
-      <div id="container">
-          <div class="video">
+      
+    <div id="container">
+        <div class="video">
             <video autoplay="true" id="videoElement"></video>
-            <img id="imgElement">
+            <img id="imgElement" style="visibility:hidden;">
             <canvas id="canvas"></canvas>
-            <input type="submit" name="snap" value="Smile!" id="snap">
-            <input type="submit" name="save" value="Save" id="save">
-            <input type="file" name="uploadFile" id="uploadFile">
-          </div>
-          <div id="filters">
-            <img src="../img/rainbow.png" id="filter">
-            <img src="../img/sun.png" id="filter">
-            <img src="../img/stars.png" id="filter">
-          </div>
+            <div class="inputs">
+                <input type="submit" name="snap" value="Smile!" id="snap">
+                <input type="submit" name="save" value="Save" id="save">
+                <input type="file" name="uploadFile" id="uploadFile">
+            </div>
+            <div id="filters">
+                <img src="../img/rainbow.png" id="filter">
+                <img src="../img/sun.png" id="filter">
+                <img src="../img/stars.png" id="filter">
+            </div>
+        </div>
+        
         <div id="mini-galery">
             <div class="row">
                 <ul>
                     <?php
 //                        $snapshots = getSnaps();
-            
+
                     ?>
                     <!-- Snapshots -->
                 </ul>
             </div>
-
         </div>
     </div>
+    
+
+        
 
 </body>
 </html>
