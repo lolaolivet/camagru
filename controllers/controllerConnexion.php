@@ -36,21 +36,23 @@ function sendEmailConf($email, $login, $key) {
     $dest = $email;
     $obj = "Activation account";
     
-    $headers = 'From: Camagru <camagru@42project.com>' . "\r\n";
-    $headers .= 'To: '. $email.'\r\n';
-    $headers .= "X-Mailer: PHP ".phpversion()."\n";
-    $headers .= "X-Priority: 1 \n";
-    $headers .= "Mime-Version: 1.0\n";
-    $headers .= "Content-Transfer-Encoding: 8bit\n";
-    $headers .= "Content-type: text/html; charset= utf-8\n";
-    $headers .= "Date:" . date("D, d M Y h:s:i") . " +0200\n"; 
+    $headers = 'From: Camagru <olivetlola43@gmail.com>';
+//    $headers .= 'To: '. $email.'\r\n';
+//    $headers .= "X-Mailer: PHP ".phpversion()."\n";
+//    $headers .= "X-Priority: 1 \n";
+//    $headers .= "Mime-Version: 1.0\n";
+//    $headers .= "Content-Transfer-Encoding: 8bit\n";
+//    $headers .= "Content-type: text/html; charset= utf-8\n";
+//    $headers .= "Date:" . date("D, d M Y h:s:i") . " +0200\n"; 
     $message = "
     <html>
         <body>
             <div align='center'>
                 <a href='http://localhost:8080/camagru/activation.php?login=".urlencode($login)."&key=".urlencode($key)."'>Account confirmed.</a>
+            </div>
+        </body>
     </html>";
-    $send = mail($dest, "Confirmation account", $message, $headers, '-fcamagru@42project.fr');
+    $send = mail($dest, "Confirmation account", $message, $headers);
     var_dump($send);
 }
 

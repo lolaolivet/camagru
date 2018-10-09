@@ -53,7 +53,6 @@ window.addEventListener('load', function(e) {
                     imgElement.src = this.result;
                     imgElement.onload = function () {
                         context.clearRect(0, 0, 500, 375);
-//                        canvas.style.background = "#fff";
                         context.drawImage(imgElement, 0, 0, 500, 375);
                         video.style.visibility = "hidden";
                         file = true;
@@ -99,10 +98,35 @@ window.addEventListener('load', function(e) {
     snap.onclick = function (e) {
         snapshot(filter, x, y);
     }
-
-    save.onclick = function (e) {
-        saveSnap(filter, x, y, smile);
+    
+    
+    function alertContents(httpRequest) {
+        if (httpRequest.readyState == XMLHttpRequest.DONE) {
+            if (httpRequest.status == 200) {
+                console.log(httpRequest.responseText);
+            } else {
+                console.log('NUL !');
+            }
+        }
     }
+    
+    function makeRequest(img) {
+        var httpRequest = new XMLHttpRequest();
+        if (!httpRequest) {
+            return false;
+        }
+        console.log(httpRequest);
+        httpRequest.onreadystatechange = function () {
+            console.log('yaa');
+            
+            alertContents(httpRequest);
+
+        }
+        httpRequest.open('POST', 'http://localhost:8080/camagru/controllers/controllerCamera.php');
+        httpRequest.send('snap=' + encodeURIComponent(img));
+    }
+    
+
 
     function snapshot(filter, x, y) {
         var fragment = document.createDocumentFragment();
@@ -120,6 +144,7 @@ window.addEventListener('load', function(e) {
                 videoElement.src = canvas.toDataURL('image/webp');
                 balise.src = videoElement.src;
             }
+            makeRequest(balise.src);
             fragment.appendChild(li);
             var ul = miniGalery[0].getElementsByTagName('ul');
             li.appendChild(balise);
@@ -132,31 +157,11 @@ window.addEventListener('load', function(e) {
             filter.style.border = "1px solid transparent";
             smile = true;
         }
-        console.log(canvas);
         file = false;
-    }
-
-    function saveSnap(filter, x, y, smile) {
-//        var fragment = document.createDocumentFragment();
-//        var balise = document.createElement("img");
-
-//        if (filter && filter.getAttribute('selected') === "true" && smile === true) {
-//            balise.src = videoElement.src;
-//            context.clearRect(0, 0, 500, 375);
-//            fragment.appendChild(balise);
-//            div.appendChild(fragment);
-//            filter.setAttribute("selected", "false");
-//            filter.style.border = "1px solid #fff";
-//        }
-//        console.log(filter);
-//        smile = false;
-//        filter = "";
     }
 
     function addFilter(filter, x, y) {
         if (filter && filter.getAttribute('selected') === "true" && (file === true || media === true)) {
-//            canvas.width = "500";
-//            canvas.height = "375";
             context.clearRect(0, 0, 500, 375);
             img.src = filter.src;
             context.drawImage(img, x, y, 500, 375);

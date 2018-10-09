@@ -5,7 +5,8 @@ include("connect.php");
 
 function getPictures() {
     $db = dbConnect();
-    $req = $db->query('SELECT id_photos, date, img, users_id FROM photos');
+    $req = $db->query('SELECT id_photos, date, img, users_id FROM photos
+        WHERE published = 1');
     return $req;
 }
 

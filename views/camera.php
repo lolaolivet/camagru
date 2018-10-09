@@ -1,5 +1,7 @@
 <?php
-include("../controllers/controllerCamera.php");
+//include("../controllers/controllerCamera.php");
+include("../models/modelCamera.php");
+//include("../models/modelCamera.php");
 session_start();
 var_dump($_SESSION['loggued_on_user']);
 if (!(isset($_SESSION['loggued_on_user']))) {
@@ -57,7 +59,6 @@ $_SESSION['message'] = "";
             <canvas id="canvas"></canvas>
             <div class="inputs">
                 <input type="submit" name="snap" value="Smile!" id="snap">
-                <input type="submit" name="save" value="Save" id="save">
                 <input type="file" name="uploadFile" id="uploadFile">
             </div>
             <div id="filters">
@@ -71,10 +72,14 @@ $_SESSION['message'] = "";
             <div class="row">
                 <ul>
                     <?php
-//                        $snapshots = getSnaps();
+                        $data = getSnaps($_SESSION['loggued_on_user']);
+                        foreach ($data as $e) {
+                            echo '<li>
+                                    <img src="'. $e['img'] .'">
+                                  </li>';
+                        }
 
                     ?>
-                    <!-- Snapshots -->
                 </ul>
             </div>
         </div>

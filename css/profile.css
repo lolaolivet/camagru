@@ -61,7 +61,7 @@ form {
 .radio {
   margin: 5px 0;
   display: flex;
-  wdth: 100%;
+  width: 100%;
 }
 
 .radio p {
