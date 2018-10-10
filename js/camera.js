@@ -99,35 +99,19 @@ window.addEventListener('load', function(e) {
         snapshot(filter, x, y);
     }
     
-    
-    function alertContents(httpRequest) {
-        if (httpRequest.readyState == XMLHttpRequest.DONE) {
-            if (httpRequest.status == 200) {
-                console.log(httpRequest.responseText);
-            } else {
-                console.log('NUL !');
-            }
-        }
-    }
-    
     function makeRequest(img) {
         var httpRequest = new XMLHttpRequest();
-        if (!httpRequest) {
-            return false;
-        }
-        console.log(httpRequest);
-        httpRequest.onreadystatechange = function () {
-            console.log('yaa');
-            
-            alertContents(httpRequest);
-
-        }
-        httpRequest.open('POST', 'http://localhost:8080/camagru/controllers/controllerCamera.php');
-        httpRequest.send('snap=' + encodeURIComponent(img));
+        httpRequest.open('POST', '/camagru/controllers/controllerCamera.php');
+        httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        
+        httpRequest.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+            }
+        };
+        httpRequest.send('snap=' + img);
     }
     
-
-
     function snapshot(filter, x, y) {
         var fragment = document.createDocumentFragment();
         var li = document.createElement('li');
@@ -136,15 +120,17 @@ window.addEventListener('load', function(e) {
             if (file === true) {
                 context.drawImage(imgElement, 0, 0, 500, 375);
                 context.drawImage(filter, x, y, 500, 375);
-                imgElement.src = canvas.toDataURL('image/webp');
+                imgElement.src = canvas.toDataURL();
                 balise.src = imgElement.src;
             } else if (media === true) {
                 context.drawImage(video, 0, 0, 500, 375);
                 context.drawImage(filter, x, y, 500, 375);
-                videoElement.src = canvas.toDataURL('image/webp');
+                videoElement.src = canvas.toDataURL();
                 balise.src = videoElement.src;
             }
-            makeRequest(balise.src);
+            balise.onload = function () {
+                makeRequest(balise.src);
+            }
             fragment.appendChild(li);
             var ul = miniGalery[0].getElementsByTagName('ul');
             li.appendChild(balise);
