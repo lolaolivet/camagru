@@ -9,8 +9,6 @@ if (!(isset($_SESSION['loggued_on_user']))) {
 }
 $_SESSION['error'] = "";
 $_SESSION['message'] = "";
-
-var_dump($_POST);
 ?>
 
 <!DOCTYPE html>
