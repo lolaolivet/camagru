@@ -60,7 +60,6 @@ function sendMessage($id_user, $id_photo, $txt) {
   $db = dbConnect();
   date_default_timezone_set("Europe/Paris");
   $date = date("Y-m-d H:i:s");
-    var_dump($date);
   $stmt = $db->prepare('INSERT INTO comments (text, date)
     VALUES (:txt, :d)');
   $stmt->bindParam(':txt', $text);
@@ -71,6 +70,17 @@ function sendMessage($id_user, $id_photo, $txt) {
   $id_comment = $db->lastInsertId();
   linkUser($id_user, $id_comment);
   linkPhoto($id_photo, $id_comment);
+}
+
+function getUserPhoto($id_photo) {
+    $db = dbConnect();
+    $stmt = $db->prepare('SELECT users.notif, users.email FROM photos 
+    INNER JOIN users ON photos.users_id = users.id_users
+    WHERE photos.id_photos = :id_photo');
+    $stmt->bindParam(':id_photo', $photo);
+    $photo = $id_photo;
+    $stmt->execute();
+    return $stmt;
 }
 
 ?>

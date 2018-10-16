@@ -14,4 +14,5 @@ if (isset($img)) {
 //    saveSnap($login, $img_cleaned, $id);
 //    var_dump($decode_img->snap);
 }
+
 ?>
