@@ -6,6 +6,9 @@
     justify-content: center;
 }
 #videoElement {
+    position: absolute;
+    left: 0;
+    top: 0;
     max-width: 500px;
     height: auto;
     width: 100%;
@@ -29,6 +32,34 @@
     padding-bottom: 0;
 }
 
+.overlay {
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    top: 0;
+    bottom 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .3s ease;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: auto 0;
+    z-index: 4;
+}
+
+.overlay:hover{
+    opacity: 1;
+}
+
+.overlay img {
+    margin: auto 0;
+    height: 75px;
+    width: auto;
+    background: transparent;
+}   
+
 ul {
     max-height: 375px;
     height: auto;
@@ -36,6 +67,7 @@ ul {
 }
 
 li {
+    position: relative          !important;
     max-height: 100%            !important;
     max-width: 300px            !important;
     height: auto                !important;
@@ -46,7 +78,14 @@ input {
     margin: 10px 10px;
 }
 
+.inputs {
+    position: absolute;
+    top: 400;
+}
+
 #filters {
+    position: absolute;
+    top: 460;
     background: transparent;
     height: 100%;
     width: 100%;
@@ -102,6 +141,7 @@ input {
     max-width: 50%;
     min-width: 350px;
     width: 100%;
+    height: 100%;
 }
 
 .title {

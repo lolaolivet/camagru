@@ -1,6 +1,5 @@
 <?php
-//include("../controllers/controllerCamera.php");
-include("../models/modelCamera.php");
+include("../controllers/controllerCamera.php");
 //include("../models/modelCamera.php");
 session_start();
 var_dump($_SESSION['loggued_on_user']);
@@ -20,6 +19,7 @@ $_SESSION['message'] = "";
       <link rel="stylesheet" type="text/css" href="../css/main.css">
       <script type="text/javascript" src="../js/camera.js"></script>
       <script type="text/javascript" src="../js/message.js"></script>
+      <script type="text/javascript" src="../js/handleSnap.js"></script>
 </head>
 <body>
      <header>
@@ -72,20 +72,23 @@ $_SESSION['message'] = "";
             <div class="row">
                 <ul>
                     <?php
-                        $data = getSnaps($_SESSION['loggued_on_user']);
+                        $data = displaySnap($_SESSION['loggued_on_user']);
+//                    var_dump($data);
                         foreach ($data as $e) {
                             echo '<li>
                                     <img src="'. $e['img'] .'">
+                                    <div class="overlay">
+                                            <img src="../img/share.png" onClick="shareSnap('.$e["id_photos"].')">
+                                            <img src="../img/delete.png" onClick="deleteSnap('.$e["id_photos"].')">
+                                    </div>
                                   </li>';
                         }
                     ?>
+                    
                 </ul>
             </div>
         </div>
     </div>
-    
-
-        
 
 </body>
 </html>

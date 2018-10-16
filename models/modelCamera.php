@@ -4,7 +4,7 @@ include("connect.php");
 
 function getSnaps($login) {
     $db = dbConnect();
-    $stmt = $db->prepare('SELECT photos.img FROM photos 
+    $stmt = $db->prepare('SELECT photos.img, photos.users_id, photos.id_photos FROM photos 
         INNER JOIN users ON photos.users_id = users.id_users 
         WHERE photos.published = 0
         AND users.login = :login');
@@ -43,4 +43,21 @@ function saveSnap($login, $img, $id) {
     $stmt->execute();
 }
 
+function shareSnap($id_photo) {
+    $db = dbConnect();
+    $stmt = $db->prepare('UPDATE photos SET photos.published = 1
+        WHERE photos.id_photos = :id_photo');
+    $stmt->bindParam(':id_photo', $id);
+    $id = $id_photo;
+    $stmt->execute();
+}
+
+function deleteSnap($id_photo) {
+    $db = dbConnect();
+    $stmt = $db->prepare('DELETE FROM photos 
+        WHERE photos.id_photos = :id_photo');
+    $stmt->bindParam(':id_photo', $id);
+    $id = $id_photo;
+    $stmt->execute();
+}
 ?>
