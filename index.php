@@ -3,13 +3,8 @@
     include("controllers/controllerIndex.php");
     session_start();
     var_dump($_SESSION['loggued_on_user']);
-    $_SESSION['connected'] = "";
-    $_SESSION['error'] = "";
-    $_SESSION['id_photo'] = "";
-    if ($_SESSION['created'] != "created")
-      $_SESSION['created'] = "";
+    var_dump($_SESSION['id_user']);
 
-    // $_SESSION['message'] = "";
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -46,7 +41,7 @@
             ?>
         </header>
         <?php
-          if ($_SESSION['created'] === "created") {
+          if ($_SESSION['success'] === "created") {
             echo '<div class="success">
                     <div class="text">
                       <div class="closeMessage">
@@ -56,7 +51,7 @@
                     </div>
                   </div>';
           }
-          if ($_SESSION['message'] === "error") {
+          if ($_SESSION['error'] === "error") {
             echo '<div class="error">
                     <div class="text">
                       <div class="closeMessage">
@@ -66,7 +61,7 @@
                     </div>
                   </div>';
           }
-          if ($_SESSION['message'] === "send") {
+          if ($_SESSION['success'] === "send") {
             echo '<div class="success">
                     <div class="text">
                       <div class="closeMessage">
@@ -122,9 +117,8 @@
                     }
                 ?>
                 </ul>
-            </div> <!-- / row -->
+            </div>
         </div>
-        <!-- Item 01 -->
 
     </body>
 </html>

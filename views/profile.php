@@ -5,9 +5,6 @@ var_dump($_SESSION['loggued_on_user']);
 if (!(isset($_SESSION['loggued_on_user']))) {
   header('Location: connexion.php');
 }
-$_SESSION['connected'] = "";
-$_SESSION['error'] = "";
-$_SESSION['message'] = "";
 
 ?>
 <!DOCTYPE html>
@@ -38,7 +35,7 @@ $_SESSION['message'] = "";
         ?>
     </header>
     <?php
-      if ($_SESSION['updated'] === "updated") {
+      if ($_SESSION['success'] === "updated") {
         echo '<div class="success">
                 <div class="text">
                   <div class="closeMessage">
@@ -48,7 +45,7 @@ $_SESSION['message'] = "";
                 </div>
               </div>';
       }
-      if ($_SESSION['updated'] === "error") {
+      if ($_SESSION['error'] === "error") {
         echo '<div class="error">
                 <div class="text">
                   <div class="closeMessage">

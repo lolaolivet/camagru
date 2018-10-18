@@ -2,9 +2,7 @@
 // include("../models/modelConnexion.php");
 session_start();
 var_dump($_SESSION['loggued_on_user']);
-$_SESSION['connected'] = "";
-if ($_SESSION['created'] !== "notCreated")
-  $_SESSION['created'] = "";
+
 
 ?>
 <!DOCTYPE html>
@@ -35,17 +33,17 @@ if ($_SESSION['created'] !== "notCreated")
         ?>
     </header>
     <?php
-      if ($_SESSION['error'] === "error") {
+      if ($_SESSION['error'] === "wrong") {
         echo '<div class="error">
                 <div class="text">
                   <div class="closeMessage">
-                    <a onclick="../img/close.png"></a>
+                    <a onclick="closeMessage(this)"><img src="../img/close.png"</a>
                   </div>
                     Password or login is wrong..
                 </div>
               </div>';
       }
-      if ($_SESSION['created'] === "notCreated") {
+      if ($_SESSION['error'] === "notCreated") {
         echo '<div class="error">
                 <div class="text">
                   <div class="closeMessage">

@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
-* {
-    background-color: #fff;
-}
-
 body {
     position: relative;
     font-family: 'Montserrat', sans-serif;
@@ -79,6 +75,8 @@ a {
   position: absolute;
   right: 5;
   top: 5;
+    height: 20px;
+    width: 20px;
 }
 
 .closeMessage img{

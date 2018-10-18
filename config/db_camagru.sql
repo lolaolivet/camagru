@@ -38,7 +38,7 @@ CREATE TABLE `users`
     `login`      VARCHAR(45) NOT NULL ,
     `password`   VARCHAR(150) NOT NULL ,
     `key`        VARCHAR(150) NOT NULL DEFAULT "",
-    `notif`      TINYINT NOT NULL DEFAULT 0 ,
+    `notif`      TINYINT NOT NULL DEFAULT 1 ,
     `validation` TINYINT NOT NULL DEFAULT 0 ,
 
     PRIMARY KEY (`id_users`)
@@ -46,8 +46,6 @@ CREATE TABLE `users`
 
 INSERT INTO `users` (`id_users`, `email`, `login`, `password`, `notif`, `validation`)
 VALUES (1, 'lolivet@student.42.fr', 'lolivet', '4f361568c10f02331af96f4df835639638906ac385b2bc313d7d18dbbe7367758d7d144ca467ff96c92f50d54b214eb260ef7b40c9805340aa20fda94ea95e29', '0', '1'),
-(2, 'root@root.com', 'root', '99adc231b045331e514a516b4b7680f588e3823213abe901738bc3ad67b2f6fcb3c64efb93d18002588d3ccc1a49efbae1ce20cb43df36b38651f11fa75678e8', '1', '1'),
-(3, 'test@test.com', 'test', 'ee26b0dd4af7e749aa1a8ee3c10ae9923f618980772e473f8819a5d4940e0db27ac185f8a0e1d5f84f88bc887fd67b143732c304cc5fa9ad8e6f57f50028a8ff', '1', '1'),
 (4, 'visitor@test.com', 'visitor', '6e3bd312513ef0d3435d73c528e26083c8b131445b315c24bd3741d6568c6e9b6df03be427549015768df832f3c6fd2d41b0c17c4e34141e3fe34fea77ea66fa', '0', '0');
 
 

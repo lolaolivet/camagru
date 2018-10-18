@@ -22,7 +22,6 @@ function sendEmail($email) {
         </body>
     </html>";
     $send = mail($dest, "Camagru Notification", $message, $headers);
-    var_dump($send);
 }
 
 function sendNotification($id_photo) {
@@ -41,11 +40,11 @@ if ($_POST['send'] === "Send" ) {
     $id_user = $_SESSION['id_user'];
     $txt = $_POST['message'];
     sendMessage($id_user, $id_photo, $txt);
-    $_SESSION['message'] = "send";
+    $_SESSION['success'] = "send";
     sendNotification($id_photo);
-     header('Location: ../index.php');
+    header('Location: ../index.php');
   } else {
-    $_SESSION['message'] = "error";
+    $_SESSION['error'] = "error";
     header('Location: ../index.php');
   }
 }

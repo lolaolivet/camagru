@@ -15,11 +15,23 @@ function verifKey($login, $key) {
 function verifActivation($login) {
     $data = getActivation($login);
     foreach ($data as $e) {
-        if ($e['activation'] == 1)
+        if ($e['validation'] == 1)
             return 0;
         else
             return 1;
     }
+}
+
+function getId($login) {
+    $data = getIdUser($login);
+    foreach ($data as $e) {
+        $id_user = $e['id_users'];
+    }
+    if ($id_user != 0) {
+        return $id_user;
+    }
+    else
+        return 0;
 }
 
 ?>

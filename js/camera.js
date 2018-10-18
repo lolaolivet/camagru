@@ -102,7 +102,6 @@ window.addEventListener('load', function(e) {
     function makeRequest(img) {
         var httpRequest = new XMLHttpRequest();
         console.log(img);
-//        var newImg = atob(img);
         httpRequest.open('POST', '/camagru/controllers/controllerCamera.php');
         httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         
@@ -112,6 +111,7 @@ window.addEventListener('load', function(e) {
             }
         };
         httpRequest.send('snap='+ encodeURIComponent(img));
+        location.reload();
     }
     
     function snapshot(filter, x, y) {

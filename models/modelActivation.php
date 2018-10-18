@@ -14,7 +14,7 @@ function getKey($login) {
 
 function getActivation($login) {
     $db = dbConnect();
-    $stmt = $db->prepare('SELECT users.activation FROM users WHERE users.login = :login');
+    $stmt = $db->prepare('SELECT users.validation FROM users WHERE users.login = :login');
     $stmt->bindParam(':login', $login_user);
     $login_user = $login;
     $stmt->execute();
@@ -35,6 +35,16 @@ function deleteUser($login) {
     $stmt->bindParam(':login', $login_user);
     $login_user = $login;
     $stmt->execute();
+}
+
+function getIdUser($login) {
+    $db = dbConnect();
+    $stmt = $db->prepare('SELECT users.id_users FROM users
+        WHERE users.login = :login');
+    $stmt->bindParam(':login', $login_user);
+    $login_user = $login;
+    $stmt->execute();
+    return $stmt;
 }
 
 ?>

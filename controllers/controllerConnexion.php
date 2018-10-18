@@ -3,6 +3,12 @@
 include("../models/modelConnexion.php");
 session_start();
 
+if ($_POST['error'] === "null")
+    $_SESSION['error'] = "";
+if ($_POST['success'] === "null")
+    $_SESSION['success'] = "";
+
+
 function auth($login, $password) {
   $password_hash = hash('sha512', $password);
   $data = getLogin($login);
@@ -64,16 +70,16 @@ if ($_POST['connexion'] === "Connect") {
         $_SESSION['loggued_on_user'] = $login;
         $_SESSION['id_user'] = $data['id_users'];
         var_dump($_SESSION['loggued_on_user']);
-        $_SESSION['connected'] = "connected";
+        $_SESSION['success'] = "connected";
         header('Location: ../views/camera.php');
       } else {
         $_SESSION['loggued_on_user'] = "";
-        $_SESSION['error'] = "error";
+        $_SESSION['error'] = "wrong";
         header('Location: ../views/connexion.php');
       }
   } else {
     $_SESSION['loggued_on_user'] = "";
-    $_SESSION['error'] = "error";
+    $_SESSION['error'] = "wrong";
     header('Location: ../views/connexion.php');
   }
 }
@@ -93,10 +99,10 @@ if ($_POST['register'] === "Register") {
                 }
                 sendEmailConf($email, $login, $key);
             }
-            $_SESSION['created'] = "created";
-        //      header('Location: ../index.php');
+            $_SESSION['success'] = "created";
+              header('Location: ../index.php');
         } else {
-          $_SESSION['created'] = "notCreated";
+          $_SESSION['error'] = "notCreated";
           header('Location: ../views/connexion.php');
         }
     }

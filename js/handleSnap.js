@@ -10,7 +10,7 @@ function shareSnap(id_photo) {
         };
         httpRequest.send('id_share='+ id_photo);
         location.reload();
-    }
+}
 
 function deleteSnap(id_photo) {
         var httpRequest = new XMLHttpRequest();
@@ -25,4 +25,4 @@ function deleteSnap(id_photo) {
         };
         httpRequest.send('id_delete='+ id_photo);
         location.reload();
-    }
+}

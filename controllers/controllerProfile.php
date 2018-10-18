@@ -27,13 +27,12 @@ if ($_POST['modified'] === "Modified") {
   $id = $_SESSION['id_user'];
   if ($data = verifData($id, $login, $email)) {
     updateUser($login, $email, $password, $notif);
-    $_SESSION['updated'] = "updated";
+    $_SESSION['success'] = "updated";
     header('Location: ../views/profile.php');
   } else {
-    $_SESSION['updated'] = "error";
+    $_SESSION['error'] = "error";
     header('Location: ../views/profile.php');
   }
-  var_dump($_SESSION['updated']);
 }
 
 ?>

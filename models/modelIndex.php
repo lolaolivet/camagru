@@ -36,6 +36,7 @@ function getLikes($id) {
 }
 
 function linkUser($id_user, $id_comment) {
+    
   $db = dbConnect();
   $stmt = $db->prepare('INSERT INTO user_has_comments (users_id, comments_id)
     VALUES (:user, :comment)');

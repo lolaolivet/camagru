@@ -4,10 +4,11 @@ include("connect.php");
 
 function getSnaps($login) {
     $db = dbConnect();
-    $stmt = $db->prepare('SELECT photos.img, photos.users_id, photos.id_photos FROM photos 
+    $stmt = $db->prepare('SELECT photos.img, photos.users_id, photos.id_photos, photos.published 
+        FROM photos 
         INNER JOIN users ON photos.users_id = users.id_users 
-        WHERE photos.published = 0
-        AND users.login = :login');
+        WHERE users.login = :login
+        ORDER BY photos.date ASC');
     $stmt->bindParam(':login', $login_user);
     $login_user = $login;
     $stmt->execute();
