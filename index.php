@@ -84,7 +84,7 @@
                             <img src="'. $e["img"] .'" class="big" id="'. $e["id_photos"] .'">
                         </a>
                         <a class="close" onclick="close_img(this)">
-                            <img src="http://pluspng.com/img-png/red-cross-png-red-cross-png-file-2000.png">
+                            <img src="img/close.png">
                         </a>
                         <div id="expand" class="port">
                             <div class="row">';
