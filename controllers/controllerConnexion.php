@@ -40,7 +40,6 @@ function verifUser($email, $login) {
 
 function sendEmailConf($email, $login, $key) {
     $dest = $email;
-    $obj = "Activation account";
     
     $headers = 'From: Camagru <olivetlola43@gmail.com>'. "\r\n";
     $headers .= 'To: '. $email.'\r\n';

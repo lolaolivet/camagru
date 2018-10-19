@@ -55,4 +55,16 @@ if ($_POST['send'] === "Send" ) {
     header('Location: ../index.php');
   }
 }
+
+if (isset($_POST['id_photo']) && isset($_POST['id_user'])) {
+    $id_photo = $_POST['id_photo'];
+    $id_user = $_POST['id_user'];
+    deleteLike($id_photo, $id_user);
+}
+
+if (isset($_POST['id_photoL']) && isset($_POST['id_userL'])) {
+    $id_photo = $_POST['id_photoL'];
+    $id_user = $_POST['id_userL'];
+    createLike($id_photo, $id_user);
+}
  ?>

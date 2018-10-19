@@ -1,6 +1,6 @@
-function shareSnap(id_photo) {
+function dislike(e, id_photo, id_user) {
         var httpRequest = new XMLHttpRequest();
-        httpRequest.open('POST', '/camagru/controllers/controllerCamera.php');
+        httpRequest.open('POST', '/camagru/controllers/controllerIndex.php');
         httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         
         httpRequest.onreadystatechange = function() {
@@ -8,12 +8,12 @@ function shareSnap(id_photo) {
                 location.reload();
             }
         };
-        httpRequest.send('id_share='+ id_photo);
+        httpRequest.send('id_photo='+ id_photo +'&id_user='+ id_user);
 }
 
-function deleteSnap(id_photo) {
+function like(e, id_photo, id_user) {
         var httpRequest = new XMLHttpRequest();
-        httpRequest.open('POST', '/camagru/controllers/controllerCamera.php');
+        httpRequest.open('POST', '/camagru/controllers/controllerIndex.php');
         httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         
         httpRequest.onreadystatechange = function() {
@@ -21,5 +21,5 @@ function deleteSnap(id_photo) {
                 location.reload();
             }
         };
-        httpRequest.send('id_delete='+ id_photo);
+        httpRequest.send('id_photoL='+ id_photo +'&id_userL='+ id_user);
 }

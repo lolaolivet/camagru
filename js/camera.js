@@ -60,8 +60,11 @@ window.addEventListener('load', function(e) {
         }
     });
 
+    
     divFilter.onclick = function (e) {
-        filter = e.path[0];
+        console.log(e);
+        
+        filter = e.srcElement;
         if (filter.id === "filter" && (file === true || media === true)) {
             x = 0;
             y = 0;
@@ -103,10 +106,10 @@ window.addEventListener('load', function(e) {
         
         httpRequest.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
+                location.reload();
             }
         };
         httpRequest.send('snap='+ encodeURIComponent(img));
-        location.reload();
     }
     
     function snapshot(filter, x, y) {

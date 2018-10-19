@@ -5,6 +5,7 @@
     display: flex;
     justify-content: center;
 }
+
 #videoElement {
     position: absolute;
     left: 0;
@@ -80,14 +81,14 @@ input {
 
 .inputs {
     position: absolute;
-    top: 400;
+    top: 400px;
 }
 
 #filters {
     position: absolute;
-    top: 460;
+    top: 460px;
     background: transparent;
-    height: 100%;
+    height: auto;
     width: 100%;
     max-width: 500px;
     max-height: 120px;

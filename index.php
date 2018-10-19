@@ -12,6 +12,7 @@
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <script type="text/javascript" src="js/gallery.js"></script>
         <script type="text/javascript" src="js/message.js"></script>
+        <script type="text/javascript" src="js/likes.js"></script>
         <title>Camagruuu</title>
     </head>
     <body>
@@ -92,9 +93,9 @@
                             foreach ($likes as $l) {
                               echo '<div class="likes">';
                                 if ($dislike = getLikeUser($e['id_photos'], $_SESSION['id_user'])) {
-                                    echo '<img src="img/like.png">';
+                                    echo '<img src="img/like.png" onClick="dislike(this, '.$e['id_photos'].','. $_SESSION['id_user'].')">';
                                 } else {
-                                    echo '<img src="img/dislike.png">';
+                                    echo '<img src="img/dislike.png" onClick="like(this, '.$e['id_photos'].','. $_SESSION['id_user'].')">';
                                 }
                                 echo $l["total"] .'</div>';
                             }

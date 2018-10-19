@@ -97,4 +97,26 @@ function getUserLike($id_photo, $id_user) {
     return $stmt;
 }
 
+function deleteLike($id_photo, $id_user) {
+    $db = dbConnect();
+    $stmt = $db->prepare('DELETE FROM likes
+        WHERE likes.photos_id = :id_photo AND likes.users_id = :id_user');
+    $stmt->bindParam(':id_photo', $photo_id);
+    $photo_id = $id_photo;
+    $stmt->bindParam(':id_user', $user_id);
+    $user_id = $id_user;
+    $stmt->execute();
+}
+
+function createLike($id_photo, $id_user) {
+    $db = dbConnect();
+    $stmt = $db->prepare('INSERT INTO likes (photos_id, users_id)
+        VALUES (:id_photo, :id_user)');
+    $stmt->bindParam(':id_photo', $photo_id);
+    $photo_id = $id_photo;
+    $stmt->bindParam(':id_user', $user_id);
+    $user_id = $id_user;
+    $stmt->execute();
+}
+
 ?>

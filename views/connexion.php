@@ -74,6 +74,9 @@ session_start();
                   <div class="formul">
                       <label for="password">Password:</label><input type="password" name="password">
                   </div>
+                  <div class="rose">
+                    <a href="forgot.php">Forgot password ?</a>  
+                  </div>
                   <div class="validate">
                       <input class="validate" type="submit" value="Connect" name="connexion">
                   </div>
