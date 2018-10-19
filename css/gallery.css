@@ -58,7 +58,13 @@
 .likes {
   text-align: left;
   color: #ff3184;
-  margin-top: -30px;
+  margin-top: -10px;
+}
+
+.likes img {
+    height: 15px;
+    width: auto;
+    margin-right: 5px;
 }
 
 .comment {

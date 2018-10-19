@@ -33,6 +33,13 @@ function sendNotification($id_photo) {
     }
 }
 
+function getLikeUser($id_photo, $id_user) {
+    $data = getUserLike($id_photo, $id_user);
+    foreach ($data as $e) {
+        $res = $e['result'];
+    }
+    return $res;
+}
 
 if ($_POST['send'] === "Send" ) {
   if ($_POST['message'] != "") {

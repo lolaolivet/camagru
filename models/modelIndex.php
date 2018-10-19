@@ -84,4 +84,17 @@ function getUserPhoto($id_photo) {
     return $stmt;
 }
 
+function getUserLike($id_photo, $id_user) {
+    $db = dbConnect();
+    $stmt = $db->prepare('SELECT COUNT(id_likes) AS "result"
+        FROM likes 
+        WHERE photos_id = :id_photo AND users_id = :id_user');
+    $stmt->bindParam(':id_photo', $photo_id);
+    $photo_id = $id_photo;
+    $stmt->bindParam(':id_user', $user_id);
+    $user_id = $id_user;
+    $stmt->execute();
+    return $stmt;
+}
+
 ?>
