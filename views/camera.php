@@ -1,12 +1,9 @@
 <?php
 include("../controllers/controllerCamera.php");
-//include("../models/modelCamera.php");
 session_start();
-var_dump($_SESSION['loggued_on_user']);
 if (!(isset($_SESSION['loggued_on_user']))) {
   header('Location: connexion.php');
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -28,15 +25,15 @@ if (!(isset($_SESSION['loggued_on_user']))) {
         <div class="gallery">
             <a href="../index.php"><p>Gallery</p></a>
         </div>
+        <div class="smile">
+            <a href="camera.php"><p>Smile!</p></a>
+        </div>
         <div class="profile">
           <a href="profile.php"><?php echo '<p>'.$_SESSION['loggued_on_user'].'</p>' ?></a>
+         </div>
+        <div class="connect">
+          <a href="logout.php"><p>Logout</p></a>
         </div>
-        <?php
-        if ($_SESSION['loggued_on_user'] != "")
-            echo '<div class="connect">
-                      <a href="logout.php"><p>Déconnexion</p></a>
-                  </div>';
-        ?>
     </header>
     <?php
       if ($_SESSION['success'] === "connected") {
@@ -64,6 +61,8 @@ if (!(isset($_SESSION['loggued_on_user']))) {
                 <img src="../img/rainbow.png" id="filter">
                 <img src="../img/sun.png" id="filter">
                 <img src="../img/stars.png" id="filter">
+                <img src="../img/hpGlasses.png" id="filter">
+                <img src="../img/polaroid.png" id="filter">
             </div>
         </div>
         

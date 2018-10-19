@@ -5,7 +5,6 @@ function shareSnap(id_photo) {
         
         httpRequest.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                console.log(this.responseText);
             }
         };
         httpRequest.send('id_share='+ id_photo);
@@ -20,7 +19,6 @@ function deleteSnap(id_photo) {
         
         httpRequest.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                console.log(this.responseText);
             }
         };
         httpRequest.send('id_delete='+ id_photo);

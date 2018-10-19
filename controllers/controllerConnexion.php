@@ -59,7 +59,6 @@ function sendEmailConf($email, $login, $key) {
         </body>
     </html>";
     $send = mail($dest, "Confirmation account Camagru", $message, $headers);
-    var_dump($send);
 }
 
 function verifPassword($password) {
@@ -80,7 +79,6 @@ if ($_POST['connexion'] === "Connect") {
       if ($data = auth($login, $password)) {
         $_SESSION['loggued_on_user'] = $login;
         $_SESSION['id_user'] = $data['id_users'];
-        var_dump($_SESSION['loggued_on_user']);
         $_SESSION['success'] = "connected";
         header('Location: ../views/camera.php');
       } else {

@@ -1,10 +1,7 @@
 <?php
-// include("../models/modelConnexion.php");
 session_start();
-var_dump($_SESSION['loggued_on_user']);
-
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -24,11 +21,14 @@ var_dump($_SESSION['loggued_on_user']);
         </div>
         <?php
         if ($_SESSION['loggued_on_user'] != "")
-            echo '<div class="profile">
+            echo '<div class="smile">
+                    <a href="camera.php"><p>Smile!</p></a>
+                  </div>
+                  <div class="profile">
                     <a href="profile.php"><p>'. $_SESSION['loggued_on_user'] .'</p></a>
                   </div>
                   <div class="connect">
-                    <a href="logout.php"><p>Déconnexion</p></a>
+                    <a href="logout.php"><p>Logout</p></a>
                   </div>';
         ?>
     </header>

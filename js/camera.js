@@ -1,19 +1,6 @@
 window.addEventListener('load', function(e) {
     
     var media = false;
-    
-    if (navigator.mediaDevices.getUserMedia) {
-        navigator.mediaDevices.getUserMedia({video: true})
-            .then(function(stream) {
-            var video = document.querySelector("#videoElement");
-            video.srcObject = stream;
-            media = true;
-        }).catch(function(error) {
-            console.log(error.name + ":" + error.message);
-            media = false;
-        });
-    }
-
     var x = 0;
     var y = 0;
     var smile = false;
@@ -30,12 +17,20 @@ window.addEventListener('load', function(e) {
     var save = document.getElementById('save');
     var imgElement = document.querySelector('#imgElement');
     var img = new Image();
-    
-    canvas.width = "500";
-    canvas.height = "375";
-    
     var fileInput = document.querySelector('#uploadFile');
     var allowedTypes = ['png', 'jpg', 'jpeg', 'gif'];
+    
+    if (navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({video: true})
+            .then(function(stream) {
+            video.srcObject = stream;
+            media = true;
+            canvas.width = "500";
+            canvas.height = "375";
+        }).catch(function(error) {
+            media = false;
+        });
+    }
     
     fileInput.addEventListener('change', function() {
         var files = this.files;
@@ -45,17 +40,19 @@ window.addEventListener('load', function(e) {
         for (var i = 0; i < filesLen; i++) {
             imgType = files[i].name.split('.');
             imgType = imgType[imgType.length -1];
-            
             if (allowedTypes.indexOf(imgType) != -1) {
                 var reader = new FileReader();
                 reader.addEventListener('load', function() {
                 imgElement.style.visibility = "visible";
                     imgElement.src = this.result;
                     imgElement.onload = function () {
-                        context.clearRect(0, 0, 500, 375);
-                        context.drawImage(imgElement, 0, 0, 500, 375);
+                        canvas.width = imgElement.width;
+                        canvas.height = imgElement.height;
+                        context.clearRect(0, 0, canvas.width, canvas.height);
+                        context.drawImage(imgElement, 0, 0, canvas.width, canvas.height);
                         video.style.visibility = "hidden";
                         file = true;
+
                     }
                 });
                 reader.readAsDataURL(files[i]);
@@ -82,7 +79,7 @@ window.addEventListener('load', function(e) {
 
     document.addEventListener('keydown', (event) => {
         const keyName = event.key;
-        context.clearRect(0, 0, 500, 375);
+        context.clearRect(0, 0, canvas.width, canvas.height);
         if (keyName === "ArrowUp")
             y -= 5;
         if (keyName === "ArrowDown")
@@ -101,13 +98,11 @@ window.addEventListener('load', function(e) {
     
     function makeRequest(img) {
         var httpRequest = new XMLHttpRequest();
-        console.log(img);
         httpRequest.open('POST', '/camagru/controllers/controllerCamera.php');
         httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         
         httpRequest.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                console.log(this.responseText);
             }
         };
         httpRequest.send('snap='+ encodeURIComponent(img));
@@ -120,13 +115,15 @@ window.addEventListener('load', function(e) {
         var balise = document.createElement("img");
         if (filter && filter.getAttribute('selected') === "true" && (file === true || media === true)){
             if (file === true) {
-                context.drawImage(imgElement, 0, 0, 500, 375);
-                context.drawImage(filter, x, y, 500, 375);
+                canvas.width = imgElement.width;
+                canvas.height = imgElement.height;
+                context.drawImage(imgElement, 0, 0, canvas.width, canvas.height);
+                context.drawImage(filter, x, y, canvas.width, canvas.height);
                 imgElement.src = canvas.toDataURL();
                 balise.src = imgElement.src;
             } else if (media === true) {
-                context.drawImage(video, 0, 0, 500, 375);
-                context.drawImage(filter, x, y, 500, 375);
+                context.drawImage(video, 0, 0, canvas.width, canvas.height);
+                context.drawImage(filter, x, y, canvas.width, canvas.height);
                 videoElement.src = canvas.toDataURL();
                 balise.src = videoElement.src;
             }
@@ -137,7 +134,7 @@ window.addEventListener('load', function(e) {
             var ul = miniGalery[0].getElementsByTagName('ul');
             li.appendChild(balise);
             ul[0].appendChild(fragment);
-            context.clearRect(0, 0, 500, 375);
+            context.clearRect(0, 0, canvas.width, canvas.height);
             imgElement.removeAttribute('src');
             imgElement.style.visibility = "hidden";
             video.style.visibility = "visible";
@@ -150,9 +147,13 @@ window.addEventListener('load', function(e) {
 
     function addFilter(filter, x, y) {
         if (filter && filter.getAttribute('selected') === "true" && (file === true || media === true)) {
-            context.clearRect(0, 0, 500, 375);
+            if (file === true) {
+                canvas.width = imgElement.width;
+                canvas.height = imgElement.height;
+            }
+            context.clearRect(0, 0, canvas.width, canvas.height);
             img.src = filter.src;
-            context.drawImage(img, x, y, 500, 375);
+            context.drawImage(img, x, y, canvas.width, canvas.height);
         }
         if (!(imgElement.getAttribute('src')))
             file = false;

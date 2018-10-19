@@ -52,7 +52,6 @@ function updateUser($login, $email, $password, $notif) {
   $stmt->bindParam(':notif', $user_notif);
   $user_notif = $notif;
   $stmt->execute();
-  // return $stmt;
 }
 
 ?>

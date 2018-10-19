@@ -10,13 +10,11 @@ function displaySnap($login) {
     return $data;
 }
 
-
 if (isset($img)) {
     $login = $_SESSION['loggued_on_user'];
     $id = getId($login);
     $img_cleaned = urldecode($img);
     $img_cleaned = preg_replace('/\s+/', '+', $img);
-    var_dump($img_cleaned);
     saveSnap($login, $img_cleaned, $id);
 }
 
@@ -27,7 +25,6 @@ if (isset($_POST['id_share'])) {
 
 if (isset($_POST['id_delete'])) {
     $id_photo = $_POST['id_delete'];
-    var_dump($id_photo);
     deleteSnap($id_photo);
 }
 

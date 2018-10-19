@@ -16,19 +16,38 @@ function verifData($id, $login, $email) {
     return (1);
 }
 
+function verifPassword($password) {
+    if (strlen($password) < 6) {
+        return 0;
+    }
+    else if (!(preg_match('/[0-9]/', $password))) {
+        return 0;
+    }
+    else
+        return 1;
+}
+
 if ($_POST['modified'] === "Modified") {
   $login = $_POST['login'];
   $email = $_POST['email'];
-  if ($_POST['password'] !== "")
-    $password = hash('sha512', $_POST['password']);
-  else
+  $password = $_POST['password'];
+  if ($_POST['password'] !== "") {
+      if ($ret = verifPassword($password)) {
+          $password = hash('sha512', $_POST['password']);
+      } else {
+          $_SESSION['error'] = "password";
+          header('Location: ../views/profile.php');
+          exit;
+      }
+  } else {
     $password = "";
+  }
   $notif = $_POST['notif'];
   $id = $_SESSION['id_user'];
   if ($data = verifData($id, $login, $email)) {
     updateUser($login, $email, $password, $notif);
     $_SESSION['success'] = "updated";
-    header('Location: ../views/profile.php');
+     header('Location: ../views/profile.php');
   } else {
     $_SESSION['error'] = "error";
     header('Location: ../views/profile.php');

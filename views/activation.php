@@ -1,6 +1,5 @@
 <?php
 include("../controllers/controllerActivation.php");
-//include("../models/modelActivation.php");
 
 session_start();
 
@@ -11,9 +10,7 @@ $key = $_GET['key'];
 if (isset($login) && isset($key)) {
     if ($ret = verifActivation($login)) {        
         if ($ret = verifKey($login, $key)) {
-            $_SESSION['loggued_on_user'] = $login;
-            $_SESSION['id_user'] = getId($login);
-            header('Location: ../views/camera.php');
+            header('Location: ../index.php');
         } else {
             header('HTTP/1.0 404 Not Found');
         }

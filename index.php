@@ -2,10 +2,8 @@
     include("models/modelIndex.php");
     include("controllers/controllerIndex.php");
     session_start();
-    var_dump($_SESSION['loggued_on_user']);
-    var_dump($_SESSION['id_user']);
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
@@ -19,10 +17,13 @@
     <body>
         <header>
             <div class="title">
-                <h1>Camagru</h1>
+                <a href="sindex.php"><h1>Camagru</h1></a>
+            </div>
+            <div class="gallery">
+                <a href="index.php"><p>Gallery</p></a>
             </div>
             <?php
-            if ($_SESSION['loggued_on_user'] != "")
+            if ($_SESSION['loggued_on_user'] != "") {
                 echo '<div class="smile">
                         <a href="views/camera.php"><p>Smile!</p></a>
                       </div>
@@ -30,10 +31,9 @@
                         <a href="views/profile.php"><p>'. $_SESSION['loggued_on_user'] .'</p></a>
                       </div>
                       <div class="connect">
-                        <a href="views/logout.php"><p>Déconnexion</p></a>
+                        <a href="views/logout.php"><p>Logout</p></a>
                       </div>';
-            else
-            {
+            } else {
                 echo '<div class="connect">
                         <a href="views/connexion.php"><p>Connexion</p></a>
                       </div>';

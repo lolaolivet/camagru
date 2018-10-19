@@ -1,12 +1,11 @@
 <?php
 include("../models/modelProfile.php");
 session_start();
-var_dump($_SESSION['loggued_on_user']);
 if (!(isset($_SESSION['loggued_on_user']))) {
   header('Location: connexion.php');
 }
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -24,15 +23,16 @@ if (!(isset($_SESSION['loggued_on_user']))) {
         <div class="gallery">
             <a href="../index.php"><p>Gallery</p></a>
         </div>
-        <?php
-        if ($_SESSION['loggued_on_user'] != "")
-            echo '<div class="smile">
-                    <a href="camera.php"><p>Smile!</p></a>
-                  </div>
-                  <div class="connect">
-                    <a href="logout.php"><p>Déconnexion</p></a>
-                  </div>';
-        ?>
+        <div class="smile">
+            <a href="camera.php"><p>Smile!</p></a>
+        </div>
+        <div class="profile">
+            <a href="profile.php"><p>
+                <?php echo $_SESSION['loggued_on_user']; ?></p></a>
+        </div>
+        <div class="connect">
+            <a href="logout.php"><p>Logout</p></a>
+        </div>
     </header>
     <?php
       if ($_SESSION['success'] === "updated") {
@@ -52,6 +52,16 @@ if (!(isset($_SESSION['loggued_on_user']))) {
                     <a onclick="closeMessage(this)"><img src="../img/close.png"></a>
                   </div>
                   The email or login must be already used..
+                </div>
+              </div>';
+      }
+      if ($_SESSION['error'] === "password") {
+        echo '<div class="error">
+                <div class="text">
+                  <div class="closeMessage">
+                    <a onclick="closeMessage(this)"><img src="../img/close.png"></a>
+                  </div>
+                    Password must have 6 or more characters and contain at least on number.
                 </div>
               </div>';
       }
