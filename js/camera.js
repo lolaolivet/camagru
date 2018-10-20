@@ -144,7 +144,7 @@ window.addEventListener('load', function(e) {
             smile = true;
         } else {
             var divError = document.getElementById("error");
-            console.log(divError);
+            divError.style.display = "block";
             divError.innerHTML = '<div class="text"><div class="closeMessage"><a onclick="closeMessage(this)"><img src="../img/close.png"></a></div>Select a filter to take a picture !</div>';
         }
         file = false;
@@ -152,6 +152,8 @@ window.addEventListener('load', function(e) {
 
     function addFilter(filter, x, y) {
         if (filter && filter.getAttribute('selected') === "true" && (file === true || media === true)) {
+            console.log(snap);
+            snap.removeAttribute("disabled");
             if (file === true) {
                 canvas.width = imgElement.width;
                 canvas.height = imgElement.height;

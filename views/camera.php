@@ -35,7 +35,7 @@ if (!(isset($_SESSION['loggued_on_user']))) {
           <a href="logout.php"><p>Logout</p></a>
         </div>
     </header>
-    <div id="error" class="error" visibility="hidden">
+    <div id="error" class="error" style="display:none;">
     </div>
     <?php
       if ($_SESSION['success'] === "connected") {
@@ -56,7 +56,7 @@ if (!(isset($_SESSION['loggued_on_user']))) {
             <img id="imgElement" style="visibility:hidden;">
             <canvas id="canvas"></canvas>
             <div class="inputs">
-                <input type="submit" name="snap" value="Smile!" id="snap">
+                <input type="submit" name="snap" value="Smile!" id="snap" disabled="disabled">
                 <input type="file" name="uploadFile" id="uploadFile">
             </div>
             <div id="filters">

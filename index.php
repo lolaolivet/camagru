@@ -130,7 +130,7 @@
                         </a>
                         <div id="expand" class="port">
                             <div class="row">';
-                            $likes = getLikes($e["id_photos"]);
+                            $likes = getLikes($row["id_photos"]);
                             foreach ($likes as $l) {
                               echo '<div class="likes">';
                                 if ($dislike = getLikeUser($row['id_photos'], $_SESSION['id_user'])) {
