@@ -16,7 +16,6 @@ session_start();
             <a href="../index.php"><h1>Camagru</h1></a>
         </div>
         </header>
-        
         <div class="container">
           <div class="connexion">
               <p>New password</p>

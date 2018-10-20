@@ -37,6 +37,12 @@ a {
   color: #ff3184;
 }
 
+.forgot {
+    font-size: 12px;
+    color: #ff3184;
+    margin-bottom: 15px;
+}
+
 .success {
   position: relative;
   text-align: left;

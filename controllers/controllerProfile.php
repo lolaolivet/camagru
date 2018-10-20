@@ -17,7 +17,7 @@ function verifData($id, $login, $email) {
 }
 
 function verifPassword($password) {
-    if (strlen($password) < 6) {
+    if (strlen($password) < 8) {
         return 0;
     }
     else if (!(preg_match('/[0-9]/', $password))) {

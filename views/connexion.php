@@ -59,10 +59,30 @@ session_start();
                   <div class="closeMessage">
                     <a onclick="closeMessage(this)"><img src="../img/close.png"></a>
                   </div>
-                    Password must have 6 or more characters and contain at least on number.
+                    Password must have 8 or more characters and contain at least on number.
                 </div>
               </div>';
       }
+      if ($_SESSION['error'] === "noEmail") {
+        echo '<div class="error">
+                <div class="text">
+                  <div class="closeMessage">
+                    <a onclick="closeMessage(this)"><img src="../img/close.png"</a>
+                  </div>
+                    The email is wrong..
+                </div>
+              </div>';
+        }   
+        if ($_SESSION['success'] === "email") {
+        echo '<div class="success">
+                <div class="text">
+                  <div class="closeMessage">
+                    <a onclick="closeMessage(this)"><img src="../img/close.png"</a>
+                  </div>
+                    An email has been sent for your password !
+                </div>
+              </div>';
+        }
     ?>
       <div class="container">
           <div class="connexion">
@@ -74,8 +94,8 @@ session_start();
                   <div class="formul">
                       <label for="password">Password:</label><input type="password" name="password">
                   </div>
-                  <div class="rose">
-                    <a href="forgot.php">Forgot password ?</a>  
+                  <div>
+                    <a class="forgot"href="forgot.php">Forgot password ?</a>  
                   </div>
                   <div class="validate">
                       <input class="validate" type="submit" value="Connect" name="connexion">

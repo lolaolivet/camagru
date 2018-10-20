@@ -2,8 +2,8 @@
 include('../controllers/controllerForgot.php');
 session_start();
 
-$login = $_GET['login'];
-$key = $_GET['key'];
+$_SESSION['login'] = $_GET['login'];
+$_SESSION['key'] = $_GET['key'];
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -20,10 +20,21 @@ $key = $_GET['key'];
             <a href="../index.php"><h1>Camagru</h1></a>
         </div>
         </header>
-        
+        <?php
+          if ($_SESSION['error'] === "pass") {
+            echo '<div class="error">
+                    <div class="text">
+                      <div class="closeMessage">
+                        <a onclick="closeMessage(this)"><img src="../img/close.png"</a>
+                      </div>
+                        Password must have 8 or more characters and contain at least on number.
+                    </div>
+                  </div>';
+          }
+        ?>
         <div class="container">
             <?php
-                if ($ret = verifGet($login, $key)) {
+                if ($ret = verifGet($_GET['login'], $_GET['key'])) {
                     echo '<div class="connexion">
               <p>New password</p>
               <form method="post" action="../controllers/controllerForgot.php">

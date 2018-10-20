@@ -2,10 +2,10 @@
 include('../models/modelForgot.php');
 session_start();
 
-function sendEmailPasswd($email) {
+function sendEmailPasswd($email, $login, $key) {
     $dest = $email;
     
-    $headers = 'From: Camagru <olivetlola43@gmail.com>'. '\r\n';
+    $headers = 'From: Camagru <olivetlola43@gmail.com>'. "\r\n";
     $headers .= 'To: '. $email.'\r\n';
     $headers .= "X-Mailer: PHP ".phpversion()."\n";
     $headers .= "X-Priority: 1 \n";
@@ -17,19 +17,11 @@ function sendEmailPasswd($email) {
     <html>
         <body>
             <div align='center'>
-                <a href='http://localhost:8080/camagru/views/new.php?login=".urlencode($login)."&key=".urlencode($key)."'>Confirmed your account !</a>
+                <a href='http://localhost:8080/camagru/views/new.php?login=".urlencode($login)."&key=".urlencode($key)."'>Reset password</a>
             </div>
         </body>
     </html>";
-    $send = mail($dest, "Camagru New Password", $message, $headers);
-}
-
-function verifMail($email) {
-    $data = getMail($email);
-    foreach ($data as $e) {
-        $ret = $e['result'];
-    }
-    return $ret;
+    $send = mail($dest, "Camagru Forgotten password", $message, $headers);
 }
 
 function verifGet($login, $key) {
@@ -44,15 +36,48 @@ function verifGet($login, $key) {
     
 }
 
+function verifPassword($password) {
+    if (strlen($password) < 8) {
+        return 0;
+    }
+    else if (!(preg_match('/[0-9]/', $password))) {
+        return 0;
+    }
+    else
+        return 1;
+}
+
 if ($_POST['send'] === "Send") {
     $email = $_POST['email'];
-    if ($ret = verifMail($email)) {
-        sendEmailPasswd($email);
+    $data = getMail($email);
+    foreach ($data as $e) {
+        $user_login = $e['login'];
+        $user_key = $e['key'];
+        $user_email = $e['email'];
+    }
+    if ($user_email === $email) {
+        sendEmailPasswd($user_email, $user_login, $user_key);
+        $_SESSION['success'] = "email";
+        header('Location: ../views/connexion.php');
     } else {
-        echo 'NUL';
-        $_SESSION['error'] = "noPasswd";
-        header('Location: ../views/forgot.php');
+        $_SESSION['error'] = "noEmail";
+        header('Location: ../views/connexion.php');
     }
 }
+
+
+if ($_POST['validate'] === "Validate") {
+    $password = $_POST['password'];
+    if ($ret = verifPassword($password)) {
+        $password_hash = hash('sha512', $password);
+        updatePassword($password_hash, $_SESSION['login']);
+        header('Location: ../views/connexion.php');
+    }
+    else {
+        $_SESSION['error'] = "pass";
+        header('Location: ../views/new.php?login='.$_SESSION['login'].'&key='.$_SESSION['key']);
+    }
+}
+
 
 ?>
