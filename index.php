@@ -73,7 +73,7 @@
                   </div>';
           }
         ?>
-        <div class="gallery">
+
             <?php
                     $per_page = 5;
                     if (isset($_GET['page'])) {
@@ -117,6 +117,7 @@
                         }
                     }
                     echo '</div>
+                            <div class="gallery">
                             <div class="row">
                             <ul>';
                     $result = getPictures($offset, $per_page);
@@ -160,7 +161,8 @@
                                 </div>';
                         }
                     echo '</div>
-                        
+                        </div>
+                        </div>
                       </li>';
                     }
 
