@@ -104,4 +104,7 @@ if (!(isset($_SESSION['loggued_on_user']))) {
 
     </div>
   </body>
+    <footer>
+        <p>©Lola Olivet - lolivet@student.42.fr</p>
+    </footer>
   </html>

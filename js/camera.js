@@ -61,9 +61,7 @@ window.addEventListener('load', function(e) {
     });
 
     
-    divFilter.onclick = function (e) {
-        console.log(e);
-        
+    divFilter.onclick = function (e) {        
         filter = e.srcElement;
         if (filter.id === "filter" && (file === true || media === true)) {
             x = 0;
@@ -144,6 +142,10 @@ window.addEventListener('load', function(e) {
             filter.setAttribute("selected", "false");
             filter.style.border = "1px solid transparent";
             smile = true;
+        } else {
+            var divError = document.getElementById("error");
+            console.log(divError);
+            divError.innerHTML = '<div class="text"><div class="closeMessage"><a onclick="closeMessage(this)"><img src="../img/close.png"></a></div>Select a filter to take a picture !</div>';
         }
         file = false;
     }

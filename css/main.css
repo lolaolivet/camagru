@@ -88,3 +88,10 @@ a {
 .closeMessage img {
   height: 15px;
 }
+
+footer {
+    position: fixed;
+    bottom: 0;
+    font-size: 11px;
+    color: #ff3184;
+}

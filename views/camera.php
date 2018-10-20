@@ -35,6 +35,8 @@ if (!(isset($_SESSION['loggued_on_user']))) {
           <a href="logout.php"><p>Logout</p></a>
         </div>
     </header>
+    <div id="error" class="error" visibility="hidden">
+    </div>
     <?php
       if ($_SESSION['success'] === "connected") {
         echo '<div class="success">
@@ -89,4 +91,7 @@ if (!(isset($_SESSION['loggued_on_user']))) {
     </div>
 
 </body>
+<footer>
+    <p>©Lola Olivet - lolivet@student.42.fr</p>
+</footer>
 </html>

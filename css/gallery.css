@@ -20,7 +20,7 @@
 }
 
 .row {
-    margin-top: -30px;
+/*    margin-top: -30px;*/
     align-content: stretch;
     padding: 20px;
     height: auto;
@@ -120,4 +120,8 @@
   width: 0;
   margin: 0;
   padding: 0;
+}
+
+.display-none {
+    display: none;
 }

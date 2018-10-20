@@ -125,4 +125,7 @@ session_start();
           </div>
       </div>
     </body>
+    <footer>
+        <p>©Lola Olivet - lolivet@student.42.fr</p>
+    </footer>
 </html>

@@ -55,4 +55,7 @@ $_SESSION['key'] = $_GET['key'];
           
         </div>
     </body>
+    <footer>
+        <p>©Lola Olivet - lolivet@student.42.fr</p>
+    </footer>
 </html>

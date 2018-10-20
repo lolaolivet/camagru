@@ -3,10 +3,12 @@
 include("../config/database.php");
 include("connect.php");
 
-function getPictures() {
+function getPictures($offset, $per_page) {
     $db = dbConnect();
-    $req = $db->query('SELECT id_photos, date, img, users_id FROM photos
-        WHERE published = 1');
+    $req = $db->query('SELECT id_photos, date, img, users_id 
+        FROM photos
+        WHERE published = 1
+        ORDER BY photos.id_photos ASC LIMIT '.$offset.', '.$per_page);
     return $req;
 }
 
@@ -117,6 +119,14 @@ function createLike($id_photo, $id_user) {
     $stmt->bindParam(':id_user', $user_id);
     $user_id = $id_user;
     $stmt->execute();
+}
+
+function countPictures() {
+    $db = dbConnect();
+    $req = $db->query('SELECT COUNT(photos.id_photos) AS "result"
+        FROM photos 
+        WHERE photos.published = 1;');
+    return $req;
 }
 
 ?>
