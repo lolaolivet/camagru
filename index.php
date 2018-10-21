@@ -20,7 +20,7 @@
             <div class="title">
                 <a href="sindex.php"><h1>Camagru</h1></a>
             </div>
-            <div class="gallery">
+            <div class="galleryMenu">
                 <a href="index.php"><p>Gallery</p></a>
             </div>
             <?php
@@ -168,8 +168,8 @@
 
                 ?>
                 </ul>
-            </div> <!-- Gallery -->
-        </div>
+            </div> 
+        </div><!-- Gallery -->
     </body>
     <footer>
         <p>©Lola Olivet - lolivet@student.42.fr</p>

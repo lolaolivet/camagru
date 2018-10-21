@@ -20,7 +20,7 @@ if (!(isset($_SESSION['loggued_on_user']))) {
         <div class="title">
             <a href="../index.php"><h1>Camagru</h1></a>
         </div>
-        <div class="gallery">
+        <div class="galleryMenu">
             <a href="../index.php"><p>Gallery</p></a>
         </div>
         <div class="smile">

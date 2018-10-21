@@ -152,11 +152,11 @@ input {
   text-align: left;
 }
 
-.gallery, .profile, .connect, .smile {
+.galleryMenu, .profile, .connect, .smile {
   margin: auto 10px;
   float: right;
 }
 
-.gallery a, .profile a, .connect a, .smile a {
+.galleryMenu a, .profile a, .connect a, .smile a {
     color: #ff3184;
 }

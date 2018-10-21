@@ -3,12 +3,12 @@
   text-align: left;
 }
 
-.gallery, .smile, .connect, .profile {
+.galleryMenu, .smile, .connect, .profile {
   margin: auto 10px;
   float: right;
 }
 
-.gallery a, .smile a, .connect a, .profile a{
+.galleryMenu a, .smile a, .connect a, .profile a{
     color: #ff3184;
 }
 

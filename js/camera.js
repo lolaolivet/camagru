@@ -152,7 +152,6 @@ window.addEventListener('load', function(e) {
 
     function addFilter(filter, x, y) {
         if (filter && filter.getAttribute('selected') === "true" && (file === true || media === true)) {
-            console.log(snap);
             snap.removeAttribute("disabled");
             if (file === true) {
                 canvas.width = imgElement.width;

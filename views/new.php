@@ -47,9 +47,7 @@ $_SESSION['key'] = $_GET['key'];
               </form>
           </div>';
                 } else {
-                    echo 'NON!';
-                    
-//                    header('Location: connexion.php');
+                    header('Location: connexion.php');
                 }
             ?>
           
