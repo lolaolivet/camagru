@@ -1,5 +1,8 @@
 <?php
 session_start();
+if ($_SESSION['loggued_on_user'] != "") {
+  header('Location: ../index.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +19,7 @@ session_start();
         <div class="title">
             <a href="../index.php"><h1>Camagru</h1></a>
         </div>
-        <div class="gallery">
+        <div class="galleryMenu">
             <a href="../index.php"><p>Gallery</p></a>
         </div>
         <?php
@@ -72,7 +75,17 @@ session_start();
                     The email is wrong..
                 </div>
               </div>';
-        }   
+        }
+        if ($_SESSION['error'] === "login") {
+        echo '<div class="error">
+                <div class="text">
+                  <div class="closeMessage">
+                    <a onclick="closeMessage(this)"><img src="../img/close.png"</a>
+                  </div>
+                    Spaces are not allowed in the login..
+                </div>
+              </div>';
+        }
         if ($_SESSION['success'] === "email") {
         echo '<div class="success">
                 <div class="text">

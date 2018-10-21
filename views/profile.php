@@ -61,7 +61,7 @@ if (!(isset($_SESSION['loggued_on_user']))) {
                   <div class="closeMessage">
                     <a onclick="closeMessage(this)"><img src="../img/close.png"></a>
                   </div>
-                    Password must have 6 or more characters and contain at least on number.
+                    Password must have 8 or more characters and contain at least on number.
                 </div>
               </div>';
       }

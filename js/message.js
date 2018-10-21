@@ -5,18 +5,20 @@ function closeMessage(e) {
     var errorType = grandParent.parentElement.className;
     var httpRequest = new XMLHttpRequest();
 
-    grandParent.parentElement.style.visibility = "hidden";
-    grandParent.parentElement.style.height = "0";
-    grandParent.parentElement.style.margin = "0";
-    grandParent.parentElement.style.padding = "0";
-        
-    httpRequest.open('POST', '/camagru/controllers/controllerConnexion.php');
-    httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    if (errorType === "error" || errorType === "success") {
+        grandParent.parentElement.style.visibility = "hidden";
+        grandParent.parentElement.style.height = "0";
+        grandParent.parentElement.style.margin = "0";
+        grandParent.parentElement.style.padding = "0";
 
-    httpRequest.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-        }
-    };
-    httpRequest.send(''+errorType+'=null');
-    
+        httpRequest.open('POST', '/camagru/controllers/controllerConnexion.php');
+        httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        httpRequest.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                location.reload();
+            }
+        };
+        httpRequest.send(''+errorType+'=null');
+    }   
 }

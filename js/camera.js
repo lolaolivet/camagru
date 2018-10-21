@@ -142,10 +142,6 @@ window.addEventListener('load', function(e) {
             filter.setAttribute("selected", "false");
             filter.style.border = "1px solid transparent";
             smile = true;
-        } else {
-            var divError = document.getElementById("error");
-            divError.style.display = "block";
-            divError.innerHTML = '<div class="text"><div class="closeMessage"><a onclick="closeMessage(this)"><img src="../img/close.png"></a></div>Select a filter to take a picture !</div>';
         }
         file = false;
     }

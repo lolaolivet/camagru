@@ -71,6 +71,14 @@ function verifPassword($password) {
         return 1;
 }
 
+function spaceLogin($login) {
+    if (preg_match('/\s/', $login)) {
+        return 0;
+    } else {
+        return 1;        
+    }
+}
+
 if ($_POST['connexion'] === "Connect") {
   $login = $_POST['login'];
   $password = $_POST['password'];
@@ -99,21 +107,25 @@ if ($_POST['register'] === "Register") {
     $key = "";
     if (isset($email) && isset($login) && isset($password)) {
         if ($ret = verifPassword($password)) {
-            echo ("Good");
-            $password_hash = hash('sha512', $password);
-            if ($data = verifUser($email, $login)) {
-                if ($data_user = createUser($email, $login, $password_hash)) {
-                    $user = getLogin($login);
-                    foreach ($user as $e) {
-                        $key = $e['key'];
+            if ($ret = spaceLogin($login)) {
+                $password_hash = hash('sha512', $password);
+                if ($data = verifUser($email, $login)) {
+                    if ($data_user = createUser($email, $login, $password_hash)) {
+                        $user = getLogin($login);
+                        foreach ($user as $e) {
+                            $key = $e['key'];
+                        }
+                        sendEmailConf($email, $login, $key);
                     }
-                    sendEmailConf($email, $login, $key);
+                    $_SESSION['success'] = "created";
+                      header('Location: ../index.php');
+                } else {
+                  $_SESSION['error'] = "notCreated";
+                  header('Location: ../views/connexion.php');
                 }
-                $_SESSION['success'] = "created";
-                  header('Location: ../index.php');
             } else {
-              $_SESSION['error'] = "notCreated";
-              header('Location: ../views/connexion.php');
+                $_SESSION['error'] = "login";
+                header('Location: ../views/connexion.php');
             }
         } else {
             $_SESSION['error'] = "password";
