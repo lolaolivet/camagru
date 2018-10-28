@@ -1,5 +1,5 @@
 window.addEventListener('load', function(e) {
-    
+
     var media = false;
     var x = 0;
     var y = 0;
@@ -19,7 +19,7 @@ window.addEventListener('load', function(e) {
     var img = new Image();
     var fileInput = document.querySelector('#uploadFile');
     var allowedTypes = ['png', 'jpg', 'jpeg', 'gif'];
-    
+
     if (navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia({video: true})
             .then(function(stream) {
@@ -31,12 +31,12 @@ window.addEventListener('load', function(e) {
             media = false;
         });
     }
-    
+
     fileInput.addEventListener('change', function() {
         var files = this.files;
         var filesLen = files.length;
         var imgType;
-        
+
         for (var i = 0; i < filesLen; i++) {
             imgType = files[i].name.split('.');
             imgType = imgType[imgType.length -1];
@@ -60,8 +60,8 @@ window.addEventListener('load', function(e) {
         }
     });
 
-    
-    divFilter.onclick = function (e) {        
+
+    divFilter.onclick = function (e) {
         filter = e.srcElement;
         if (filter.id === "filter" && (file === true || media === true)) {
             x = 0;
@@ -96,12 +96,14 @@ window.addEventListener('load', function(e) {
     snap.onclick = function (e) {
         snapshot(filter, x, y);
     }
-    
+
     function makeRequest(img) {
         var httpRequest = new XMLHttpRequest();
-        httpRequest.open('POST', '/camagru/controllers/controllerCamera.php');
+        var path = document.location.pathname;
+        var fileArray = path.split('/');
+        httpRequest.open('POST', '/'+fileArray[1]+'/controllers/controllerCamera.php');
         httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        
+
         httpRequest.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 location.reload();
@@ -109,7 +111,7 @@ window.addEventListener('load', function(e) {
         };
         httpRequest.send('snap='+ encodeURIComponent(img));
     }
-    
+
     function snapshot(filter, x, y) {
         var fragment = document.createDocumentFragment();
         var li = document.createElement('li');

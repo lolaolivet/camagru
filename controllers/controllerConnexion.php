@@ -39,8 +39,9 @@ function verifUser($email, $login) {
 }
 
 function sendEmailConf($email, $login, $key) {
+    $root = $_SERVER['REQUEST_URI'];
+    $dirs = explode('/', $root);
     $dest = $email;
-    
     $headers = 'From: Camagru <olivetlola43@gmail.com>'. "\r\n";
     $headers .= 'To: '. $email.'\r\n';
     $headers .= "X-Mailer: PHP ".phpversion()."\n";
@@ -48,12 +49,12 @@ function sendEmailConf($email, $login, $key) {
     $headers .= "Mime-Version: 1.0\n";
     $headers .= "Content-Transfer-Encoding: 8bit\n";
     $headers .= "Content-type: text/html; charset= utf-8\n";
-    $headers .= "Date:" . date("D, d M Y h:s:i") . " +0200\n"; 
+    $headers .= "Date:" . date("D, d M Y h:s:i") . " +0200\n";
     $message = "
     <html>
         <body>
             <div align='center'>
-                <a href='http://localhost:8080/camagru/views/activation.php?login=".urlencode($login)."&key=".urlencode($key)."'>Confirmed your account !</a>
+                <a href='http://localhost:8080/".$dirs[1]."/views/activation.php?login=".urlencode($login)."&key=".urlencode($key)."'>Confirmed your account !</a>
             </div>
         </body>
     </html>";
@@ -75,7 +76,7 @@ function spaceLogin($login) {
     if (preg_match('/\s/', $login)) {
         return 0;
     } else {
-        return 1;        
+        return 1;
     }
 }
 

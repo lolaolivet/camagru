@@ -1,5 +1,4 @@
 <?php
-include("../config/database.php");
 include("connect.php");
 
 function getLogin($login) {

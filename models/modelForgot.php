@@ -1,11 +1,10 @@
 <?php
-include("../config/database.php");
 include("connect.php");
 
 function getMail($email) {
     $db = dbConnect();
-    $stmt = $db->prepare('SELECT users.login, users.key, users.email 
-        FROM users 
+    $stmt = $db->prepare('SELECT users.login, users.key, users.email
+        FROM users
         WHERE users.email = :email');
     $stmt->bindParam(':email', $user_email);
     $user_email = $email;

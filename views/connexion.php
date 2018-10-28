@@ -102,13 +102,13 @@ if ($_SESSION['loggued_on_user'] != "") {
               <p>Connection</p>
               <form method="post" action="../controllers/controllerConnexion.php">
                   <div class="formul">
-                      <label for="login">Login:</label><input type="text" name="login">
+                      <label for="login">Login:</label><input type="text" name="login" required>
                   </div>
                   <div class="formul">
-                      <label for="password">Password:</label><input type="password" name="password">
+                      <label for="password">Password:</label><input type="password" name="password" required>
                   </div>
                   <div>
-                    <a class="forgot"href="forgot.php">Forgot password ?</a>  
+                    <a class="forgot"href="forgot.php">Forgot password ?</a>
                   </div>
                   <div class="validate">
                       <input class="validate" type="submit" value="Connect" name="connexion">
@@ -120,15 +120,15 @@ if ($_SESSION['loggued_on_user'] != "") {
               <form method="post" action="../controllers/controllerConnexion.php">
                   <p>Inscription</p>
                   <div class="formul">
-                      <label for="email">Email:</label><input type="email" name="email">
+                      <label for="email">Email:</label><input type="email" name="email" required>
                   </div>
 
                   <div class="formul">
-                      <label for="login">Login:</label><input type="text" name="login">
+                      <label for="login">Login:</label><input type="text" name="login" required>
                   </div>
 
                   <div class="formul">
-                      <label for="password">Password:</label><input type="password" name="password">
+                      <label for="password">Password:</label><input type="password" name="password" required>
                   </div>
 
                   <div class="validate" >

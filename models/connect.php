@@ -4,11 +4,12 @@ function dbConnect() {
     try
     {
         $db = new PDO('mysql:dbname=db_camagru;host=localhost', 'root', 'miaou123');
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $db;
     }
-    catch(Exception $e)
+    catch(PDOException $e)
     {
-        die('Erreur connection: '.$e->getMessage());
+        header('Location: config/setup.php');
     }
 }
 

@@ -1,6 +1,7 @@
 <?php
-include("../models/modelCamera.php");
 session_start();
+
+include("../models/modelCamera.php");
 
 $img = (isset($_POST['snap'])) ? ($_POST['snap']) : NULL;
 
@@ -25,7 +26,7 @@ if (isset($_POST['id_share'])) {
 
 if (isset($_POST['id_delete'])) {
     $id_photo = $_POST['id_delete'];
-    deleteSnap($id_photo);
+    deleteSnapDB($id_photo);
 }
 
 ?>

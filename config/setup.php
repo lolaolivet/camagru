@@ -2,6 +2,7 @@
 
 include("database.php");
 $sql =  new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
+$sql->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $tmp = '';
 $file = file("db_camagru.sql");
 foreach ($file as $line)

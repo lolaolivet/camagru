@@ -31,6 +31,7 @@ if ($_POST['modified'] === "Modified") {
   $login = $_POST['login'];
   $email = $_POST['email'];
   $password = $_POST['password'];
+  $last_login = $_SESSION['loggued_on_user'];
   if ($_POST['password'] !== "") {
       if ($ret = verifPassword($password)) {
           $password = hash('sha512', $_POST['password']);
@@ -45,8 +46,9 @@ if ($_POST['modified'] === "Modified") {
   $notif = $_POST['notif'];
   $id = $_SESSION['id_user'];
   if ($data = verifData($id, $login, $email)) {
-    updateUser($login, $email, $password, $notif);
+    updateUser($login, $email, $password, $notif, $last_login);
     $_SESSION['success'] = "updated";
+    $_SESSION['loggued_on_user'] = $login;
      header('Location: ../views/profile.php');
   } else {
     $_SESSION['error'] = "error";

@@ -10,8 +10,9 @@ function closeMessage(e) {
         grandParent.parentElement.style.height = "0";
         grandParent.parentElement.style.margin = "0";
         grandParent.parentElement.style.padding = "0";
-
-        httpRequest.open('POST', '/camagru/controllers/controllerConnexion.php');
+        var path = document.location.pathname;
+        var fileArray = path.split('/');
+        httpRequest.open('POST', '/'+fileArray[1]+'/controllers/controllerConnexion.php');
         httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
         httpRequest.onreadystatechange = function() {
@@ -20,5 +21,5 @@ function closeMessage(e) {
             }
         };
         httpRequest.send(''+errorType+'=null');
-    }   
+    }
 }

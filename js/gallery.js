@@ -24,7 +24,7 @@ function close_img(e) {
     var port = parent.getElementsByClassName("port")[0];
     var cross = parent.getElementsByClassName("close")[0];
     var img = parent.getElementsByClassName("big")[0];
-    
+
     port.style.visibility = "hidden";
     parent.className = "";
     img.style.height = "100%";

@@ -1,5 +1,4 @@
 <?php
-include("../config/database.php");
 include("connect.php");
 
 function getUser($login) {
@@ -32,19 +31,21 @@ function verifLogin($login) {
   return $stmt;
 }
 
-function updateUser($login, $email, $password, $notif) {
+function updateUser($login, $email, $password, $notif, $last_login) {
   $db = dbConnect();
   if ($password !== "") {
     $stmt = $db->prepare('UPDATE users
       SET login = :login, email = :email, password = :password, notif = :notif
-      WHERE login = :login');
+      WHERE login = :login_user');
     $stmt->bindParam(':password', $user_password);
     $user_password = $password;
   } else {
     $stmt = $db->prepare('UPDATE users
       SET login = :login, email = :email, notif = :notif
-      WHERE login = :login');
+      WHERE login = :login_user');
   }
+  $stmt->bindParam(':login_user', $login_user);
+  $login_user = $last_login;
   $stmt->bindParam(':login', $user_login);
   $user_login = $login;
   $stmt->bindParam(':email', $user_email);

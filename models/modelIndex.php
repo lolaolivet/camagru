@@ -1,11 +1,10 @@
 <?php
 
-include("../config/database.php");
 include("connect.php");
 
 function getPictures($offset, $per_page) {
     $db = dbConnect();
-    $req = $db->query('SELECT id_photos, date, img, users_id 
+    $req = $db->query('SELECT id_photos, date, img, users_id
         FROM photos
         WHERE published = 1
         ORDER BY photos.id_photos ASC LIMIT '.$offset.', '.$per_page);
@@ -38,7 +37,7 @@ function getLikes($id) {
 }
 
 function linkUser($id_user, $id_comment) {
-    
+
   $db = dbConnect();
   $stmt = $db->prepare('INSERT INTO user_has_comments (users_id, comments_id)
     VALUES (:user, :comment)');
@@ -77,7 +76,7 @@ function sendMessage($id_user, $id_photo, $txt) {
 
 function getUserPhoto($id_photo) {
     $db = dbConnect();
-    $stmt = $db->prepare('SELECT users.notif, users.email FROM photos 
+    $stmt = $db->prepare('SELECT users.notif, users.email FROM photos
     INNER JOIN users ON photos.users_id = users.id_users
     WHERE photos.id_photos = :id_photo');
     $stmt->bindParam(':id_photo', $photo);
@@ -89,7 +88,7 @@ function getUserPhoto($id_photo) {
 function getUserLike($id_photo, $id_user) {
     $db = dbConnect();
     $stmt = $db->prepare('SELECT COUNT(id_likes) AS "result"
-        FROM likes 
+        FROM likes
         WHERE photos_id = :id_photo AND users_id = :id_user');
     $stmt->bindParam(':id_photo', $photo_id);
     $photo_id = $id_photo;
@@ -124,7 +123,7 @@ function createLike($id_photo, $id_user) {
 function countPictures() {
     $db = dbConnect();
     $req = $db->query('SELECT COUNT(photos.id_photos) AS "result"
-        FROM photos 
+        FROM photos
         WHERE photos.published = 1;');
     return $req;
 }

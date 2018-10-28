@@ -4,7 +4,6 @@ session_start();
 
 function sendEmail($email) {
     $dest = $email;
-    
     $headers = 'From: Camagru <olivetlola43@gmail.com>'. "\r\n";
     $headers .= 'To: '. $email.'\r\n';
     $headers .= "X-Mailer: PHP ".phpversion()."\n";
@@ -12,7 +11,7 @@ function sendEmail($email) {
     $headers .= "Mime-Version: 1.0\n";
     $headers .= "Content-Transfer-Encoding: 8bit\n";
     $headers .= "Content-type: text/html; charset= utf-8\n";
-    $headers .= "Date:" . date("D, d M Y h:s:i") . " +0200\n"; 
+    $headers .= "Date:" . date("D, d M Y h:s:i") . " +0200\n";
     $message = "
     <html>
         <body>

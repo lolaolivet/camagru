@@ -49,7 +49,7 @@ if (!(isset($_SESSION['loggued_on_user']))) {
               </div>';
       }
     ?>
-      
+
     <div id="container">
         <div class="video">
             <video autoplay="true" id="videoElement"></video>
@@ -67,7 +67,7 @@ if (!(isset($_SESSION['loggued_on_user']))) {
                 <img src="../img/polaroid.png" id="filter">
             </div>
         </div>
-        
+
         <div id="mini-galery">
             <div class="row">
                 <ul>
@@ -84,7 +84,7 @@ if (!(isset($_SESSION['loggued_on_user']))) {
                             echo '<img src="../img/delete.png" onClick="deleteSnap('.$e["id_photos"].')"></div></li>';
                         }
                     ?>
-                    
+
                 </ul>
             </div>
         </div>
