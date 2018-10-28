@@ -42,10 +42,11 @@ function getLikeUser($id_photo, $id_user) {
 
 if ($_POST['send'] === "Send" ) {
   if ($_POST['message'] != "") {
+    $message = htmlspecialchars($_POST['message']);
+    var_dump($message);
     $id_photo = $_POST['id'];
     $id_user = $_SESSION['id_user'];
-    $txt = $_POST['message'];
-    sendMessage($id_user, $id_photo, $txt);
+    sendMessage($id_user, $id_photo, $message);
     $_SESSION['success'] = "send";
     sendNotification($id_photo);
     header('Location: ../index.php');

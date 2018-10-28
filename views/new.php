@@ -50,7 +50,7 @@ $_SESSION['key'] = $_GET['key'];
                     header('Location: connexion.php');
                 }
             ?>
-          
+
         </div>
     </body>
     <footer>

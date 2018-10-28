@@ -49,4 +49,14 @@ function verifLogin($login) {
     return $stmt;
 }
 
+function getValidation($login) {
+  $db = dbConnect();
+  $stmt = $db->prepare('SELECT users.validation FROM users
+    WHERE users.login = :login');
+  $stmt->bindParam(':login', $user_login);
+  $user_login = $login;
+  $stmt->execute();
+  return $stmt;
+}
+
 ?>

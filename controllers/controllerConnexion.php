@@ -80,15 +80,28 @@ function spaceLogin($login) {
     }
 }
 
+function isValidate($login) {
+  $data = getValidation($login);
+  foreach ($data as $e) {
+    $return = $e['validation'];
+  }
+  return $return;
+}
+
 if ($_POST['connexion'] === "Connect") {
   $login = $_POST['login'];
   $password = $_POST['password'];
   if (isset($login) && isset($password)) {
       if ($data = auth($login, $password)) {
-        $_SESSION['loggued_on_user'] = $login;
-        $_SESSION['id_user'] = $data['id_users'];
-        $_SESSION['success'] = "connected";
-        header('Location: ../views/camera.php');
+        if ($v = isValidate($login)) {
+          $_SESSION['loggued_on_user'] = $login;
+          $_SESSION['id_user'] = $data['id_users'];
+          $_SESSION['success'] = "connected";
+          header('Location: ../views/camera.php');
+        } else {
+          $_SESSION['error'] = "validation";
+          header('Location: ../views/connexion.php');
+        }
       } else {
         $_SESSION['loggued_on_user'] = "";
         $_SESSION['error'] = "wrong";
@@ -103,8 +116,8 @@ if ($_POST['connexion'] === "Connect") {
 
 if ($_POST['register'] === "Register") {
     $email = $_POST['email'];
-    $login = $_POST['login'];
-    $password = $_POST['password'];
+    $login = htmlspecialchars($_POST['login']);
+    $password = htmlspecialchars($_POST['password']);
     $key = "";
     if (isset($email) && isset($login) && isset($password)) {
         if ($ret = verifPassword($password)) {

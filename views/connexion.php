@@ -62,7 +62,7 @@ if ($_SESSION['loggued_on_user'] != "") {
                   <div class="closeMessage">
                     <a onclick="closeMessage(this)"><img src="../img/close.png"></a>
                   </div>
-                    Password must have 8 or more characters and contain at least on number.
+                    Password must have 8 or more characters and contain at least one number.
                 </div>
               </div>';
       }
@@ -83,6 +83,16 @@ if ($_SESSION['loggued_on_user'] != "") {
                     <a onclick="closeMessage(this)"><img src="../img/close.png"</a>
                   </div>
                     Spaces are not allowed in the login..
+                </div>
+              </div>';
+        }
+        if ($_SESSION['error'] === "validation") {
+        echo '<div class="error">
+                <div class="text">
+                  <div class="closeMessage">
+                    <a onclick="closeMessage(this)"><img src="../img/close.png"</a>
+                  </div>
+                    You have to validate your account first..
                 </div>
               </div>';
         }
