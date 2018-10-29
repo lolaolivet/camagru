@@ -15,6 +15,12 @@ session_start();
         <div class="title">
             <a href="../index.php"><h1>Camagru</h1></a>
         </div>
+        <div class="galleryMenu">
+            <a href="../index.php"><p>Gallery</p></a>
+        </div>
+        <div class="connect">
+            <a href="connexion.php"><p>Connexion</p></a>
+        </div>
         </header>
         <div class="container">
           <div class="connexion">

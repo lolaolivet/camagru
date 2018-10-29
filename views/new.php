@@ -1,6 +1,9 @@
 <?php
 include('../controllers/controllerForgot.php');
 session_start();
+if (!(isset($_GET['login'])) || !(isset($_GET['key']))) {
+  header('Location: ../views/connexion.php');
+}
 
 $_SESSION['login'] = $_GET['login'];
 $_SESSION['key'] = $_GET['key'];
@@ -31,6 +34,16 @@ $_SESSION['key'] = $_GET['key'];
                     </div>
                   </div>';
           }
+          if ($_SESSION['error'] === "confirm") {
+            echo '<div class="error">
+                    <div class="text">
+                      <div class="closeMessage">
+                        <a onclick="closeMessage(this)"><img src="../img/close.png"</a>
+                      </div>
+                      The passwords are not the same..
+                    </div>
+                  </div>';
+          }
         ?>
         <div class="container">
             <?php
@@ -39,7 +52,10 @@ $_SESSION['key'] = $_GET['key'];
               <p>New password</p>
               <form method="post" action="../controllers/controllerForgot.php">
                   <div class="formul">
-                      <label for="email">New password:</label><input type="password" name="password">
+                      <label for="password">New password:</label><input type="password" name="password">
+                  </div>
+                  <div class="formul">
+                      <label for="passwd">Confirm password:</label><input type="password" name="passwd">
                   </div>
                   <div class="validate">
                       <input class="validate" type="submit" value="Validate" name="validate">

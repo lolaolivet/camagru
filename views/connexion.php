@@ -22,6 +22,9 @@ if ($_SESSION['loggued_on_user'] != "") {
         <div class="galleryMenu">
             <a href="../index.php"><p>Gallery</p></a>
         </div>
+        <div class="connect">
+            <a href="connexion.php"><p>Connexion</p></a>
+        </div>
         <?php
         if ($_SESSION['loggued_on_user'] != "")
             echo '<div class="smile">

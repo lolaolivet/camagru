@@ -101,12 +101,12 @@
                     echo $page + 1 .' of '.$pages_total.'</p>';
                     $i = 1;
                     echo '<div id="pageNav"' .$display. '>';
-                    
+
                     if ($page) {
                         echo '<a href="index.php"><button><<</button></a>';
                         echo '<a href="index.php?page='.$page_down.'"><button><</button></a>';
                     }
-                    
+
                     for ($i = 1; $i < $pages_total; $i++) {
                         if ($i == $page + 1) {
                             echo '<a href="index.php?page='.$i.'"><button class="active">'.$i.'</button></a>';
@@ -168,7 +168,7 @@
 
                 ?>
                 </ul>
-            </div> 
+            </div>
         </div><!-- Gallery -->
     </body>
     <footer>

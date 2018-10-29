@@ -34,7 +34,6 @@ function verifGet($login, $key) {
         return 1;
     else
         return 0;
-
 }
 
 function verifPassword($password) {
@@ -68,14 +67,20 @@ if ($_POST['send'] === "Send") {
 
 
 if ($_POST['validate'] === "Validate") {
-    $password = $_POST['password'];
-    if ($ret = verifPassword($password)) {
-        $password_hash = hash('sha512', $password);
-        updatePassword($password_hash, $_SESSION['login']);
-        header('Location: ../views/connexion.php');
-    }
-    else {
-        $_SESSION['error'] = "pass";
+    $password = htmlspecialchars($_POST['password']);
+    $passwd = htmlspecialchars($_POST['passwd']);
+    if ($password === $passwd) {
+      if ($ret = verifPassword($password)) {
+          $password_hash = hash('sha512', $password);
+          updatePassword($password_hash, $_SESSION['login']);
+          header('Location: ../views/connexion.php');
+      }
+      else {
+          $_SESSION['error'] = "pass";
+          header('Location: ../views/new.php?login='.$_SESSION['login'].'&key='.$_SESSION['key']);
+      }
+    } else {
+        $_SESSION['error'] = 'confirm';
         header('Location: ../views/new.php?login='.$_SESSION['login'].'&key='.$_SESSION['key']);
     }
 }
