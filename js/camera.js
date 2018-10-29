@@ -97,7 +97,7 @@ window.addEventListener('load', function(e) {
         snapshot(filter, x, y);
     }
 
-    function makeRequest(img) {
+    function makeRequest(img1, img2, x, y, width, height) {
         var httpRequest = new XMLHttpRequest();
         var path = document.location.pathname;
         var fileArray = path.split('/');
@@ -106,10 +106,13 @@ window.addEventListener('load', function(e) {
 
         httpRequest.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                location.reload();
+              console.log(this.responseText);
+                // location.reload();
             }
         };
-        httpRequest.send('snap='+ encodeURIComponent(img));
+        httpRequest.send('snap='+ encodeURIComponent(img1)+
+          '&filtre='+ encodeURIComponent(img2)+'&x='+x+'&y='+y+'&width='+width+
+          '&height='+height);
     }
 
     function snapshot(filter, x, y) {
@@ -120,29 +123,34 @@ window.addEventListener('load', function(e) {
             if (file === true) {
                 canvas.width = imgElement.width;
                 canvas.height = imgElement.height;
+                console.log(imgElement);
+                console.log(filter);
                 context.drawImage(imgElement, 0, 0, canvas.width, canvas.height);
                 context.drawImage(filter, x, y, canvas.width, canvas.height);
                 imgElement.src = canvas.toDataURL();
                 balise.src = imgElement.src;
             } else if (media === true) {
                 context.drawImage(video, 0, 0, canvas.width, canvas.height);
-                context.drawImage(filter, x, y, canvas.width, canvas.height);
+                // context.drawImage(filter, x, y, canvas.width, canvas.height);
                 videoElement.src = canvas.toDataURL();
-                balise.src = videoElement.src;
+                var img1 = videoElement.src;
+                var img2 = filter.src;
+                // balise.src = videoElement.src;
+                makeRequest(img1, img2, x, y, canvas.width, canvas.height);
             }
-            balise.onload = function () {
-                makeRequest(balise.src);
-            }
-            fragment.appendChild(li);
-            var ul = miniGalery[0].getElementsByTagName('ul');
-            li.appendChild(balise);
-            ul[0].appendChild(fragment);
+            // balise.onload = function () {
+                // makeRequest(balise.src);
+            // }
+            // fragment.appendChild(li);
+            // var ul = miniGalery[0].getElementsByTagName('ul');
+            // li.appendChild(balise);
+            // ul[0].appendChild(fragment);
             context.clearRect(0, 0, canvas.width, canvas.height);
-            imgElement.removeAttribute('src');
-            imgElement.style.visibility = "hidden";
-            video.style.visibility = "visible";
-            filter.setAttribute("selected", "false");
-            filter.style.border = "1px solid transparent";
+            // imgElement.removeAttribute('src');
+            // imgElement.style.visibility = "hidden";
+            // video.style.visibility = "visible";
+            // filter.setAttribute("selected", "false");
+            // filter.style.border = "1px solid transparent";
             smile = true;
         }
         file = false;
