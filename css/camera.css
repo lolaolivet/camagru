@@ -59,7 +59,14 @@
     height: 75px;
     width: auto;
     background: transparent;
-}   
+}
+
+.overlay a {
+  margin: auto 0;
+  height: 75px;
+  width: auto;
+  background: transparent;
+}
 
 ul {
     max-height: 375px;

@@ -126,4 +126,5 @@ function deleteSnapDB($id_photo) {
     }
     $stmt->execute();
 }
+
 ?>

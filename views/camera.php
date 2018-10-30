@@ -81,7 +81,8 @@ if (!(isset($_SESSION['loggued_on_user']))) {
                             if ($e['published'] == 0) {
                                 echo '<img src="../img/share.png" onClick="shareSnap('.$e["id_photos"].')">';
                             }
-                            echo '<img src="../img/delete.png" onClick="deleteSnap('.$e["id_photos"].')"></div></li>';
+                            echo '<a href="'.$e['img'].'" download="my_picture.png"><img src="../img/download.png"></a>
+                                  <img src="../img/delete.png" onClick="deleteSnap('.$e["id_photos"].')"></div></li>';
                         }
                     ?>
 
