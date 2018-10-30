@@ -122,25 +122,25 @@
                             <ul>';
                     $result = getPictures($offset, $per_page);
                     while ($row = $result->fetch(PDO::FETCH_BOTH)) {
-                        echo '<li>
-                        <a onclick="open_img(this)">
-                            <img src="'. $row["img"] .'" class="big" id="'. $row["id_photos"] .'">
-                        </a>
-                        <a class="close" onclick="close_img(this)">
-                            <img src="img/close.png">
-                        </a>
-                        <div id="expand" class="port">
-                            <div class="row">';
-                            $likes = getLikes($row["id_photos"]);
-                            foreach ($likes as $l) {
-                              echo '<div class="likes">';
-                                if ($dislike = getLikeUser($row['id_photos'], $_SESSION['id_user'])) {
+                      echo '<li>
+                              <a onclick="open_img(this)">
+                                <img src="'. $row["img"] .'" class="big" id="'. $row["id_photos"] .'">
+                              </a>
+                              <a class="close" onclick="close_img(this)">
+                                <img src="img/close.png">
+                              </a>
+                              <div id="expand" class="port">
+                                <div class="row">';
+                                $likes = getLikes($row["id_photos"]);
+                                foreach ($likes as $l) {
+                                  echo '<div class="likes">';
+                                  if ($dislike = getLikeUser($row['id_photos'], $_SESSION['id_user'])) {
                                     echo '<img src="img/like.png" onClick="dislike(this, '.$row['id_photos'].','. $_SESSION['id_user'].')">';
-                                } else {
+                                  } else {
                                     echo '<img src="img/dislike.png" onClick="like(this, '.$row['id_photos'].','. $_SESSION['id_user'].')">';
+                                  }
+                                  echo $l["total"] .'</div>';
                                 }
-                                echo $l["total"] .'</div>';
-                            }
                         echo '<div class="description">';
                         $comments = getComments($row["id_photos"]);
                         foreach ($comments as $c) {

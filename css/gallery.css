@@ -34,17 +34,18 @@
 
 .port {
     position: relative;
+    top: 0;
     width: 100%;
-    height: auto;
+    /* height: 80%; */
     background-color: #fafafa;
     visibility: hidden;
 }
 
 .open {
-    position: relative;
-    top: 0;
-    width: 100%;
-    height: auto;
+    position: absolute;
+    top: 90;
+    width: auto;
+    height: 100%;
 }
 
 .big{
