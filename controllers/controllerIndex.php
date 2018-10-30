@@ -43,7 +43,6 @@ function getLikeUser($id_photo, $id_user) {
 if ($_POST['send'] === "Send" ) {
   if ($_POST['message'] != "") {
     $message = htmlspecialchars($_POST['message']);
-    var_dump($message);
     $id_photo = $_POST['id'];
     $id_user = $_SESSION['id_user'];
     sendMessage($id_user, $id_photo, $message);

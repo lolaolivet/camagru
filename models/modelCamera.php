@@ -29,7 +29,7 @@ function getId($login) {
 
 function saveSnap($login, $img, $id) {
     $db = dbConnect();
-    $stmt = $db->prepare('INSERT INTO photos (date, img, published, users_id)
+    $stmt = $db->prepare('INSERT INTO photos (`date`, img, published, users_id)
     VALUES (:date, :img, :published, :users_id)');
     $date = date("Y-m-d H:i:s");
     $stmt->bindParam(':date', $date_photo);
