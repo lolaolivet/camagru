@@ -1,6 +1,8 @@
 <?php
 include("../models/modelActivation.php");
-session_start();
+if (!isset($_SESSION)) {
+  session_start();
+}
 
 function verifKey($login, $key) {
     $data = getKey($login);

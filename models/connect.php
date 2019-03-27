@@ -9,7 +9,7 @@ function dbConnect() {
     }
     catch(PDOException $e)
     {
-        header('Location: config/setup.php');
+      echo 'Erreur: '.$e->getMessage();
     }
 }
 

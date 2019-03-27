@@ -4,7 +4,8 @@ include("connect.php");
 
 function getKey($login) {
     $db = dbConnect();
-    $stmt = $db->prepare('SELECT users.key FROM users WHERE users.login = :login');
+    $stmt = $db->prepare('SELECT users.key FROM users
+      WHERE users.login = :login');
     $stmt->bindParam(':login', $login_user);
     $login_user = $login;
     $stmt->execute();
@@ -13,7 +14,8 @@ function getKey($login) {
 
 function getActivation($login) {
     $db = dbConnect();
-    $stmt = $db->prepare('SELECT users.validation FROM users WHERE users.login = :login');
+    $stmt = $db->prepare('SELECT users.validation FROM users
+      WHERE users.login = :login');
     $stmt->bindParam(':login', $login_user);
     $login_user = $login;
     $stmt->execute();
@@ -22,7 +24,8 @@ function getActivation($login) {
 
 function activateUser($login) {
     $db = dbConnect();
-    $stmt = $db->prepare('UPDATE users SET users.validation = 1 WHERE users.login = :login');
+    $stmt = $db->prepare('UPDATE users SET users.validation = 1
+      WHERE users.login = :login');
     $stmt->bindParam(':login', $login_user);
     $login_user = $login;
     $stmt->execute();
@@ -30,7 +33,8 @@ function activateUser($login) {
 
 function deleteUser($login) {
     $db = dbConnect();
-    $stmt = $db->prepare('DELETE FROM users WHERE users.login = :login');
+    $stmt = $db->prepare('DELETE FROM users 
+      WHERE users.login = :login');
     $stmt->bindParam(':login', $login_user);
     $login_user = $login;
     $stmt->execute();

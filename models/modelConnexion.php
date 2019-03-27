@@ -11,10 +11,8 @@ function getLogin($login) {
     return $stmt;
 }
 
-function createUser($email, $login, $password) {
+function createUser($email, $login, $password, $key) {
     $db = dbConnect();
-    $key = $login . $email . date('mY');
-    $key = md5($key);
     $stmt = $db->prepare('INSERT INTO users (email, login, password, `key`)
     VALUES (:email, :login, :password, :key)');
     $stmt->bindParam(':email', $email_user);

@@ -11,7 +11,7 @@ CREATE DATABASE db_camagru;
 USE db_camagru;
 -- ************************************** `comments`
 
-CREATE TABLE `comments`
+CREATE TABLE IF NOT EXISTS `comments`
 (
     `id_comments`  INT(11) NOT NULL AUTO_INCREMENT,
     `text`         LONGTEXT NOT NULL ,
@@ -31,7 +31,7 @@ VALUES (1, 'Waouw !!', '2018-09-17 10:22:38'),
 
 -- ************************************** `users`
 
-CREATE TABLE `users`
+CREATE TABLE IF NOT EXISTS `users`
 (
     `id_users`   INT(11) NOT NULL AUTO_INCREMENT,
     `email`      VARCHAR(45) NOT NULL ,
@@ -52,7 +52,7 @@ VALUES (1, 'lolivet@student.42.fr', 'lolivet', '4f361568c10f02331af96f4df8356396
 
 -- ************************************** `user_has_comments`
 
-CREATE TABLE `user_has_comments`
+CREATE TABLE IF NOT EXISTS `user_has_comments`
 (
     `id_uhc`       INT(11) NOT NULL AUTO_INCREMENT,
     `users_id`     INT(11) NOT NULL ,
@@ -77,7 +77,7 @@ VALUES (1, '1', '1'),
 
 -- ************************************** `photos`
 
-CREATE TABLE `photos`
+CREATE TABLE IF NOT EXISTS `photos`
 (
     `id_photos` INT(11) NOT NULL AUTO_INCREMENT,
     `date`      DATETIME NOT NULL ,
@@ -100,7 +100,7 @@ VALUES(1, '2018-09-03 11:17:32', 'data:image/jpg;base64,/9j/4TxeRXhpZgAASUkqAAgA
 
 -- ************************************** `photo_has_comments`
 
-CREATE TABLE `photo_has_comments`
+CREATE TABLE IF NOT EXISTS `photo_has_comments`
 (
     `id_phc`       INT(11) NOT NULL AUTO_INCREMENT,
     `photos_id`    INT(11) NOT NULL ,
@@ -125,7 +125,7 @@ VALUES (1, '1', '1'),
 
 -- ************************************** `likes`
 
-CREATE TABLE `likes`
+CREATE TABLE IF NOT EXISTS `likes`
 (
     `id_likes`   INT(11) NOT NULL AUTO_INCREMENT,
     `photos_id`  INT(11) NOT NULL ,

@@ -1,12 +1,18 @@
 <?php
 include('../controllers/controllerForgot.php');
-session_start();
-if (!(isset($_GET['login'])) || !(isset($_GET['key']))) {
+if (!isset($_SESSION)) {
+  session_start();
+}
+if (!isset($GET) && !(isset($_GET['login'])) || !(isset($_GET['key']))) {
   header('Location: ../views/connexion.php');
 }
 
-$_SESSION['login'] = $_GET['login'];
-$_SESSION['key'] = $_GET['key'];
+if (isset($_SESSION) && isset($_SESSION['login'])) {
+  $_SESSION['login'] = $_GET['login'];
+}
+if (isset($_SESSION) && isset($_SESSION['key'])) {
+  $_SESSION['key'] = $_GET['key'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -20,11 +26,11 @@ $_SESSION['key'] = $_GET['key'];
     <body>
         <header>
         <div class="title">
-            <a href="../index.php"><h1>Camagru</h1></a>
+            <a href="index.php"><h1>Camagru</h1></a>
         </div>
         </header>
         <?php
-          if ($_SESSION['error'] === "pass") {
+          if (isset($_SESSION) && isset($_SESSION['error']) && $_SESSION['error'] === "pass") {
             echo '<div class="error">
                     <div class="text">
                       <div class="closeMessage">
@@ -34,7 +40,7 @@ $_SESSION['key'] = $_GET['key'];
                     </div>
                   </div>';
           }
-          if ($_SESSION['error'] === "confirm") {
+          if (isset($_SESSION) && isset($_SESSION['error']) && $_SESSION['error'] === "confirm") {
             echo '<div class="error">
                     <div class="text">
                       <div class="closeMessage">
@@ -47,24 +53,26 @@ $_SESSION['key'] = $_GET['key'];
         ?>
         <div class="container">
             <?php
-                if ($ret = verifGet($_GET['login'], $_GET['key'])) {
-                    echo '<div class="connexion">
-              <p>New password</p>
-              <form method="post" action="../controllers/controllerForgot.php">
-                  <div class="formul">
-                      <label for="password">New password:</label><input type="password" name="password">
-                  </div>
-                  <div class="formul">
-                      <label for="passwd">Confirm password:</label><input type="password" name="passwd">
-                  </div>
-                  <div class="validate">
-                      <input class="validate" type="submit" value="Validate" name="validate">
-                  </div>
-              </form>
-          </div>';
-                } else {
-                    header('Location: connexion.php');
-                }
+            if (isset($GET) && isset($_GET['login']) && isset($_GET['key'])) {
+              if ($ret = verifGet($_GET['login'], $_GET['key'])) {
+                  echo '<div class="connexion">
+            <p>New password</p>
+            <form method="post" action="../controllers/controllerForgot.php">
+                <div class="formul">
+                    <label for="password">New password:</label><input type="password" name="password">
+                </div>
+                <div class="formul">
+                    <label for="passwd">Confirm password:</label><input type="password" name="passwd">
+                </div>
+                <div class="validate">
+                    <input class="validate" type="submit" value="Validate" name="validate">
+                </div>
+            </form>
+        </div>';
+              } else {
+                  header('Location: connexion.php');
+              }
+            }
             ?>
 
         </div>

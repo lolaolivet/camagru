@@ -1,6 +1,15 @@
 <?php
 include('../models/modelForgot.php');
-session_start();
+if (!isset($_SESSION)) {
+  session_start();
+}
+
+if (isset($_GET) && isset($_GET['login'])) {
+  $_SESSION['login'] = $_GET['login'];
+}
+if (isset($_GET) && isset($_GET['key'])) {
+  $_SESSION['key'] = $_GET['key'];
+}
 
 function sendEmailPasswd($email, $login, $key) {
     $root = $_SERVER['REQUEST_URI'];
@@ -30,7 +39,7 @@ function verifGet($login, $key) {
     foreach ($data as $e) {
         $dataKey = $e['key'];
     }
-    if ($dataKey === $key)
+    if ($dataKey == $key)
         return 1;
     else
         return 0;
@@ -47,18 +56,43 @@ function verifPassword($password) {
         return 1;
 }
 
-if ($_POST['send'] === "Send") {
+function verifValidation($login) {
+  $data = getValidation($login);
+  foreach ($data as $e) {
+    $ret = $e['validation'];
+  }
+  if ($ret == 1) {
+    return 1;
+  }
+  else {
+    return 0;
+  }
+}
+
+if (isset($_POST) && isset($_POST['send']) && $_POST['send'] === "Send"
+  && isset($_POST['token']) && isset($_SESSION) && isset($_SESSION['token'])) {
     $email = $_POST['email'];
+    $key = $_POST['token'];
     $data = getMail($email);
     foreach ($data as $e) {
         $user_login = $e['login'];
-        $user_key = $e['key'];
         $user_email = $e['email'];
     }
-    if ($user_email === $email) {
-        sendEmailPasswd($user_email, $user_login, $user_key);
-        $_SESSION['success'] = "email";
-        header('Location: ../views/connexion.php');
+    if (isset($user_email) && $user_email === $email && $key == $_SESSION['token']) {
+      if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if ($ret = verifValidation($user_login)) {
+          changeKey($user_login, $key);
+          sendEmailPasswd($user_email, $user_login, $key);
+          $_SESSION['success'] = "email";
+          header('Location: ../views/connexion.php');
+        } else {
+          $_SESSION['error'] = "validation";
+          header('Location: ../views/connexion.php');
+        }
+      } else {
+        $_SESSION['error'] = "email";
+        header('Location: ../views/forgot.php');
+      }
     } else {
         $_SESSION['error'] = "noEmail";
         header('Location: ../views/connexion.php');
@@ -66,7 +100,7 @@ if ($_POST['send'] === "Send") {
 }
 
 
-if ($_POST['validate'] === "Validate") {
+if (isset($_POST) && isset($_POST['validate']) && $_POST['validate'] === "Validate") {
     $password = htmlspecialchars($_POST['password']);
     $passwd = htmlspecialchars($_POST['passwd']);
     if ($password === $passwd) {

@@ -37,7 +37,6 @@ function getLikes($id) {
 }
 
 function linkUser($id_user, $id_comment) {
-
   $db = dbConnect();
   $stmt = $db->prepare('INSERT INTO user_has_comments (users_id, comments_id)
     VALUES (:user, :comment)');
@@ -120,11 +119,11 @@ function createLike($id_photo, $id_user) {
     $stmt->execute();
 }
 
-function countPictures() {
+function nbPictures() {
     $db = dbConnect();
     $req = $db->query('SELECT COUNT(photos.id_photos) AS "result"
         FROM photos
-        WHERE photos.published = 1;');
+        WHERE photos.published = 1');
     return $req;
 }
 

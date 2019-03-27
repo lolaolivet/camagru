@@ -1,7 +1,11 @@
 <?php
-session_start();
-if ($_SESSION['loggued_on_user'] != "") {
-  header('Location: ../index.php');
+if (!isset($_SESSION)) {
+  session_start();
+}
+
+$token = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
+if (isset($_SESSION) && isset($token)) {
+  $_SESSION['token'] = $token;
 }
 ?>
 
@@ -17,16 +21,16 @@ if ($_SESSION['loggued_on_user'] != "") {
   <body>
     <header>
         <div class="title">
-            <a href="../index.php"><h1>Camagru</h1></a>
+            <a href="index.php"><h1>Camagru</h1></a>
         </div>
         <div class="galleryMenu">
-            <a href="../index.php"><p>Gallery</p></a>
+            <a href="index.php"><p>Gallery</p></a>
         </div>
         <div class="connect">
             <a href="connexion.php"><p>Connexion</p></a>
         </div>
         <?php
-        if ($_SESSION['loggued_on_user'] != "")
+        if (isset($_SESSION) && isset($_SESSION['loggued_on_user']) && $_SESSION['loggued_on_user'] != "")
             echo '<div class="smile">
                     <a href="camera.php"><p>Smile!</p></a>
                   </div>
@@ -39,7 +43,7 @@ if ($_SESSION['loggued_on_user'] != "") {
         ?>
     </header>
     <?php
-      if ($_SESSION['error'] === "wrong") {
+      if (isset($_SESSION) && isset($_SESSION['error']) && $_SESSION['error'] === "wrong") {
         echo '<div class="error">
                 <div class="text">
                   <div class="closeMessage">
@@ -49,7 +53,7 @@ if ($_SESSION['loggued_on_user'] != "") {
                 </div>
               </div>';
       }
-      if ($_SESSION['error'] === "notCreated") {
+      if (isset($_SESSION) && isset($_SESSION['error']) && $_SESSION['error'] === "notCreated") {
         echo '<div class="error">
                 <div class="text">
                   <div class="closeMessage">
@@ -59,7 +63,7 @@ if ($_SESSION['loggued_on_user'] != "") {
                 </div>
               </div>';
       }
-      if ($_SESSION['error'] === "password") {
+      if (isset($_SESSION) && isset($_SESSION['error']) && $_SESSION['error'] === "password") {
         echo '<div class="error">
                 <div class="text">
                   <div class="closeMessage">
@@ -69,7 +73,7 @@ if ($_SESSION['loggued_on_user'] != "") {
                 </div>
               </div>';
       }
-      if ($_SESSION['error'] === "noEmail") {
+      if (isset($_SESSION) && isset($_SESSION['error']) && $_SESSION['error'] === "noEmail") {
         echo '<div class="error">
                 <div class="text">
                   <div class="closeMessage">
@@ -79,17 +83,17 @@ if ($_SESSION['loggued_on_user'] != "") {
                 </div>
               </div>';
         }
-        if ($_SESSION['error'] === "login") {
+        if (isset($_SESSION) && isset($_SESSION['error']) && $_SESSION['error'] === "login") {
         echo '<div class="error">
                 <div class="text">
                   <div class="closeMessage">
                     <a onclick="closeMessage(this)"><img src="../img/close.png"</a>
                   </div>
-                    Spaces are not allowed in the login..
+                    Spaces and special chars are not allowed in the login..
                 </div>
               </div>';
         }
-        if ($_SESSION['error'] === "validation") {
+        if (isset($_SESSION) && isset($_SESSION['error']) && $_SESSION['error'] === "validation") {
         echo '<div class="error">
                 <div class="text">
                   <div class="closeMessage">
@@ -99,13 +103,23 @@ if ($_SESSION['loggued_on_user'] != "") {
                 </div>
               </div>';
         }
-        if ($_SESSION['success'] === "email") {
+        if (isset($_SESSION) && isset($_SESSION['success']) && $_SESSION['success'] === "email") {
         echo '<div class="success">
                 <div class="text">
                   <div class="closeMessage">
                     <a onclick="closeMessage(this)"><img src="../img/close.png"</a>
                   </div>
                     An email has been sent for your password !
+                </div>
+              </div>';
+        }
+        if (isset($_SESSION) && isset($_SESSION['error']) && $_SESSION['error'] === "email") {
+        echo '<div class="error">
+                <div class="text">
+                  <div class="closeMessage">
+                    <a onclick="closeMessage(this)"><img src="../img/close.png"</a>
+                  </div>
+                    Not a valid email..
                 </div>
               </div>';
         }
@@ -126,6 +140,7 @@ if ($_SESSION['loggued_on_user'] != "") {
                   <div class="validate">
                       <input class="validate" type="submit" value="Connect" name="connexion">
                   </div>
+                  <input type="hidden" name="token" value="<?php echo $token ?>">
               </form>
           </div>
 
@@ -147,6 +162,7 @@ if ($_SESSION['loggued_on_user'] != "") {
                   <div class="validate" >
                       <input type="submit" value="Register" name="register">
                   </div>
+                  <input type="hidden" name="token" value="<?php echo $token ?>">
               </form>
           </div>
       </div>

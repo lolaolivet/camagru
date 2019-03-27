@@ -33,6 +33,11 @@ a {
     color: #34333a;
 }
 
+.link {
+  margin: 10px;
+  color: #ff3184;
+}
+
 .rose {
   color: #ff3184;
 }

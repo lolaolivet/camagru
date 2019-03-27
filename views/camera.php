@@ -1,7 +1,9 @@
 <?php
 include("../controllers/controllerCamera.php");
-session_start();
-if (!(isset($_SESSION['loggued_on_user']))) {
+if (!isset($_SESSION)) {
+  session_start();
+}
+if (!isset($_SESSION) || !(isset($_SESSION['loggued_on_user']))) {
   header('Location: connexion.php');
 }
 ?>
@@ -20,16 +22,18 @@ if (!(isset($_SESSION['loggued_on_user']))) {
 <body>
      <header>
         <div class="title">
-            <a href="../index.php"><h1>Camagru</h1></a>
+            <a href="index.php"><h1>Camagru</h1></a>
         </div>
         <div class="galleryMenu">
-            <a href="../index.php"><p>Gallery</p></a>
+            <a href="index.php"><p>Gallery</p></a>
         </div>
         <div class="smile">
             <a href="camera.php"><p>Smile!</p></a>
         </div>
         <div class="profile">
-          <a href="profile.php"><?php echo '<p>'.$_SESSION['loggued_on_user'].'</p>' ?></a>
+          <a href="profile.php"><?php if (isset($_SESSION) && isset($_SESSION['loggued_on_user'])) {
+            echo '<p>'.$_SESSION['loggued_on_user'].'</p>';
+          } ?></a>
          </div>
         <div class="connect">
           <a href="logout.php"><p>Logout</p></a>
@@ -38,7 +42,7 @@ if (!(isset($_SESSION['loggued_on_user']))) {
     <div id="error" class="error" style="display:none;">
     </div>
     <?php
-      if ($_SESSION['success'] === "connected") {
+      if (isset($_SESSION) && isset($_SESSION['success']) && $_SESSION['success'] === "connected") {
         echo '<div class="success">
                 <div class="text">
                   <div class="closeMessage">
@@ -72,18 +76,24 @@ if (!(isset($_SESSION['loggued_on_user']))) {
             <div class="row">
                 <ul>
                     <?php
-                        $data = displaySnap($_SESSION['loggued_on_user']);
-                        foreach ($data as $e) {
-                            echo '<li>
-                                    <img src="'. $e['img'] .'">
-                                    <div class="overlay">
-                                    ';
-                            if ($e['published'] == 0) {
-                                echo '<img src="../img/share.png" onClick="shareSnap('.$e["id_photos"].')">';
-                            }
-                            echo '<a href="'.$e['img'].'" download="my_picture.png"><img src="../img/download.png"></a>
-                                  <img src="../img/delete.png" onClick="deleteSnap('.$e["id_photos"].')"></div></li>';
-                        }
+                    if (isset($_SESSION) && isset($_SESSION['loggued_on_user'])) {
+                      $data = displaySnap($_SESSION['loggued_on_user']);
+                    } else {
+                      $data = NULL;
+                    }
+                    if ($data != NULL) {
+                      foreach ($data as $e) {
+                          echo '<li>
+                                  <img src="'. $e['img'] .'">
+                                  <div class="overlay">
+                                  ';
+                          if ($e['published'] == 0) {
+                              echo '<div class="icon"><img src="../img/share.png" onClick="shareSnap('.$e["id_photos"].')" class="action"></div>';
+                          }
+                          echo '<div class="icon"><a style="width:0;" href="'.$e['img'].'" download="my_picture.png"><img src="../img/download.png" class="action"></a></div>
+                                <div class="icon"><img src="../img/delete.png" onClick="deleteSnap('.$e["id_photos"].')" class="action"></div></li>';
+                      }
+                    }
                     ?>
 
                 </ul>

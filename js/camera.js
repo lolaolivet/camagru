@@ -60,9 +60,8 @@ window.addEventListener('load', function(e) {
         }
     });
 
-
     divFilter.onclick = function (e) {
-        filter = e.srcElement;
+        filter = e.target;
         if (filter.id === "filter" && (file === true || media === true)) {
             x = 0;
             y = 0;
@@ -103,13 +102,15 @@ window.addEventListener('load', function(e) {
         var fileArray = path.split('/');
         httpRequest.open('POST', '/'+fileArray[1]+'/controllers/controllerCamera.php');
         httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
         httpRequest.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 location.reload();
             }
         };
-        httpRequest.send('snap='+ encodeURIComponent(img1)+
+        var encode = img1;
+        var chunk1 = encode.substr(0, encode.length / 2);
+        var chunk2 = encode.substr(encode.length / 2 + 1, encode.length - 1);
+        httpRequest.send('snap='+encodeURIComponent(img1)+
           '&filtre='+ encodeURIComponent(img2)+'&x='+x+'&y='+y+'&width='+width+
           '&height='+height);
     }

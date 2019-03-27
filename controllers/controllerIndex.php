@@ -1,6 +1,8 @@
 <?php
-include("../models/modelIndex.php");
-session_start();
+include(__DIR__."/../models/modelIndex.php");
+if (!isset($_SESSION)) {
+  session_start();
+}
 
 function sendEmail($email) {
     $dest = $email;
@@ -40,7 +42,40 @@ function getLikeUser($id_photo, $id_user) {
     return $res;
 }
 
-if ($_POST['send'] === "Send" ) {
+function pictures($offset, $per_page) {
+  $data = getPictures($offset, $per_page);
+
+  return $data;
+}
+
+function likeUsers($id_photo, $id_user) {
+  $data = getUserLike($id_photo, $id_user);
+  foreach ($data as $e) {
+    $ret = $e['result'];
+  }
+  return $ret;
+}
+
+function likes($id_photo) {
+  $data = getLikes($id_photo);
+  return $data;
+}
+
+function countPictures() {
+  $data = nbPictures();
+  foreach ($data as $e) {
+    $ret = $e['result'];
+  }
+  return $ret;
+}
+
+function comments($id_photo) {
+  $data = getComments($id_photo);
+  return $data;
+}
+
+
+if (isset($_POST) && isset($_POST['send']) && $_POST['send'] === "Send" ) {
   if ($_POST['message'] != "") {
     $message = htmlspecialchars($_POST['message']);
     $id_photo = $_POST['id'];
@@ -48,20 +83,20 @@ if ($_POST['send'] === "Send" ) {
     sendMessage($id_user, $id_photo, $message);
     $_SESSION['success'] = "send";
     sendNotification($id_photo);
-    header('Location: ../index.php');
+    header('Location: ../views/index.php');
   } else {
     $_SESSION['error'] = "error";
-    header('Location: ../index.php');
+    header('Location: ../views/index.php');
   }
 }
 
-if (isset($_POST['id_photo']) && isset($_POST['id_user'])) {
+if (isset($_POST) && isset($_POST['id_photo']) && isset($_POST['id_user'])) {
     $id_photo = $_POST['id_photo'];
     $id_user = $_POST['id_user'];
     deleteLike($id_photo, $id_user);
 }
 
-if (isset($_POST['id_photoL']) && isset($_POST['id_userL'])) {
+if (isset($_POST) && isset($_POST['id_photoL']) && isset($_POST['id_userL'])) {
     $id_photo = $_POST['id_photoL'];
     $id_user = $_POST['id_userL'];
     createLike($id_photo, $id_user);

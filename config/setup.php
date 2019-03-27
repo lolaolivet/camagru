@@ -1,5 +1,4 @@
 <?php
-
 include("database.php");
 $sql =  new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
 $sql->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -16,5 +15,9 @@ foreach ($file as $line)
         die(print_r($sql->errorInfo(), true));
     $tmp = '';
   }
-    header("Location: ../index.php");
+    header("Location: ../views/index.php");
 }
+
+$sql = null;
+
+?>

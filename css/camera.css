@@ -54,18 +54,16 @@
     opacity: 1;
 }
 
-.overlay img {
-    margin: auto 0;
-    height: 75px;
-    width: auto;
-    background: transparent;
+.icon {
+  margin: auto 0;
 }
 
-.overlay a {
-  margin: auto 0;
-  height: 75px;
-  width: auto;
-  background: transparent;
+.icon img{
+    cursor: pointer;
+    margin: auto 0;
+    max-height: 50px;
+    width: auto;
+    background: transparent;
 }
 
 ul {
